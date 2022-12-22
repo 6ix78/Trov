@@ -484,146 +484,109 @@
           </div>
 
 
-            <div class="nk-content nk-content-fluid">
-                <div class="container-xl wide-lg">
-                    
-                    
-                        <div class="nk-content-body">
-        <div class="page-dw wide-xs m-auto" id="wds-ajcon">
-                            <div class="nk-pps-apps">
+          <div class="nk-content nk-content-fluid">
+            <div class="container-xl wide-lg">
+              <div class="nk-content-body">
+                <div class="page-dw wide-xs m-auto" id="pms-ajcon">
+                  <div class="nk-pps-apps">
                     <div class="nk-pps-steps">
-                        <span class="step active"></span>
-                        <span class="step"></span>
-                        <span class="step"></span>
-                        <span class="step"></span>
+                      <span class="step active"></span>
+                      <span class="step"></span>
+                      <span class="step"></span>
+                      <span class="step"></span>
                     </div>
                     <div class="nk-pps-title text-center">
-                        <h3 class="title">Withdraw Funds</h3>
-                        <p class="caption-text">Select from withdraw options below</p>
-                        <p class="sub-text-sm">Withdraw funds from your account directly.</p>
+                      <h3 class="title">Deposit Funds</h3>
+                      <p class="caption-text">
+                        Select from payment options below
+                      </p>
+                      <p class="sub-text-sm">
+                        Secure and safely deposit money into your account.
+                      </p>
                     </div>
-                    <form class="nk-pps-form" action="https://app.investorm.xyz/withdraw/amount" id="wd-method-frm" data-required_msg="Please choose your withdraw method.">
-                        <div class="nk-pps-field form-group">
-                            <ul class="nk-pm-list" id="wd-option-list">
-                                                                    <li class="nk-pm-item">
-                                        <input class="nk-pm-control" type="radio" name="withdraw_method" required value="wd-paypal" id="wd-paypal" />
-                                        <label class="nk-pm-label" for="wd-paypal">
-                                            <span class="pm-name">PayPal</span>
-                                            <span class="pm-icon"><em class="icon ni ni-paypal-alt"></em></span>
-                                        </label>
-                                    </li>
-                                                                    <li class="nk-pm-item">
-                                        <input class="nk-pm-control" type="radio" name="withdraw_method" required value="wd-crypto-wallet" id="wd-crypto-wallet" />
-                                        <label class="nk-pm-label" for="wd-crypto-wallet">
-                                            <span class="pm-name">Crypto Wallet</span>
-                                            <span class="pm-icon"><em class="icon ni ni-wallet-fill"></em></span>
-                                        </label>
-                                    </li>
-                                                                    <li class="nk-pm-item">
-                                        <input class="nk-pm-control" type="radio" name="withdraw_method" required value="wd-bank-transfer" id="wd-bank-transfer" />
-                                        <label class="nk-pm-label" for="wd-bank-transfer">
-                                            <span class="pm-name">Wire Transfer</span>
-                                            <span class="pm-icon"><em class="icon ni ni-building-fill"></em></span>
-                                        </label>
-                                    </li>
-                                                            </ul>
-                        </div>
-                        <div class="nk-pps-field form-group">
-                            <div class="form-label-group">
-                                <label class="form-label">Withdraw From</label>
-                            </div>
-                            <input type="hidden" value="main_wallet" name="wd_source" id="nk-pps-source-wdm">
-                            <div class="dropdown nk-pps-dropdown">
-                                <a href="#" class="dropdown-indicator is-single">
-                                    <div class="nk-cm-item">
-                                        <div class="nk-cm-text">
-                                            <span class="label fw-bold">Main Account</span>
-                                            <span class="desc">Available Balance (150.00 USD)</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="nk-pps-field form-action text-center">
-                            <div class="nk-pps-action">
-                                <a href="javascript:void(0)" class="btn btn-lg btn-block btn-primary" id="withdraw-now">
-                                    <span>Withdraw Now</span>
-                                    <span class="spinner-border spinner-border-sm hide" role="status" aria-hidden="true"></span>
-                                </a>
-                            </div>
-                        </div>
+                    <form
+                      class="nk-pps-form form-validate is-alter"
+                      action="dashboard.html"
+               
+                      data-required_msg="To deposit, please select a payment method."
+                    >
+                      <div class="nk-pps-field form-group">
+                        <ul class="nk-pm-list" id="dpm-list">
+                          
+                          <li class="nk-pm-item">
+                            <input
+                              class="nk-pm-control"
+                              type="radio"
+                              name="deposit_method"
+                              
+                              value="bank-transfer"
+                            
+                            />
+                            <label class="nk-pm-label" for="bank-transfer">
+                              <span class="pm-name">Wire Transfer</span>
+                              <span class="pm-icon"
+                                ><em class="icon bx bx-buildings"></em
+                              ></span>
+                            </label>
+                          </li>
+                          <li class="nk-pm-item">
+                            <input
+                              class="nk-pm-control"
+                              type="radio"
+                              name="deposit_method"
+                              required
+                              value="crypto-wallet"
+                      
+                            />
+                            <label class="nk-pm-label" for="crypto-wallet">
+                              <span class="pm-name">Crypto Wallet</span>
+                              <span class="pm-icon"
+                                ><em class="icon bx bx-wallet"></em
+                              ></span>
+                            </label>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="nk-pps-field form-action text-center">
+                        <div class="nk-pps-action">
                         
+                            <button name="submit" type="button" class="btn btn-lg btn-block btn-primary">Deposit Now</button>
+                            <span
+                              class="spinner-border spinner-border-sm hide"
+                              role="status"
+                              aria-hidden="true"
+                            ></span>
+               
+                        </div>
+                      </div>
                     </form>
+                  </div>
                 </div>
-                    </div>
-    </div>
+              </div>
+            </div>
+          </div>
 
+          <div class="nk-footer">
+            <div class="container-fluid">
+              <div class="nk-footer-wrap">
+                <div class="nk-footer-copyright">
+                 Dx Coding Web 2022. All Rights Reserved.
                 </div>
+                
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
-
-            <div class="nk-footer">
-	<div class="container-fluid">
-		<div class="nk-footer-wrap">
-		    <div class="nk-footer-copyright">Investorm &copy; 2022. All Rights Reserved.</div>
-		    <div class="nk-footer-links">
-		
-		<ul class="nav nav-sm">
-	
-						<li class="nav-item">
-			<a class="nav-link" href="https://app.investorm.xyz/page/faqs">FAQs</a>
-		</li>
-								<li class="nav-item">
-			<a class="nav-link" href="https://app.investorm.xyz/page/terms-and-condition">Terms and Condition</a>
-		</li>
-								<li class="nav-item">
-			<a class="nav-link" href="https://app.investorm.xyz/page/privacy-policy">Privacy Policy</a>
-		</li>
-				
-		<li class="nav-item">
-		<div class="dropup">
-			<a href="javascript:void(0)" class="dropdown-toggle dropdown-indicator has-indicator nav-link lang-switch-btn toggle-tigger" data-toggle="dropdown">
-								English
-							</a>
-            <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right dropdown-menu-mxh h-max-175px">
-                <ul class="language-list">
-                                            <li>
-                            <a href="https://app.investorm.xyz/language?lang=en" class="language-item justify-center">
-                                <span class="language-name fw-medium">English</span>
-                            </a>
-                        </li>
-                                            <li>
-                            <a href="https://app.investorm.xyz/language?lang=rtl" class="language-item justify-center">
-                                <span class="language-name">RTL Mode</span>
-                            </a>
-                        </li>
-                                    </ul>
-            </div>
-		</div>
-	</li>
-
-
-
-
-		</ul>
-		
-		</div>
-	
-
-		</div>
-	</div>
-</div>            
+          </div>
         </div>
+      </div>
     </div>
-</div>
 
-
-    <div class="modal fade" role="dialog" id="withdraw-account-modal">
-    </div>
-<script type="text/javascript">
-    const updateSetting = "https://app.investorm.xyz/update/setting", upreference = "https://app.investorm.xyz/profile/preference", getTnxDetails = "https://app.investorm.xyz/transactions/details", msgwng = "Sorry, something went wrong!", msgunp = "Unable to process your request.";
-</script>
-<script src="https://app.investorm.xyz/assets/js/bundle.js?ver=133"></script>
-<script src="https://app.investorm.xyz/assets/js/app.js?ver=133"></script>
-<script src="https://app.investorm.xyz/assets/js/charts.js?ver=133"></script>
-</body>
+    
+    <script src="https://app.investorm.xyz/assets/js/bundle.js?ver=133"></script>
+    <!-- <script src="https://app.investorm.xyz/assets/js/app.js?ver=133"></script>
+    <script src="https://app.investorm.xyz/assets/js/charts.js?ver=133"></script> -->
+  </body>
 </html>
