@@ -1,3 +1,20 @@
+<?php 
+session_start();
+if(!isset($_SESSION['ref_id'])){
+  header("location: login.php");
+}
+
+// if(isset($_GET['user_id'])){
+// $user_id = $_GET['user_id'];
+// }
+
+include 'php/config.php';
+
+if (isset($_GET['ref'])) {
+  $ref = $_GET['ref'];
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en" class="js" id="fabb7b9b">
   <head>
@@ -52,7 +69,13 @@
               ></a>
             </div>
           </div>
+          <?php
+        $sql = mysqli_query($conn, "SELECT * FROM user WHERE ref_id = {$_SESSION['ref_id']}");
+if (mysqli_num_rows($sql) > 0) {
+   ($row = mysqli_fetch_assoc($sql));
 
+
+?>
           <div class="nk-sidebar-element">
             <div class="nk-sidebar-body" data-simplebar>
               <div class="nk-sidebar-content">
@@ -61,10 +84,10 @@
                     <div class="user-account-main">
                       <h6 class="overline-title-alt">Main Account Balance</h6>
                       <div class="user-balance">
-                        150.00 <small class="currency">USD</small>
+                    <?php echo  $row['balance'] ?> <small class="currency">USD</small>
                       </div>
                       <div class="user-balance-alt">
-                        0.1236 <span class="currency">ETH</span>
+                        0 <span class="currency">ETH</span>
                       </div>
                     </div>
                   </div>
@@ -117,14 +140,14 @@
                         <div class="user-avatar">
                           <span
                             ><div class="user-avatar bg-info">
-                              <span>DA</span>
+                              <span><?php echo substr($name, 0,2   ); ?></span>
                             </div></span
                           >
                         </div>
                         <div class="user-info">
-                          <span class="lead-text">Daniel Owen Derefaka</span>
+                          <span class="lead-text"><?php echo $row['name'] ?></span>
                           <span class="sub-text"
-                            >danielowenderefaka@gmail.com</span
+                            ><?php echo $row['email'] ?></span
                           >
                         </div>
                         <!-- Start Side Bar Mobile  -->
@@ -142,10 +165,10 @@
                       <div class="user-account-main">
                         <h6 class="overline-title-alt">Main Account Balance</h6>
                         <div class="user-balance">
-                          150.00 <small class="currency">USD</small>
+                         <?php echo  $row['balance'] ?> <small class="currency">USD</small>
                         </div>
                         <div class="user-balance-alt">
-                          0.1236 <span class="currency">ETH</span>
+                          0 <span class="currency">ETH</span>
                         </div>
                       </div>
                     </div>
@@ -206,8 +229,8 @@
                     <ul class="link-list">
                       <li>
                         <a
-                          href="logout.html"
-                          onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                          href="php/logout.php"
+                         
                           ><em class="icon ni ni-signout"></em
                           ><span>Sign out</span></a
                         >
@@ -375,10 +398,10 @@
                           </div>
                           <div class="user-info d-none d-md-block">
                             <div class="user-status user-status-verified">
-                              Verified
+                            <?php echo $row['stats'] ?>
                             </div>
                             <div class="user-name">
-                              Daniel Owen Derefaka
+                             <?php echo $row['name'] ?>
                               <i class="bx bx-chevron-down"></i>
                             </div>
                           </div>
@@ -390,20 +413,22 @@
                         <div
                           class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block"
                         >
+                       <?php $name = $row['name'] ?>
                           <div class="user-card">
                             <div class="user-avatar">
                               <span
                                 ><div class="user-avatar bg-info">
-                                  <span>DA</span>
+                                  <span><?php echo substr($name, 0,2   ); ?>
+</span>
                                 </div></span
                               >
                             </div>
                             <div class="user-info">
                               <span class="lead-text"
-                                >Daniel Owen Derefaka</span
+                                ><?php echo $row['name'] ?></span
                               >
                               <span class="sub-text"
-                                >danielowenderefaka@gmail.com</span
+                                ><?php echo $row['email'] ?></span
                               >
                             </div>
                           </div>
@@ -451,7 +476,7 @@
                         <div class="dropdown-inner">
                           <ul class="link-list">
                             <li>
-                              <a href="logout">
+                              <a href="php/logout.php">
                                 <em class="icon bx bx-log-out"></em
                                 ><span>Sign out</span></a
                               >
@@ -477,308 +502,155 @@
               </div>
             </div>
           </div>
+       
+
+<?php } ?>
 
           <div class="nk-content nk-content-fluid">
             <div class="container-xl wide-lg">
               <div class="nk-content-body">
                 <div class="nk-block-head nk-block-head-sm">
-                  <div class="nk-block-head-sub"><span>Welcome!</span></div>
+                  <div class="nk-block-head-sub"><span>Referrals</span></div>
                   <div class="nk-block-between-md g-4">
                     <div class="nk-block-head-content">
                       <h2 class="nk-block-title fw-normal">
-                        Daniel Owen Derefaka
+                        Referral Activity
                       </h2>
                       <div class="nk-block-des">
-                        <p>Here&#039;s a summary of your account. Have fun!</p>
-                      </div>
-                    </div>
-                    <div class="nk-block-head-content d-none d-md-inline-flex">
-                      <ul class="nk-block-tools gx-3">
-                        <li>
-                          <a
-                            href="invest.html"
-                            class="btn btn-secondary"
-                            ><span>Invest &amp; Earn</span>
-                            <em
-                              class="icon bx bx-right-arrow-alt d-none d-lg-inline-block"
-                            ></em
-                          ></a>
-                        </li>
-                        <li>
-                          <a
-                            href="deposit.html"
-                            class="btn btn-danger"
-                            ><span>Deposit</span>
-                            <em class="icon bx bx-right-arrow-alt"></em
-                          ></a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="nk-block">
-                  <div class="alert alert-danger bg-white alert-thick">
-                    <div class="alert-cta flex-wrap flex-md-nowrap g-2">
-                      <div class="alert-text has-icon">
-                        <em class="icon bx bx-bug text-danger"></em>
-                        <p class="text-base">
-                          <b>Caution:</b> All the transactions are NOT
-                          real as you have logged into demo application to see
-                          the platform.
+                        <p>
+                          See who you&#039;ve referred and statistic of your
+                          referrals.
                         </p>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div class="nk-block">
-                  <div class="row g-gs">
-                    <div class="col-md-4">
-                      <div
-                        class="card card-full card-bordered card-wg on-bottom is-primary"
-                      >
-                        <div class="card-inner">
-                          <div class="card-title-group">
-                            <div class="card-title">
-                              <h5 class="nk-wgacc-title">Available Balance</h5>
-                            </div>
-                            <div class="card-tools">
-                              <em
-                                class="icon bx bx-info-circle fs-13px text-soft nk-tooltip"
-                                title="Main account balance without locked or under progress."
-                              ></em>
-                            </div>
-                          </div>
-                          <div class="card-amount mt-2 mb-1">
-                            <span class="amount"
-                              >150 <span class="currency">USD</span></span
-                            >
-                          </div>
-                          <div class="card-stats">
-                            <div class="card-stats-group g-2">
-                              <div class="card-stats-data">
-                                <div class="title fw-bold">
-                                  Investment Account
-                                  <em
-                                    class="icon bx bx-info-circle fs-12px text-soft nk-tooltip"
-                                    title="Additional balance in your Investment account."
-                                  ></em>
-                                </div>
-                                <div class="amount fw-bold">
-                                  0 <span class="currency fw-normal">USD</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="card-stats-ck sm"></div>
-                          </div>
-                          <div class="card-action d-md-none">
-                            <ul
-                              class="nk-block-tools g-3 flex-wrap flex-sm-nowrap"
-                            >
-                              <li>
-                                <a
-                                  href="deposit.html"
-                                  class="btn btn-danger"
-                                  ><span>Deposit</span>
-                                  <em class="icon bx bx-right-arrow-alt"></em
-                                ></a>
-                              </li>
-                              <li>
-                                <a
-                                  href="invest.html"
-                                  class="btn btn-secondary"
-                                  ><span>Invest &amp; Earn</span>
-                                  <em
-                                    class="icon bx bx-right-arrow-alt d-none d-sm-inline-block"
-                                  ></em
-                                ></a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div
-                        class="card card-full card-bordered card-wg on-bottom is-base"
-                      >
-                        <div class="card-inner">
-                          <div class="card-title-group">
-                            <div class="card-title">
-                              <h5 class="nk-wgacc-title">Total Deposit</h5>
-                            </div>
-                            <div class="card-tools">
-                              <em
-                                class="icon bx bx-info-circle fs-13px text-soft nk-tooltip"
-                                title="The total Deposit amount without under progress."
-                              ></em>
-                            </div>
-                          </div>
-                          <div class="card-amount mt-2 mb-1">
-                            <span class="amount"
-                              >0 <span class="currency">USD</span></span
-                            >
-                          </div>
-                          <div class="card-stats">
-                            <div class="card-stats-group g-2">
-                              <div class="card-stats-data">
-                                <div class="title fw-bold">This Month</div>
-                                <div class="amount fw-bold">
-                                  0 <span class="currency fw-normal">USD</span>
-                                  <span
-                                    class="change down tipinfo"
-                                    title="Than last month"
-                                  >
-                                    <em class="icon bx bx-down-arrow-alt"></em
-                                    >100%
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="card-stats-ck sm"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div
-                        class="card card-full card-bordered card-wg on-bottom is-warning"
-                      >
-                        <div class="card-inner">
-                          <div class="card-title-group">
-                            <div class="card-title">
-                              <h5 class="nk-wgacc-title">Total Withdraw</h5>
-                            </div>
-                            <div class="card-tools">
-                              <em
-                                class="icon bx bx-info-circle fs-13px text-soft nk-tooltip"
-                                title="The total Withdraw amount without under progress."
-                              ></em>
-                            </div>
-                          </div>
-                          <div class="card-amount mt-2 mb-1">
-                            <span class="amount"
-                              >0 <span class="currency">USD</span></span
-                            >
-                          </div>
-                          <div class="card-stats">
-                            <div class="card-stats-group g-2">
-                              <div class="card-stats-data">
-                                <div class="title fw-bold">This Month</div>
-                                <div class="amount fw-bold">
-                                  0 <span class="currency fw-normal">USD</span>
-                                  <span
-                                    class="change down tipinfo"
-                                    title="Than last month"
-                                  >
-                                    <em class="icon bx bx-down-arrow-alt"></em
-                                    >100%
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="card-stats-ck sm"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                <div class="nk-block nk-block-lg">
+                  <div class="nk-block-head">
+                    <h5 class="nk-block-title">Referral List</h5>
+                  </div>
+                  <div class="card card-bordered">
+                    <table class="nk-plan-tnx table">
+                      <thead class="thead-light">
+                        <tr>
+                          <th class="tb-col-type w-50">
+                            <span class="overline-title">Username</span>
+                          </th>
+                          <th class="tb-col-date tb-col-md">
+                            <span class="overline-title">Join Date</span>
+                          </th>
+                         
+                        </tr>
+                      </thead>
+                      <tbody>
+                      <?php
+    
+    $sql = mysqli_query($conn, "SELECT * FROM user WHERE ref_code = '$ref' ");
+    if('ref-code' > 0 ){
+  
+    }else{
+      echo 'eno work';
+    }
+  if (mysqli_num_rows($sql) > 0) {
+    while($row = $sql->fetch_assoc()) {
+  
+  
+  ?> 
+                        <tr>
+                          <td ><?php echo $row['name'] ?></td>
+                          <td ><?php echo $row['name'] ?></td>
+                         
+                        
+                        </tr>
+                     
+                    
+        <?php } }else{
+      
+      echo "
+      <tr>
+        <td colspan='3'>No one join yet!</td>
+      </tr>";
+  }
+  ?>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
 
                 <div class="nk-block nk-block-lg">
-                  <div class="nk-block-head-sm">
-                    <div class="nk-block-between-md g-4">
-                      <div class="nk-block-head-content">
-                        <h5 class="nk-block-title title">Recent Activity</h5>
-                      </div>
-                      <div class="nk-block-head-content">
-                        <a href="transactions.html"
-                          >See History</a
-                        >
-                      </div>
-                    </div>
+                  <div class="nk-block-head">
+                    <h5 class="nk-block-title">Referral Commissions</h5>
                   </div>
-                  <div class="nk-odr-list card card-bordered">
-                    
-                    
-                    <div class="nk-odr-item">
-                      <div class="nk-odr-col">
-                        <div class="nk-odr-info">
-                          <div class="nk-odr-badge">
-                            <span
-                              class="nk-odr-icon bg-success-dim text-success icon ic bx bx-arrow-to-right "
-                            ></span>
-                          </div>
-                          <div class="nk-odr-data">
-                            <div class="nk-odr-label">
-                              <strong class="ellipsis"> Signup Bonus </strong>
-                            </div>
-                            <div class="nk-odr-meta">
-                              <span class="date">Nov 30, 2022</span>
-                              <span class="status dot-join"> Completed </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="nk-odr-col nk-odr-col-amount">
-                        <div class="nk-odr-amount">
-                          <div class="number-md text-s text-success">
-                            + 500.00
-                            <span class="currency">USD</span>
-                          </div>
-                          <div class="number-sm">
-                            500.00 <span class="currency">USD</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="nk-odr-col nk-odr-col-action">
-                        <!-- <div class="nk-odr-action">
-                          <a
-                            class="tnx-details"
-                            href="javascript:void(0)"
-                            data-tnx="UnNlb0FVd2szbEdRYTB1L05pVmhVdz09"
-                            ><em class="icon ni ni-forward-ios"></em
-                          ></a>
-                        </div> -->
-                      </div>
-                    </div>
+                  <div class="card card-bordered">
+                    <table class="nk-plan-tnx table">
+                      <thead class="thead-light">
+                        <tr>
+                          <th class="tb-col-type w-50">
+                            <span class="overline-title">Details</span>
+                          </th>
+                          <th class="tb-col-date tb-col-md">
+                            <span class="overline-title">Date</span>
+                          </th>
+                          <th class="tb-col-status tb-col-sm">
+                            <span class="overline-title">Status</span>
+                          </th>
+                          <th class="tb-col-amount tb-col-end">
+                            <span class="overline-title">Earning</span>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td colspan="4">No transactions found!</td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
+                <?php
+        $sql = mysqli_query($conn, "SELECT * FROM user WHERE ref_id = {$_SESSION['ref_id']}");
+if (mysqli_num_rows($sql) > 0) {
+   ($row = mysqli_fetch_assoc($sql));
 
+
+?>
                 <div class="nk-block">
-                  <div class="card card-bordered">
-                    <div class="card-inner">
-                      <div class="nk-refwg-invite">
-                        <div class="nk-refwg-head g-3">
-                          <div class="nk-refwg-title">
-                            <h5 class="title">Refer Us &amp; Earn</h5>
-                            <div class="title-sub">
-                              Use the below link to invite your friends.
+                  <div class="nk-block">
+                    <div class="card card-bordered">
+                      <div class="card-inner">
+                        <div class="nk-refwg-invite">
+                          <div class="nk-refwg-head g-3">
+                            <div class="nk-refwg-title">
+                              <h5 class="title">Refer Us &amp; Earn</h5>
+                              <div class="title-sub">
+                                Use the below link to invite your friends.
+                              </div>
                             </div>
                           </div>
-                        </div>
-                        <div class="nk-refwg-url">
-                          <div class="form-control-wrap">
-                            <div
-                              class="form-clip clipboard-init"
-                              data-clipboard-target="#ref-url"
-                              data-success="Copied"
-                              data-text="Copy Link"
-                            >
-                              <em class="clipboard-icon bx bx-copy  "></em>
-                              <span class="clipboard-text">Copy Link</span>
+                          <div class="nk-refwg-url">
+                            <div class="form-control-wrap">
+                              <div
+                                class="form-clip clipboard-init"
+                                data-clipboard-target="#ref-url"
+                                data-success="Copied"
+                                data-text="Copy Link"
+                              >
+                                <em class="clipboard-icon icon bx bx-copy"></em>
+                                <span class="clipboard-text">Copy Link</span>
+                              </div>
+                              <div class="form-icon">
+                                <em class="icon bx bx-link-alt"></em>
+                              </div>
+                              <input
+                                type="text"
+                                class="form-control copy-text"
+                                id="ref-url"
+                                value="http://localhost/investorm/register.php?ref=<?php  echo $ref?>"
+                              />
                             </div>
-                            <div class="form-icon">
-                              <em class="icon icon bx bx-link-alt"></em>
-                            </div>
-                            <input
-                              type="text"
-                              class="form-control copy-text"
-                              id="ref-url"
-                              value="https://app.investorm.xyz/invite?ref=71cd7aaf"
-                            />
                           </div>
+                          <?php } ?>
                         </div>
                       </div>
                     </div>
@@ -792,33 +664,11 @@
             <div class="container-fluid">
               <div class="nk-footer-wrap">
                 <div class="nk-footer-copyright">
-                  Dx Coding Web &copy; 2022. All Rights Reserved.
+               Dx Coding Web 2022. All Rights Reserved.
                 </div>
-                <div class="nk-footer-links">
-                  <ul class="nav nav-sm">
-                    <li class="nav-item">
-                      <a
-                        class="nav-link"
-                        href="#faqs"
-                        >FAQs</a
-                      >
+                
+                      </div>
                     </li>
-                    <li class="nav-item">
-                      <a
-                        class="nav-link"
-                        href="h#terms-and-condition"
-                        >Terms and Condition</a
-                      >
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        class="nav-link"
-                        href="#privacy-policy"
-                        >Privacy Policy</a
-                      >
-                    </li>
-
-                    
                   </ul>
                 </div>
               </div>
@@ -827,32 +677,13 @@
         </div>
       </div>
     </div>
-    <!-- 
-<div class="pp-alert pp-bbox-left bg-lighter cookie-banner">
-    <div class="container wide-lg">
-        <div class="row align-center justify-between gy-2">
-            <div class="col-12 text-dark">
-                This website uses cookies. By continuing to use this website, you agree to their use. For details, please check our <a href="https://app.investorm.xyz/page/privacy-policy">Privacy Policy</a>.
-            </div>
-            <div class="col-12">
-                <ul class="d-flex g-2 justify-content-md-end">
-                    <li>
-                        <button class="btn btn-primary btn-xs" data-consent="yes">I Agree</button>
-                    </li>
-                                    </ul>
-            </div>
-        </div>
-    </div>
-</div> -->
 
-    <div class="modal fade" role="dialog" id="ajax-modal"></div>
     <script type="text/javascript">
       const updateSetting = "https://app.investorm.xyz/update/setting",
         upreference = "https://app.investorm.xyz/profile/preference",
         getTnxDetails = "https://app.investorm.xyz/transactions/details",
         msgwng = "Sorry, something went wrong!",
-        msgunp = "Unable to process your request.",
-        consentURI = "https://app.investorm.xyz/policy-consent";
+        msgunp = "Unable to process your request.";
     </script>
     <script src="https://app.investorm.xyz/assets/js/bundle.js?ver=133"></script>
     <script src="https://app.investorm.xyz/assets/js/app.js?ver=133"></script>
