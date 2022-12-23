@@ -1,3 +1,62 @@
+<?php 
+session_start();
+if(!isset($_SESSION['ref_id'])){
+  header("location: login.php");
+}
+
+// if(isset($_GET['user_id'])){
+// $user_id = $_GET['user_id'];
+// }
+
+include 'php/config.php';
+
+if (isset($_GET['ref'])) {
+  $ref = $_GET['ref'];
+};
+
+
+
+if(isset($_POST['submit'])){
+$name = $_POST['name'];
+$phone = $_POST['phone'];
+$gender = $_POST['gender'];
+$dob = $_POST['dob'];
+$ref_id = $_POST['ref_id'];
+
+
+$sql = mysqli_query ($conn, "UPDATE user SET name = '{$name}', phone = '{$phone}', gender = '{$gender}', dob = '{$dob}' WHERE ref_id = $ref");
+
+if(!$sql){
+    echo "error ";
+}else{
+    echo "edon work o";
+}
+
+}
+
+
+if(isset($_POST['submit_add'])){
+
+$address_line	 = $_POST['address_line'];
+$second_address_line = $_POST['second_address_line'];
+$city	 = $_POST['city'];
+$user_state	 = $_POST['user_state'];
+$profile_zip  = $_POST['profile_zip'];
+$country	 = $_POST['country'];
+
+
+$sql = mysqli_query ($conn, "UPDATE user_address SET address_line = '{$address_line}', second_address_line = '{$second_address_line}', city = '{$city}', user_state = '{$user_state}' , profile_zip = '{$profile_zip}', country = '{$country}' , ref_id = '{$ref}' WHERE ref_id = $ref");
+
+if(!$sql){
+    echo "error ";
+}else{
+    echo "edon work o";
+}
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en" class="js" id="fabb7b9b">
   <head>
@@ -15,8 +74,8 @@
       name="site-token"
       content="a275cdfd359e43212d43217d5bO1Hb1231f2d447H83643210"
     />
-    <title>Profile </title>
-    <link rel="shortcut icon" href="https://app.investorm.xyz/favicon.ico" />
+    <title>Profile| Evercore </title>
+    <link rel="shortcut icon" href="asset/img/favicon.png" />
     <link rel="stylesheet" href="asset/test2.css" />
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
@@ -35,16 +94,11 @@
         >
           <div class="nk-sidebar-element nk-sidebar-head">
             <div class="nk-sidebar-brand">
-              <a class="logo-link nk-sidebar-logo" href="dashboard.html"
+              <a class="logo-link nk-sidebar-logo" href="dashboard.php?ref=<?php echo $row['ref_id']?>"
                 ><img
-                  class="logo-img logo-light logo-img-md"
+                  class="logo-img  logo-img-md"
                   src="asset/img/logo.png"
-                  srcset="asset/img/logo2x.png 2x"
-                  alt="Investorm" /><img
-                  class="logo-img logo-dark logo-img-md"
-                  src="asset/img/logo-dark.png"
-                  srcset="asset/img/logo-dark2x.png 2x"
-                  alt="Investorm"
+                  
               /></a>
             </div>
 
@@ -57,7 +111,13 @@
               ></a>
             </div>
           </div>
+          <?php
+        $sql = mysqli_query($conn, "SELECT * FROM user WHERE ref_id = {$_SESSION['ref_id']}");
+if (mysqli_num_rows($sql) > 0) {
+   ($row = mysqli_fetch_assoc($sql));
 
+
+?>
           <div class="nk-sidebar-element">
             <div class="nk-sidebar-body" data-simplebar>
               <div class="nk-sidebar-content">
@@ -66,10 +126,10 @@
                     <div class="user-account-main">
                       <h6 class="overline-title-alt">Main Account Balance</h6>
                       <div class="user-balance">
-                        150.00 <small class="currency">USD</small>
+                    <?php echo  $row['balance'] ?> <small class="currency">USD</small>
                       </div>
                       <div class="user-balance-alt">
-                        0.1236 <span class="currency">ETH</span>
+                        0 <span class="currency">ETH</span>
                       </div>
                     </div>
                   </div>
@@ -96,12 +156,12 @@
                   <div class="user-account-actions">
                     <ul class="g-3">
                       <li>
-                        <a href="deposit.html" class="btn btn-primary"
+                        <a href="deposit.php?ref=<?php echo $row['ref_id']?>" class="btn btn-danger"
                           ><span>Deposit</span></a
                         >
                       </li>
                       <li>
-                        <a href="withdraw.html" class="btn btn-warning"
+                        <a href="withdraw.php?ref=<?php echo $row['ref_id']?>" class="btn btn-warning"
                           ><span>Withdraw</span></a
                         >
                       </li>
@@ -122,14 +182,14 @@
                         <div class="user-avatar">
                           <span
                             ><div class="user-avatar bg-info">
-                              <span>DA</span>
+                              <span><?php echo substr($name, 0,2   ); ?></span>
                             </div></span
                           >
                         </div>
                         <div class="user-info">
-                          <span class="lead-text">Daniel Owen Derefaka</span>
+                          <span class="lead-text"><?php echo $row['name'] ?></span>
                           <span class="sub-text"
-                            >danielowenderefaka@gmail.com</span
+                            ><?php echo $row['email'] ?></span
                           >
                         </div>
                         <!-- Start Side Bar Mobile  -->
@@ -147,10 +207,10 @@
                       <div class="user-account-main">
                         <h6 class="overline-title-alt">Main Account Balance</h6>
                         <div class="user-balance">
-                          150.00 <small class="currency">USD</small>
+                         <?php echo  $row['balance'] ?> <small class="currency">USD</small>
                         </div>
                         <div class="user-balance-alt">
-                          0.1236 <span class="currency">ETH</span>
+                          0 <span class="currency">ETH</span>
                         </div>
                       </div>
                     </div>
@@ -178,15 +238,15 @@
                         </div>
                       </li>
                     </ul>
-                    <ul class="user-account-links">
+                    <ul class="user-account-links" >
                       <li>
-                        <a href="withdraw.html" class="link"
+                        <a href="withdraw.php?ref=<?php echo $row['ref_id']?>" class="link"
                           ><span>Withdraw Funds</span>
                           <em class="icon bx bx-wallet "></em
                         ></a>
                       </li>
                       <li>
-                        <a href="deposit.html" class="link"
+                        <a href="deposit.php?ref=<?php echo $row['ref_id']?>" class="link"
                           ><span>Deposit Funds</span>
                           <em class="icon bx bx-wallet"></em
                         ></a>
@@ -194,13 +254,13 @@
                     </ul>
                     <ul class="link-list">
                       <li>
-                        <a href="profile.html"
+                        <a href="profile.php?ref=<?php echo $row['ref_id']?>"
                           ><em class="icon bx bx-user"></em
                           ><span>View Profile</span></a
                         >
                       </li>
                       <li>
-                        <a href="settings.html"
+                        <a href="settings.php?ref=<?php echo $row['ref_id']?>"
                           ><em class="icon bx bx-cog"></em
                           ><span>Account Setting</span></a
                         >
@@ -211,9 +271,8 @@
                     <ul class="link-list">
                       <li>
                         <a
-                          href="logout.html"
-                          onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                          ><em class="icon bx bx-log-out"></em
+                          href="php/logout.php"
+                          ><em class="icon ni ni-signout"></em
                           ><span>Sign out</span></a
                         >
                       </li>
@@ -226,8 +285,8 @@
                     <li class="nk-menu-heading">
                       <h6 class="overline-title">Menu</h6>
                     </li>
-                    <li class="nk-menu-item active">
-                      <a href="dashboard.html" class="nk-menu-link">
+                    <li class="nk-menu-item">
+                      <a href="dashboard.php?ref=<?php echo $row['ref_id']?>" class="nk-menu-link">
                         <span class="nk-menu-icon"
                           ><em class="icon bx bx-grid-alt"></em
                         ></span>
@@ -235,7 +294,7 @@
                       </a>
                     </li>
                     <li class="nk-menu-item">
-                      <a href="transactions.html" class="nk-menu-link">
+                      <a href="transactions.php?ref=<?php echo $row['ref_id']?>" class="nk-menu-link">
                         <span class="nk-menu-icon"
                           ><em class="icon bx bx-transfer-alt"></em
                         ></span>
@@ -243,7 +302,7 @@
                       </a>
                     </li>
                     <li class="nk-menu-item">
-                      <a href="investment.html" class="nk-menu-link">
+                      <a href="investment.php?ref=<?php echo $row['ref_id']?>" class="nk-menu-link">
                         <span class="nk-menu-icon"
                           ><i class="icon bx bx-dollar-circle"></i
                         ></span>
@@ -251,15 +310,15 @@
                       </a>
                     </li>
                     <li class="nk-menu-item">
-                      <a href="ourplans.html" class="nk-menu-link">
+                      <a href="ourplans.php?ref=<?php echo $row['ref_id']?>" class="nk-menu-link">
                         <span class="nk-menu-icon"
                           ><i class="icon bx bx-dollar-circle"></i
                         ></span>
                         <span class="nk-menu-text">Our Plans</span>
                       </a>
                     </li>
-                    <li class="nk-menu-item">
-                      <a href="profile.html" class="nk-menu-link">
+                    <li class="nk-menu-item active">
+                      <a href="profile.php?ref=<?php echo $row['ref_id']?>" class="nk-menu-link">
                         <span class="nk-menu-icon"
                           ><i class="icon bx bxs-user"></i
                         ></span>
@@ -267,7 +326,7 @@
                       </a>
                     </li>
                     <li class="nk-menu-item">
-                      <a href="referral.html" class="nk-menu-link">
+                      <a href="referral.php?ref=<?php echo $row['ref_id']?>" class="nk-menu-link">
                         <span class="nk-menu-icon"
                           ><i class="icon bx bx-share-alt"></i
                         ></span>
@@ -375,15 +434,15 @@
                         data-toggle="dropdown"
                       >
                         <div class="user-toggle">
-                          <div class="user-avatar sm">
+                          <div class="user-avatar sm" style="background-color: red;">
                             <i class="icon bx bx-user"></i>
                           </div>
                           <div class="user-info d-none d-md-block">
                             <div class="user-status user-status-verified">
-                              Verified
+                            <?php echo $row['stats'] ?>
                             </div>
                             <div class="user-name">
-                              Daniel Owen Derefaka
+                             <?php echo $row['name'] ?>
                               <i class="bx bx-chevron-down"></i>
                             </div>
                           </div>
@@ -395,20 +454,22 @@
                         <div
                           class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block"
                         >
+                       <?php $name = $row['name'] ?>
                           <div class="user-card">
                             <div class="user-avatar">
                               <span
                                 ><div class="user-avatar bg-info">
-                                  <span>DA</span>
+                                  <span><?php echo substr($name, 0,2   ); ?>
+</span>
                                 </div></span
                               >
                             </div>
                             <div class="user-info">
                               <span class="lead-text"
-                                >Daniel Owen Derefaka</span
+                                ><?php echo $row['name'] ?></span
                               >
                               <span class="sub-text"
-                                >danielowenderefaka@gmail.com</span
+                                ><?php echo $row['email'] ?></span
                               >
                             </div>
                           </div>
@@ -416,20 +477,20 @@
                         <div class="dropdown-inner user-account-info">
                           <h6 class="overline-title-alt">Account Balance</h6>
                           <div class="user-balance">
-                            150.00 <small class="currency">USD</small>
+                           <?php echo $row['balance']?> <small class="currency">USD</small>
                           </div>
                           <div class="user-balance-alt">
-                            0.1236 <span class="currency">ETH</span>
+                            0<span class="currency">ETH</span>
                           </div>
                           <ul class="user-account-links">
                             <li>
-                              <a href="deposit.html" class="link"
+                              <a href="deposit.php?ref=<?php echo $row['ref_id']?>" class="link"
                                 ><span>Deposit Funds</span>
                                 <em class="icon bx bx-wallet"></em
                               ></a>
                             </li>
                             <li>
-                              <a href="withdraw.html" class="link"
+                              <a href="withdraw.php?ref=<?php echo $row['ref_id']?>" class="link"
                                 ><span>Withdraw Funds</span>
                                 <em class="icon bx bx-wallet"></em
                               ></a>
@@ -439,13 +500,13 @@
                         <div class="dropdown-inner">
                           <ul class="link-list">
                             <li>
-                              <a href="profile.html"
+                              <a href="profile.php?ref=<?php echo $row['ref_id']?>"
                                 ><em class="icon bx bx-user"></em
                                 ><span>View Profile</span></a
                               >
                             </li>
                             <li>
-                              <a href="settings.html"
+                              <a href="settings.php?ref=<?php echo $row['ref_id']?>"
                                 ><em class="icon bx bx-cog"></em
                                 ><span>Security Setting</span></a
                               >
@@ -456,7 +517,7 @@
                         <div class="dropdown-inner">
                           <ul class="link-list">
                             <li>
-                              <a href="logout">
+                              <a href="php/logout.php">
                                 <em class="icon bx bx-log-out"></em
                                 ><span>Sign out</span></a
                               >
@@ -482,7 +543,7 @@
               </div>
             </div>
           </div>
-
+       
 
           <div class="nk-content nk-content-fluid">
             <div class="container-xl wide-lg">
@@ -500,28 +561,28 @@
                 </div>
                 <ul class="nk-nav nav nav-tabs">
                   <li class="nav-item active">
-                    <a class="nav-link" href="profile.html"
+                    <a class="nav-link" href="profile.php?ref=<?php echo $row['ref_id']?>"
                       >Profile</a
                     >
                   </li>
                   <li class="nav-item">
                     <a
                       class="nav-link"
-                      href="profile_account.html"
+                      href="profile_account.php?ref=<?php echo $row['ref_id']?>"
                       >Accounts</a
                     >
                   </li>
                   <li class="nav-item">
                     <a
                       class="nav-link"
-                      href="profile_setting.html"
+                      href="profile_setting.php?ref=<?php echo $row['ref_id']?>"
                       >Security</a
                     >
                   </li>
                   <li class="nav-item">
                     <a
                       class="nav-link"
-                      href="profile_activity.html"
+                      href="profile_activity.php?ref=<?php echo $row['ref_id']?>"
                       >Activity</a
                     >
                   </li>
@@ -548,7 +609,7 @@
                       >
                         <div class="data-col">
                           <span class="data-label">Full Name</span>
-                          <span class="data-value">Daniel Owen Derefaka</span>
+                          <span class="data-value"><?php echo $row['name'] ?></span>
                         </div>
                         <div class="data-col data-col-end">
                           <span class="data-more"
@@ -563,7 +624,7 @@
                       >
                         <div class="data-col">
                           <span class="data-label">Display Name</span>
-                          <span class="data-value">Derefaka</span>
+                          <span class="data-value"><?php echo $row['name'] ?> </span>
                         </div>
                         <div class="data-col data-col-end">
                           <span class="data-more"
@@ -575,7 +636,7 @@
                         <div class="data-col">
                           <span class="data-label">Email</span>
                           <span class="data-value"
-                            >danielowenderefaka@gmail.com</span
+                            ><?php echo $row['email'];?></span
                           >
                         </div>
                         <div class="data-col data-col-end">
@@ -591,7 +652,7 @@
                       >
                         <div class="data-col">
                           <span class="data-label">Phone Number</span>
-                          <span class="data-value"> 08166271623 </span>
+                          <span class="data-value"><?php echo $row ['phone']?> </span>
                         </div>
                         <div class="data-col data-col-end">
                           <span class="data-more"
@@ -599,23 +660,7 @@
                           ></span>
                         </div>
                       </div>
-                      <div
-                        class="data-item"
-                        data-toggle="modal"
-                        data-target="#profile-edit"
-                      >
-                        <div class="data-col">
-                          <span class="data-label">Telegram</span>
-                          <span class="data-value text-soft font-italic">
-                            Not added yet
-                          </span>
-                        </div>
-                        <div class="data-col data-col-end">
-                          <span class="data-more"
-                            ><em class="bx bx-chevron-right"></em
-                          ></span>
-                        </div>
-                      </div>
+                      
                       <div
                         class="data-item"
                         data-toggle="modal"
@@ -624,7 +669,7 @@
                         <div class="data-col">
                           <span class="data-label">Gender</span>
                           <span class="data-value text-soft font-italic">
-                            Not added yet
+                           <?php echo $row ['gender'] ?>
                           </span>
                         </div>
                         <div class="data-col data-col-end">
@@ -640,7 +685,7 @@
                       >
                         <div class="data-col">
                           <span class="data-label">Date of Birth</span>
-                          <span class="data-value"> Jul 29, 2010 </span>
+                          <span class="data-value"> <?php echo $row['dob'] ?></span>
                         </div>
                         <div class="data-col data-col-end">
                           <span class="data-more"
@@ -664,7 +709,7 @@
                               title="Your residential country"
                             ></em
                           ></span>
-                          <span class="data-value"> Nigeria </span>
+                          <span class="data-value"> <?php echo $row['country'] ?> </span>
                         </div>
                         <div class="data-col data-col-end">
                           <span class="data-more"
@@ -682,7 +727,7 @@
                           <span class="data-label">Address</span>
                           <span class="data-value">
                             <span class="text-soft font-italic"
-                              >Not added yet</span
+                              ><?php echo $row['address'] ?></span
                             >
                           </span>
                         </div>
@@ -741,15 +786,15 @@
             <div class="tab-content">
               <div class="tab-pane active" id="personal">
                 <form
-                  action="profile.html"
+                  action=""
                   method="POST"
                   class="form-validate is-alter form-profile"
-                  id="profile-personal-form"
+        
                 >
                   <input
                     type="hidden"
                     name="_token"
-                    value="rnBULN66Sm3sVVncrX5mSehMA1yKBBxT4njjrZWg"
+                    
                   />
                   <div class="row gy-4">
                     <div class="col-md-6">
@@ -764,9 +809,9 @@
                           <input
                             type="text"
                             name="name"
-                            value="Daniel Owen Derefaka"
+                            value="<?php echo $row['name'] ?>"
                             class="form-control form-control-lg"
-                            id="full-name"
+                       
                             placeholder="Enter Full name"
                             required
                             maxlength="190"
@@ -774,28 +819,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <div class="form-label-group">
-                          <label class="form-label" for="display-name"
-                            >Nice Name <span class="text-danger">*</span></label
-                          >
-                        </div>
-
-                        <div class="form-control-wrap">
-                          <input
-                            type="text"
-                            name="profile_display_name"
-                            value="Derefaka"
-                            class="form-control form-control-lg"
-                            id="display-name"
-                            placeholder="Enter display name"
-                            required
-                            maxlength="190"
-                          />
-                        </div>
-                      </div>
-                    </div>
+                    
 
                     <div class="col-md-6">
                       <div class="form-group">
@@ -809,46 +833,27 @@
                         <div class="form-control-wrap">
                           <input
                             type="text"
-                            name="profile_phone"
-                            value="08166271623"
+                            name="phone"
+                            value="<?php echo $row['phone'] ?>"
                             class="form-control form-control-lg"
-                            id="phone-no"
+                       
                             placeholder="Phone Number"
                           />
                         </div>
                       </div>
                     </div>
-
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <div class="form-label-group">
-                          <label class="form-label" for="telegram"
-                            >Telegram</label
-                          >
-                        </div>
-
-                        <div class="form-control-wrap">
-                          <input
-                            type="text"
-                            name="profile_telegram"
-                            value=""
-                            class="form-control form-control-lg"
-                            id="telegram"
-                            placeholder="Telegram"
-                          />
-                        </div>
-                      </div>
-                    </div>
+                   
+                    
 
                     <div class="col-md-6">
                       <div class="form-group">
                         <label class="form-label" for="gender">Gender</label>
                         <select
-                          name="profile_gender"
+                          name="gender"
                           class="form-select"
-                          id="gender"
+                  
                           data-placeholder="Please select"
-                          data-ui="lg"
+                       
                         >
                           <option value=""></option>
                           <option value="male">Male</option>
@@ -865,42 +870,27 @@
                         >
                         <input
                           type="text"
-                          name="profile_dob"
-                          value="07/29/2010"
+                          name="dob"
+                          value="07/29/2022"
                           data-date-start-date="-85y"
                           data-date-end-date="-12y"
                           class="form-control form-control-lg date-picker-alt"
-                          id="birth-day"
+       
                           required
                           placeholder="Enter your date of birth"
                         />
                       </div>
                     </div>
-                    <div class="col-12">
-                      <div class="custom-control custom-switch">
-                        <input
-                          type="checkbox"
-                          name="profile_display_full_name"
-                          class="custom-control-input"
-                          id="display-full-name"
-                          checked
-                        />
-                        <label
-                          class="custom-control-label"
-                          for="display-full-name"
-                          >Use full name to display</label
-                        >
-                      </div>
-                    </div>
+                    
                     <div class="col-12">
                       <ul
                         class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2 pt-2"
                       >
                         <li>
                           <button
-                            type="button"
+                           
                             class="btn btn-lg btn-primary ua-updp"
-                            data-action="profile"
+                          name="submit"
                           >
                             Update Profile
                           </button>
@@ -918,18 +908,15 @@
                   </div>
                 </form>
               </div>
+              <!-- Country  -->
               <div class="tab-pane" id="address">
                 <form
-                  action="https://app.investorm.xyz/profile/address"
+                  action="php/profile.php"
                   method="POST"
                   class="form-validate is-alter form-profile"
-                  id="profile-address-form"
+                 
                 >
-                  <input
-                    type="hidden"
-                    name="_token"
-                    value="rnBULN66Sm3sVVncrX5mSehMA1yKBBxT4njjrZWg"
-                  />
+              
                   <div class="row gy-4">
                     <div class="col-md-6">
                       <div class="form-group">
@@ -942,7 +929,7 @@
                         <div class="form-control-wrap">
                           <input
                             type="text"
-                            name="profile_address_line_1"
+                            name="address_line"
                             class="form-control form-control-lg"
                             id="address-l1"
                             value=""
@@ -962,7 +949,7 @@
                         <div class="form-control-wrap">
                           <input
                             type="text"
-                            name="profile_address_line_2"
+                            name="second_address_line"
                             class="form-control form-control-lg"
                             id="address-l2"
                             value=""
@@ -981,7 +968,7 @@
                         <div class="form-control-wrap">
                           <input
                             type="text"
-                            name="profile_city"
+                            name="city"
                             class="form-control form-control-lg"
                             id="address-city"
                             value=""
@@ -1001,7 +988,7 @@
                         <div class="form-control-wrap">
                           <input
                             type="text"
-                            name="profile_state"
+                            name="user_state"
                             class="form-control form-control-lg"
                             id="address-st"
                             value=""
@@ -1037,7 +1024,7 @@
                           <span class="text-danger">*</span></label
                         >
                         <select
-                          name="profile_country"
+                          name="country"
                           class="form-select"
                           id="address-county"
                           data-ui="lg"
@@ -1798,9 +1785,10 @@
                       >
                         <li>
                           <button
-                            type="button"
+                          
                             class="btn btn-lg btn-primary ua-updp"
-                            data-action="address"
+                          
+                            name="submit_add"
                           >
                             Update Address
                           </button>
@@ -1906,7 +1894,7 @@
         </div>
       </div>
     </div>
-
+    <?php } ?>
     <div
       class="modal fade"
       tabindex="-1"
@@ -1963,18 +1951,12 @@
         </div>
       </div>
     </div>
-    <script type="text/javascript">
-      const updateSetting = "https://app.investorm.xyz/update/setting",
-        upreference = "https://app.investorm.xyz/profile/preference",
-        getTnxDetails = "https://app.investorm.xyz/transactions/details",
-        msgwng = "Sorry, something went wrong!",
-        msgunp = "Unable to process your request.";
-    </script>
+   
     <script src="https://app.investorm.xyz/assets/js/bundle.js?ver=133"></script>
-    <script src="https://app.investorm.xyz/assets/js/app.js?ver=133"></script>
-    <script src="https://app.investorm.xyz/assets/js/charts.js?ver=133"></script>
-    <script type="text/javascript">
+    <!-- <script src="https://app.investorm.xyz/assets/js/app.js?ver=133"></script>
+    <script src="https://app.investorm.xyz/assets/js/charts.js?ver=133"></script> -->
+    <!-- <script type="text/javascript">
       const profileSetting = "https://app.investorm.xyz/profile/settings";
-    </script>
+    </script> -->
   </body>
 </html>

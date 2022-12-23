@@ -32,7 +32,7 @@ if (isset($_GET['ref'])) {
       name="site-token"
       content="a275cdfd359e43212d43217d5bO1Hb1231f2d447H83643210"
     />
-    <title>Dashboard | Investorm</title>
+    <title>Dashboard | Evercore </title>
     <link rel="shortcut icon" href="asset/img/favicon.png" />
     <link rel="stylesheet" href="asset/test2.css" />
     <link
@@ -52,7 +52,7 @@ if (isset($_GET['ref'])) {
         >
           <div class="nk-sidebar-element nk-sidebar-head">
             <div class="nk-sidebar-brand">
-              <a class="logo-link nk-sidebar-logo" href="dashboard.php"
+              <a class="logo-link nk-sidebar-logo" href="dashboard.php?ref=<?php echo $row['ref_id']?>"
                 ><img
                   class="logo-img  logo-img-md"
                   src="asset/img/logo.png"
@@ -114,12 +114,12 @@ if (mysqli_num_rows($sql) > 0) {
                   <div class="user-account-actions">
                     <ul class="g-3">
                       <li>
-                        <a href="deposit.html" class="btn btn-danger"
+                        <a href="deposit.php?ref=<?php echo $row['ref_id']?>" class="btn btn-danger"
                           ><span>Deposit</span></a
                         >
                       </li>
                       <li>
-                        <a href="withdraw.html" class="btn btn-warning"
+                        <a href="withdraw.php?ref=<?php echo $row['ref_id']?>" class="btn btn-warning"
                           ><span>Withdraw</span></a
                         >
                       </li>
@@ -198,13 +198,13 @@ if (mysqli_num_rows($sql) > 0) {
                     </ul>
                     <ul class="user-account-links">
                       <li>
-                        <a href="withdraw.html" class="link"
+                        <a href="withdraw.php?ref=<?php echo $row['ref_id']?>" class="link"
                           ><span>Withdraw Funds</span>
                           <em class="icon bx bx-wallet "></em
                         ></a>
                       </li>
                       <li>
-                        <a href="deposit.html" class="link"
+                        <a href="deposit.php?ref=<?php echo $row['ref_id']?>" class="link"
                           ><span>Deposit Funds</span>
                           <em class="icon bx bx-wallet"></em
                         ></a>
@@ -212,13 +212,13 @@ if (mysqli_num_rows($sql) > 0) {
                     </ul>
                     <ul class="link-list">
                       <li>
-                        <a href="profile.html"
+                        <a href="profile.php?ref=<?php echo $row['ref_id']?>"
                           ><em class="icon bx bx-user"></em
                           ><span>View Profile</span></a
                         >
                       </li>
                       <li>
-                        <a href="settings.html"
+                        <a href="settings.php?ref=<?php echo $row['ref_id']?>"
                           ><em class="icon bx bx-cog"></em
                           ><span>Account Setting</span></a
                         >
@@ -252,7 +252,7 @@ if (mysqli_num_rows($sql) > 0) {
                       </a>
                     </li>
                     <li class="nk-menu-item">
-                      <a href="transactions.html" class="nk-menu-link">
+                      <a href="transactions.php?ref=<?php echo $row['ref_id']?>" class="nk-menu-link">
                         <span class="nk-menu-icon"
                           ><em class="icon bx bx-transfer-alt"></em
                         ></span>
@@ -260,7 +260,7 @@ if (mysqli_num_rows($sql) > 0) {
                       </a>
                     </li>
                     <li class="nk-menu-item">
-                      <a href="investment.html" class="nk-menu-link">
+                      <a href="investment.php?ref=<?php echo $row['ref_id']?>" class="nk-menu-link">
                         <span class="nk-menu-icon"
                           ><i class="icon bx bx-dollar-circle"></i
                         ></span>
@@ -268,7 +268,7 @@ if (mysqli_num_rows($sql) > 0) {
                       </a>
                     </li>
                     <li class="nk-menu-item">
-                      <a href="ourplans.html" class="nk-menu-link">
+                      <a href="ourplans.php?ref=<?php echo $row['ref_id']?>" class="nk-menu-link">
                         <span class="nk-menu-icon"
                           ><i class="icon bx bx-dollar-circle"></i
                         ></span>
@@ -276,7 +276,7 @@ if (mysqli_num_rows($sql) > 0) {
                       </a>
                     </li>
                     <li class="nk-menu-item">
-                      <a href="profile.html" class="nk-menu-link">
+                      <a href="profile.php?ref=<?php echo $row['ref_id']?>" class="nk-menu-link">
                         <span class="nk-menu-icon"
                           ><i class="icon bx bxs-user"></i
                         ></span>
@@ -435,20 +435,20 @@ if (mysqli_num_rows($sql) > 0) {
                         <div class="dropdown-inner user-account-info">
                           <h6 class="overline-title-alt">Account Balance</h6>
                           <div class="user-balance">
-                            150.00 <small class="currency">USD</small>
+                           <?php echo $row['balance']?> <small class="currency">USD</small>
                           </div>
                           <div class="user-balance-alt">
-                            0.1236 <span class="currency">ETH</span>
+                            0<span class="currency">ETH</span>
                           </div>
                           <ul class="user-account-links">
                             <li>
-                              <a href="deposit.html" class="link"
+                              <a href="deposit.php?ref=<?php echo $row['ref_id']?>" class="link"
                                 ><span>Deposit Funds</span>
                                 <em class="icon bx bx-wallet"></em
                               ></a>
                             </li>
                             <li>
-                              <a href="withdraw.html" class="link"
+                              <a href="withdraw.php?ref=<?php echo $row['ref_id']?>" class="link"
                                 ><span>Withdraw Funds</span>
                                 <em class="icon bx bx-wallet"></em
                               ></a>
@@ -458,13 +458,13 @@ if (mysqli_num_rows($sql) > 0) {
                         <div class="dropdown-inner">
                           <ul class="link-list">
                             <li>
-                              <a href="profile.html"
+                              <a href="profile.php?ref=<?php echo $row['ref_id']?>"
                                 ><em class="icon bx bx-user"></em
                                 ><span>View Profile</span></a
                               >
                             </li>
                             <li>
-                              <a href="settings.html"
+                              <a href="settings.php?ref=<?php echo $row['ref_id']?>"
                                 ><em class="icon bx bx-cog"></em
                                 ><span>Security Setting</span></a
                               >
@@ -521,7 +521,7 @@ if (mysqli_num_rows($sql) > 0) {
                       <ul class="nk-block-tools gx-3">
                         <li>
                           <a
-                            href="invest.html"
+                            href="invest.php?ref=<?php echo $row['ref_id']?>"
                             class="btn btn-secondary"
                             ><span>Invest &amp; Earn</span>
                             <em
@@ -531,7 +531,7 @@ if (mysqli_num_rows($sql) > 0) {
                         </li>
                         <li>
                           <a
-                            href="deposit.html"
+                            href="deposit.php?ref=<?php echo $row['ref_id']?>"
                             class="btn btn-danger"
                             ><span>Deposit</span>
                             <em class="icon bx bx-right-arrow-alt"></em
@@ -603,7 +603,7 @@ if (mysqli_num_rows($sql) > 0) {
                             >
                               <li>
                                 <a
-                                  href="deposit.html"
+                                  href="deposit.php?ref=<?php echo $row['ref_id']?>"
                                   class="btn btn-danger"
                                   ><span>Deposit</span>
                                   <em class="icon bx bx-right-arrow-alt"></em
@@ -611,7 +611,7 @@ if (mysqli_num_rows($sql) > 0) {
                               </li>
                               <li>
                                 <a
-                                  href="invest.html"
+                                  href="invest.php?ref=<?php echo $row['ref_id']?>"
                                   class="btn btn-secondary"
                                   ><span>Invest &amp; Earn</span>
                                   <em
@@ -719,7 +719,7 @@ if (mysqli_num_rows($sql) > 0) {
                         <h5 class="nk-block-title title">Recent Activity</h5>
                       </div>
                       <div class="nk-block-head-content">
-                        <a href="transactions.html"
+                        <a href="transactions.php?ref=<?php echo $row['ref_id']?>"
                           >See History</a
                         >
                       </div>

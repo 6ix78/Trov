@@ -1,9 +1,8 @@
 <?php 
 
 
-// if(isset($_GET['user_id'])){
-// $user_id = $_GET['user_id'];
-// }
+
+session_start();
 
 include 'php/config.php';
 
@@ -47,8 +46,8 @@ if (isset($_GET['ref'])) {
                         <div class="form-control-wrap"><a tabindex="-1" href="#" class="form-icon form-icon-right passcode-switch lg" data-target="password"></a><input type="password" class="form-control form-control-lg" name="password" id="password" placeholder="Enter your password"></div></div><div class="form-group">
                         <div class="form-group">
                         <label class="form-label" for="password">Ref Code</label>
-                        <div class="form-control-wrap"><a tabindex="-1" href="#" class="form-icon form-icon-right passcode-switch lg" data-target="password"></a><input type="text" class="form-control form-control-lg" value="<?php echo $ref; ?>" name="ref_code"  placeholder="Enter Ref Code "></div></div><div class="form-group">
+                        <div class="form-control-wrap"><a tabindex="-1" href="#" class="form-icon form-icon-right passcode-switch lg" data-target="password"></a><input type="number" class="form-control form-control-lg" value="<?php echo $ref; ?>" name="ref_code"  placeholder="Enter Ref Code "></div></div><div class="form-group">
                             <div class="custom-control custom-control-xs custom-checkbox"><input type="checkbox" name="agree" class="custom-control-input" id="checkbox" required ><label class="custom-control-label" for="checkbox">I agree to Evercore Finance <a tabindex="-1" href="#">Privacy Policy</a> &amp; <a tabindex="-1" href="#"> Terms.</a></label></div></div><div class="form-group">
                             <input type="number" class="form-control form-control-lg" name="balance" value="0" hidden>
                             <input type="text" class="form-control form-control-lg" name="stats" value="Not Verified" hidden>
-                            <button   name="submit" class="btn btn-lg btn-danger btn-block">Register</button></div></form><div class="form-note-s2 pt-4"> Already have an account ? <a href="login.html"><strong>Sign in instead</strong></a></div></div></div></div><div class="nk-split-content nk-split-stretch bg-lighter d-flex toggle-break-lg toggle-slide toggle-slide-right" data-toggle-body="true" data-content="athPromo" data-toggle-screen="lg" data-toggle-overlay="true"><div class="slider-wrap w-100 w-max-550px p-3 p-sm-5 m-auto"><div class="slider-init" data-slick='{"dots":true, "arrows":false}'><div class="slider-item"><div class="nk-feature nk-feature-center"><div class=""><img class="" src="asset/img/laptop.svg" salt=""></div><div class="nk-feature-content py-4 p-sm-5"><h4>Evercore Finance</h4><p></p></div></div></div><div class="slider-arrows"></div></div></div></div></div></div> </div> </div> </div></div><div class="nk-demo-panel nk-demo-panel-2x toggle-slide toggle-slide-right" data-content="demoML" data-toggle-overlay="true" data-toggle-body="true" data-toggle-screen="any"><div class="nk-demo-head"></html>
+                            <button   name="submit" class="btn btn-lg btn-danger btn-block">Register</button></div></form><div class="form-note-s2 pt-4"> Already have an account ? <a href="login.php"><strong>Sign in instead</strong></a></div></div></div></div><div class="nk-split-content nk-split-stretch bg-lighter d-flex toggle-break-lg toggle-slide toggle-slide-right" data-toggle-body="true" data-content="athPromo" data-toggle-screen="lg" data-toggle-overlay="true"><div class="slider-wrap w-100 w-max-550px p-3 p-sm-5 m-auto"><div class="slider-init" data-slick='{"dots":true, "arrows":false}'><div class="slider-item"><div class="nk-feature nk-feature-center"><div class=""><img class="" src="asset/img/laptop.svg" salt=""></div><div class="nk-feature-content py-4 p-sm-5"><h4>Evercore Finance</h4><p></p></div></div></div><div class="slider-arrows"></div></div></div></div></div></div> </div> </div> </div></div><div class="nk-demo-panel nk-demo-panel-2x toggle-slide toggle-slide-right" data-content="demoML" data-toggle-overlay="true" data-toggle-body="true" data-toggle-screen="any"><div class="nk-demo-head"></html>

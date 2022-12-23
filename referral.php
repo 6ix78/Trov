@@ -32,7 +32,7 @@ if (isset($_GET['ref'])) {
       name="site-token"
       content="a275cdfd359e43212d43217d5bO1Hb1231f2d447H83643210"
     />
-    <title>Dashboard | Investorm</title>
+    <title>Dashboard | Evercore </title>
     <link rel="shortcut icon" href="asset/img/favicon.png" />
     <link rel="stylesheet" href="asset/test2.css" />
     <link
@@ -52,7 +52,7 @@ if (isset($_GET['ref'])) {
         >
           <div class="nk-sidebar-element nk-sidebar-head">
             <div class="nk-sidebar-brand">
-              <a class="logo-link nk-sidebar-logo" href="dashboard.html"
+              <a class="logo-link nk-sidebar-logo" href="dashboard.php?ref=<?php echo $row['ref_id']?>"
                 ><img
                   class="logo-img  logo-img-md"
                   src="asset/img/logo.png"
@@ -244,8 +244,8 @@ if (mysqli_num_rows($sql) > 0) {
                     <li class="nk-menu-heading">
                       <h6 class="overline-title">Menu</h6>
                     </li>
-                    <li class="nk-menu-item active">
-                      <a href="dashboard.html" class="nk-menu-link">
+                    <li class="nk-menu-item ">
+                      <a href="dashboard.php?ref=<?php echo $row['ref_id']?>" class="nk-menu-link">
                         <span class="nk-menu-icon"
                           ><em class="icon bx bx-grid-alt"></em
                         ></span>
@@ -253,7 +253,7 @@ if (mysqli_num_rows($sql) > 0) {
                       </a>
                     </li>
                     <li class="nk-menu-item">
-                      <a href="transactions.html" class="nk-menu-link">
+                      <a href="transactions.php?ref=<?php echo $row['ref_id']?>" class="nk-menu-link">
                         <span class="nk-menu-icon"
                           ><em class="icon bx bx-transfer-alt"></em
                         ></span>
@@ -261,7 +261,7 @@ if (mysqli_num_rows($sql) > 0) {
                       </a>
                     </li>
                     <li class="nk-menu-item">
-                      <a href="investment.html" class="nk-menu-link">
+                      <a href="investment.php?ref=<?php echo $row['ref_id']?>" class="nk-menu-link">
                         <span class="nk-menu-icon"
                           ><i class="icon bx bx-dollar-circle"></i
                         ></span>
@@ -269,7 +269,7 @@ if (mysqli_num_rows($sql) > 0) {
                       </a>
                     </li>
                     <li class="nk-menu-item">
-                      <a href="ourplans.html" class="nk-menu-link">
+                      <a href="ourplans.php?ref=<?php echo $row['ref_id']?>" class="nk-menu-link">
                         <span class="nk-menu-icon"
                           ><i class="icon bx bx-dollar-circle"></i
                         ></span>
@@ -277,15 +277,15 @@ if (mysqli_num_rows($sql) > 0) {
                       </a>
                     </li>
                     <li class="nk-menu-item">
-                      <a href="profile.html" class="nk-menu-link">
+                      <a href="profile.php?ref=<?php echo $row['ref_id']?>" class="nk-menu-link">
                         <span class="nk-menu-icon"
                           ><i class="icon bx bxs-user"></i
                         ></span>
                         <span class="nk-menu-text">My Profile</span>
                       </a>
                     </li>
-                    <li class="nk-menu-item">
-                      <a href="referral.html" class="nk-menu-link">
+                    <li class="nk-menu-item active">
+                      <a href="referral.php?ref=<?php echo $row['ref_id']?>" class="nk-menu-link">
                         <span class="nk-menu-icon"
                           ><i class="icon bx bx-share-alt"></i
                         ></span>
@@ -559,7 +559,7 @@ if (mysqli_num_rows($sql) > 0) {
   ?> 
                         <tr>
                           <td ><?php echo $row['name'] ?></td>
-                          <td ><?php echo $row['name'] ?></td>
+                          <td ><?php echo $row['date'] ?></td>
                          
                         
                         </tr>
