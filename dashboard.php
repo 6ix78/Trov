@@ -417,7 +417,7 @@ if (mysqli_num_rows($sql) > 0) {
                             <div class="user-avatar">
                               <span
                                 ><div class="user-avatar bg-info">
-                                  <span><?php echo substr($name, 0,2   ); ?>
+                                  <span><?php echo substr($name, 0,2); ?>
 </span>
                                 </div></span
                               >

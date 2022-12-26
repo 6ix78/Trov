@@ -1,3 +1,20 @@
+<?php 
+session_start();
+if(!isset($_SESSION['ref_id'])){
+  header("location: login.php");
+}
+
+// if(isset($_GET['user_id'])){
+// $user_id = $_GET['user_id'];
+// }
+
+include 'php/config.php';
+
+if (isset($_GET['ref'])) {
+  $ref = $_GET['ref'];
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en" class="js" id="fabb7b9b">
   <head>
@@ -15,8 +32,8 @@
       name="site-token"
       content="a275cdfd359e43212d43217d5bO1Hb1231f2d447H83643210"
     />
-    <title>Transactions | Investorm</title>
-    <link rel="shortcut icon" href="https://app.investorm.xyz/favicon.ico" />
+    <title>Transaction | Evercore </title>
+    <link rel="shortcut icon" href="asset/img/favicon.png" />
     <link rel="stylesheet" href="asset/test2.css" />
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
@@ -35,16 +52,11 @@
         >
           <div class="nk-sidebar-element nk-sidebar-head">
             <div class="nk-sidebar-brand">
-              <a class="logo-link nk-sidebar-logo" href="dashboard.html"
+              <a class="logo-link nk-sidebar-logo" href="dashboard.php?ref=<?php echo $row['ref_id']?>"
                 ><img
-                  class="logo-img logo-light logo-img-md"
+                  class="logo-img  logo-img-md"
                   src="asset/img/logo.png"
-                  srcset="asset/img/logo2x.png 2x"
-                  alt="Investorm" /><img
-                  class="logo-img logo-dark logo-img-md"
-                  src="asset/img/logo-dark.png"
-                  srcset="asset/img/logo-dark2x.png 2x"
-                  alt="Investorm"
+                  
               /></a>
             </div>
 
@@ -57,7 +69,13 @@
               ></a>
             </div>
           </div>
+          <?php
+        $sql = mysqli_query($conn, "SELECT * FROM user WHERE ref_id = {$_SESSION['ref_id']}");
+if (mysqli_num_rows($sql) > 0) {
+   ($row = mysqli_fetch_assoc($sql));
 
+
+?>
           <div class="nk-sidebar-element">
             <div class="nk-sidebar-body" data-simplebar>
               <div class="nk-sidebar-content">
@@ -66,10 +84,10 @@
                     <div class="user-account-main">
                       <h6 class="overline-title-alt">Main Account Balance</h6>
                       <div class="user-balance">
-                        150.00 <small class="currency">USD</small>
+                    <?php echo  $row['balance'] ?> <small class="currency">USD</small>
                       </div>
                       <div class="user-balance-alt">
-                        0.1236 <span class="currency">ETH</span>
+                        0 <span class="currency">ETH</span>
                       </div>
                     </div>
                   </div>
@@ -96,12 +114,12 @@
                   <div class="user-account-actions">
                     <ul class="g-3">
                       <li>
-                        <a href="deposit.html" class="btn btn-primary"
+                        <a href="deposit.php?ref=<?php echo $row['ref_id']?>" class="btn btn-danger"
                           ><span>Deposit</span></a
                         >
                       </li>
                       <li>
-                        <a href="withdraw.html" class="btn btn-warning"
+                        <a href="withdraw.php?ref=<?php echo $row['ref_id']?>" class="btn btn-warning"
                           ><span>Withdraw</span></a
                         >
                       </li>
@@ -122,97 +140,96 @@
                         <div class="user-avatar">
                           <span
                             ><div class="user-avatar bg-info">
-                              <span>DA</span>
+                              <span><?php echo substr($name, 0,2   ); ?></span>
                             </div></span
                           >
                         </div>
                         <div class="user-info">
-                          <span class="lead-text">Daniel Owen Derefaka</span>
+                          <span class="lead-text"><?php echo $row['name'] ?></span>
                           <span class="sub-text"
-                            >danielowenderefaka@gmail.com</span
+                            ><?php echo $row['email'] ?></span
                           >
                         </div>
-                           <!-- Start Side Bar Mobile  -->
-                           <div class="user-action">
-                            <em class="icon bx bx-chevron-down"></em>
-                          </div>
+                        <!-- Start Side Bar Mobile  -->
+                        <div class="user-action">
+                          <em class="icon bx bx-chevron-down"></em>
                         </div>
                       </div>
-                    </a>
-                    <div
-                      class="nk-profile-content toggle-expand-content"
-                      data-content="sidebarProfile"
-                    >
-                      <div class="user-account-info between-center">
-                        <div class="user-account-main">
-                          <h6 class="overline-title-alt">Main Account Balance</h6>
-                          <div class="user-balance">
-                            150.00 <small class="currency">USD</small>
-                          </div>
-                          <div class="user-balance-alt">
-                            0.1236 <span class="currency">ETH</span>
-                          </div>
+                    </div>
+                  </a>
+                  <div
+                    class="nk-profile-content toggle-expand-content"
+                    data-content="sidebarProfile"
+                  >
+                    <div class="user-account-info between-center">
+                      <div class="user-account-main">
+                        <h6 class="overline-title-alt">Main Account Balance</h6>
+                        <div class="user-balance">
+                         <?php echo  $row['balance'] ?> <small class="currency">USD</small>
+                        </div>
+                        <div class="user-balance-alt">
+                          0 <span class="currency">ETH</span>
                         </div>
                       </div>
-                      <ul class="user-account-data">
-                        <li>
-                          <div class="user-account-label">
-                            <span class="sub-text">Profits (7d)</span>
-                          </div>
+                    </div>
+                    <ul class="user-account-data">
+                      <li>
+                        <div class="user-account-label">
+                          <span class="sub-text">Profits (7d)</span>
+                        </div>
+                        <div class="user-account-value">
                           <div class="user-account-value">
-                            <div class="user-account-value">
-                              <span class="lead-text">
-                                0.00 <span class="currency">USD</span></span
-                              >
-                            </div>
-                          </div>
-                        </li>
-                        <li>
-                          <div class="user-account-label">
-                            <span class="sub-text">Deposit in orders</span>
-                          </div>
-                          <div class="user-account-value">
-                            <span class="sub-text text-base"
-                              >17.02 <span class="currency">USD</span></span
+                            <span class="lead-text">
+                              0.00 <span class="currency">USD</span></span
                             >
                           </div>
-                        </li>
-                      </ul>
-                      <ul class="user-account-links">
-                        <li>
-                          <a href="withdraw.html" class="link"
-                            ><span>Withdraw Funds</span>
-                            <em class="icon bx bx-wallet "></em
-                          ></a>
-                        </li>
-                        <li>
-                          <a href="deposit.html" class="link"
-                            ><span>Deposit Funds</span>
-                            <em class="icon bx bx-wallet"></em
-                          ></a>
-                        </li>
-                      </ul>
-                      <ul class="link-list">
-                        <li>
-                          <a href="profile.html"
-                            ><em class="icon bx bx-user"></em
-                            ><span>View Profile</span></a
+                        </div>
+                      </li>
+                      <li>
+                        <div class="user-account-label">
+                          <span class="sub-text">Deposit in orders</span>
+                        </div>
+                        <div class="user-account-value">
+                          <span class="sub-text text-base"
+                            >17.02 <span class="currency">USD</span></span
                           >
-                        </li>
-                        <li>
-                          <a href="settings.html"
-                            ><em class="icon bx bx-cog"></em
-                            ><span>Account Setting</span></a
-                          >
-                        </li>
-                       
-                      </ul>
-                      <!-- Mobile Nav End  -->
+                        </div>
+                      </li>
+                    </ul>
+                    <ul class="user-account-links">
+                      <li>
+                        <a href="withdraw.php?ref=<?php echo $row['ref_id']?>" class="link"
+                          ><span>Withdraw Funds</span>
+                          <em class="icon bx bx-wallet "></em
+                        ></a>
+                      </li>
+                      <li>
+                        <a href="deposit.php?ref=<?php echo $row['ref_id']?>" class="link"
+                          ><span>Deposit Funds</span>
+                          <em class="icon bx bx-wallet"></em
+                        ></a>
+                      </li>
+                    </ul>
+                    <ul class="link-list">
+                      <li>
+                        <a href="profile.php?ref=<?php echo $row['ref_id']?>"
+                          ><em class="icon bx bx-user"></em
+                          ><span>View Profile</span></a
+                        >
+                      </li>
+                      <li>
+                        <a href="settings.php?ref=<?php echo $row['ref_id']?>"
+                          ><em class="icon bx bx-cog"></em
+                          ><span>Account Setting</span></a
+                        >
+                      </li>
+                     
+                    </ul>
+                    <!-- Mobile Nav End  -->
                     <ul class="link-list">
                       <li>
                         <a
-                          href="logout.html"
-                          onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                          href="php/logout.php"
                           ><em class="icon ni ni-signout"></em
                           ><span>Sign out</span></a
                         >
@@ -226,8 +243,8 @@
                     <li class="nk-menu-heading">
                       <h6 class="overline-title">Menu</h6>
                     </li>
-                    <li class="nk-menu-item ">
-                      <a href="dashboard.html" class="nk-menu-link">
+                    <li class="nk-menu-item">
+                      <a href="dashboard.php?ref=<?php echo $row['ref_id']?>" class="nk-menu-link">
                         <span class="nk-menu-icon"
                           ><em class="icon bx bx-grid-alt"></em
                         ></span>
@@ -235,7 +252,7 @@
                       </a>
                     </li>
                     <li class="nk-menu-item active">
-                      <a href="transactions.html" class="nk-menu-link">
+                      <a href="transactions.php?ref=<?php echo $row['ref_id']?>" class="nk-menu-link">
                         <span class="nk-menu-icon"
                           ><em class="icon bx bx-transfer-alt"></em
                         ></span>
@@ -243,7 +260,7 @@
                       </a>
                     </li>
                     <li class="nk-menu-item">
-                      <a href="investment.html" class="nk-menu-link">
+                      <a href="investment.php?ref=<?php echo $row['ref_id']?>" class="nk-menu-link">
                         <span class="nk-menu-icon"
                           ><i class="icon bx bx-dollar-circle"></i
                         ></span>
@@ -251,15 +268,15 @@
                       </a>
                     </li>
                     <li class="nk-menu-item">
-                      <a href="ourplans.html" class="nk-menu-link">
+                      <a href="ourplans.php?ref=<?php echo $row['ref_id']?>" class="nk-menu-link">
                         <span class="nk-menu-icon"
                           ><i class="icon bx bx-dollar-circle"></i
                         ></span>
                         <span class="nk-menu-text">Our Plans</span>
                       </a>
                     </li>
-                    <li class="nk-menu-item">
-                      <a href="profile.html" class="nk-menu-link">
+                    <li class="nk-menu-item active">
+                      <a href="profile.php?ref=<?php echo $row['ref_id']?>" class="nk-menu-link">
                         <span class="nk-menu-icon"
                           ><i class="icon bx bxs-user"></i
                         ></span>
@@ -267,7 +284,7 @@
                       </a>
                     </li>
                     <li class="nk-menu-item">
-                      <a href="referral.html" class="nk-menu-link">
+                      <a href="referral.php?ref=<?php echo $row['ref_id']?>" class="nk-menu-link">
                         <span class="nk-menu-icon"
                           ><i class="icon bx bx-share-alt"></i
                         ></span>
@@ -375,15 +392,15 @@
                         data-toggle="dropdown"
                       >
                         <div class="user-toggle">
-                          <div class="user-avatar sm">
+                          <div class="user-avatar sm" style="background-color: red;">
                             <i class="icon bx bx-user"></i>
                           </div>
                           <div class="user-info d-none d-md-block">
                             <div class="user-status user-status-verified">
-                              Verified
+                            <?php echo $row['stats'] ?>
                             </div>
                             <div class="user-name">
-                              Daniel Owen Derefaka
+                             <?php echo $row['name'] ?>
                               <i class="bx bx-chevron-down"></i>
                             </div>
                           </div>
@@ -395,20 +412,22 @@
                         <div
                           class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block"
                         >
+                       <?php $name = $row['name'] ?>
                           <div class="user-card">
                             <div class="user-avatar">
                               <span
                                 ><div class="user-avatar bg-info">
-                                  <span>DA</span>
+                                  <span><?php echo substr($name, 0,2   ); ?>
+</span>
                                 </div></span
                               >
                             </div>
                             <div class="user-info">
                               <span class="lead-text"
-                                >Daniel Owen Derefaka</span
+                                ><?php echo $row['name'] ?></span
                               >
                               <span class="sub-text"
-                                >danielowenderefaka@gmail.com</span
+                                ><?php echo $row['email'] ?></span
                               >
                             </div>
                           </div>
@@ -416,20 +435,20 @@
                         <div class="dropdown-inner user-account-info">
                           <h6 class="overline-title-alt">Account Balance</h6>
                           <div class="user-balance">
-                            150.00 <small class="currency">USD</small>
+                           <?php echo $row['balance']?> <small class="currency">USD</small>
                           </div>
                           <div class="user-balance-alt">
-                            0.1236 <span class="currency">ETH</span>
+                            0<span class="currency">ETH</span>
                           </div>
                           <ul class="user-account-links">
                             <li>
-                              <a href="deposit.html" class="link"
+                              <a href="deposit.php?ref=<?php echo $row['ref_id']?>" class="link"
                                 ><span>Deposit Funds</span>
                                 <em class="icon bx bx-wallet"></em
                               ></a>
                             </li>
                             <li>
-                              <a href="withdraw.html" class="link"
+                              <a href="withdraw.php?ref=<?php echo $row['ref_id']?>" class="link"
                                 ><span>Withdraw Funds</span>
                                 <em class="icon bx bx-wallet"></em
                               ></a>
@@ -439,13 +458,13 @@
                         <div class="dropdown-inner">
                           <ul class="link-list">
                             <li>
-                              <a href="profile.html"
+                              <a href="profile.php?ref=<?php echo $row['ref_id']?>"
                                 ><em class="icon bx bx-user"></em
                                 ><span>View Profile</span></a
                               >
                             </li>
                             <li>
-                              <a href="settings.html"
+                              <a href="settings.php?ref=<?php echo $row['ref_id']?>"
                                 ><em class="icon bx bx-cog"></em
                                 ><span>Security Setting</span></a
                               >
@@ -456,7 +475,7 @@
                         <div class="dropdown-inner">
                           <ul class="link-list">
                             <li>
-                              <a href="logout">
+                              <a href="php/logout.php">
                                 <em class="icon bx bx-log-out"></em
                                 ><span>Sign out</span></a
                               >
@@ -482,6 +501,8 @@
               </div>
             </div>
           </div>
+          <?php } ?>
+
 
           <div class="nk-content nk-content-fluid">
             <div class="container-xl wide-lg">
@@ -499,7 +520,7 @@
                       <ul class="nk-block-tools gx-3">
                         <li>
                           <a
-                            href="transactions_deposit.html"
+                            href="transactions_deposit.php"
                             class="btn btn-primary"
                             ><span>Deposit</span>
                             <i class=' icon bx bx-right-arrow-alt' ></i></a>
@@ -513,28 +534,28 @@
                   <li class="nav-item">
                     <a
                       class="nav-link"
-                      href="transactions.html"
+                      href="transactions.php"
                       >History</a
                     >
                   </li>
                   <li class="nav-item">
                     <a
                       class="nav-link"
-                      href="transactions_deposit.html"
+                      href="transactions_deposit.php"
                       >Deposit</a
                     >
                   </li>
                   <li class="nav-item">
                     <a
                       class="nav-link"
-                      href="transactions_withdraw.html"
+                      href="transactions_withdraw.php"
                       >Withdraw</a
                     >
                   </li>
                   <li class="nav-item">
                     <a
                       class="nav-link active"
-                      href="transactions_scheduled.html"
+                      href="transactions_scheduled.php"
                     >
                       Scheduled <span class="badge badge-primary">1</span>
                     </a>
@@ -754,7 +775,7 @@
                       </ul>
                     </div>
                     <form
-                      action="transactions.html"
+                      action="transactions.php"
                       method="GET"
                     >
                       <div

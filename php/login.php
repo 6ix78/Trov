@@ -15,7 +15,7 @@ if(!empty($email) || !empty($password)){
     $stats = " Verified";
       $sql2 = mysqli_query($conn, "UPDATE user SET stats = '{$stats}' WHERE ref_id = {$row['ref_id']}");
     
-    if($sql2){
+    if($sql){
       $_SESSION['ref_id'] = $row['ref_id'];//using this session
         // header("Location: ../login.php?error= <div style='font-size:12px; color:green; text-align:center;'>Sucessful</div>");
         header("Location: ../dashboard.php?ref=".$row['ref_id']);

@@ -12,51 +12,9 @@ include 'php/config.php';
 
 if (isset($_GET['ref'])) {
   $ref = $_GET['ref'];
-};
-
-
-
-if(isset($_POST['submit'])){
-$name = $_POST['name'];
-$phone = $_POST['phone'];
-$gender = $_POST['gender'];
-$dob = $_POST['dob'];
-$ref_id = $_POST['ref_id'];
-
-
-$sql = mysqli_query ($conn, "UPDATE user SET name = '{$name}', phone = '{$phone}', gender = '{$gender}', dob = '{$dob}' WHERE ref_id = $ref");
-
-if(!$sql){
-    echo "error ";
-}else{
-    echo "edon work o";
-}
-
-}
-
-
-if(isset($_POST['submit_add'])){
-
-$address_line	 = $_POST['address_line'];
-$second_address_line = $_POST['second_address_line'];
-$city	 = $_POST['city'];
-$user_state	 = $_POST['user_state'];
-$profile_zip  = $_POST['profile_zip'];
-$country	 = $_POST['country'];
-
-
-$sql = mysqli_query ($conn, "UPDATE user_address SET address_line = '{$address_line}', second_address_line = '{$second_address_line}', city = '{$city}', user_state = '{$user_state}' , profile_zip = '{$profile_zip}', country = '{$country}' , ref_id = '{$ref}' WHERE ref_id = $ref");
-
-if(!$sql){
-    echo "error ";
-}else{
-    echo "edon work o";
-}
-
 }
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en" class="js" id="fabb7b9b">
   <head>
@@ -74,7 +32,7 @@ if(!$sql){
       name="site-token"
       content="a275cdfd359e43212d43217d5bO1Hb1231f2d447H83643210"
     />
-    <title>Profile| Evercore </title>
+    <title>Profile | Evercore </title>
     <link rel="shortcut icon" href="asset/img/favicon.png" />
     <link rel="stylesheet" href="asset/test2.css" />
     <link
@@ -238,7 +196,7 @@ if (mysqli_num_rows($sql) > 0) {
                         </div>
                       </li>
                     </ul>
-                    <ul class="user-account-links" >
+                    <ul class="user-account-links">
                       <li>
                         <a href="withdraw.php?ref=<?php echo $row['ref_id']?>" class="link"
                           ><span>Withdraw Funds</span>
@@ -543,7 +501,7 @@ if (mysqli_num_rows($sql) > 0) {
               </div>
             </div>
           </div>
-       
+   
 
           <div class="nk-content nk-content-fluid">
             <div class="container-xl wide-lg">

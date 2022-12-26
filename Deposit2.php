@@ -1,3 +1,20 @@
+<?php 
+session_start();
+if(!isset($_SESSION['ref_id'])){
+  header("location: login.php");
+}
+
+// if(isset($_GET['user_id'])){
+// $user_id = $_GET['user_id'];
+// }
+
+include 'php/config.php';
+
+if (isset($_GET['ref'])) {
+  $ref = $_GET['ref'];
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en" class="js" id="fabb7b9b">
   <head>
@@ -15,8 +32,8 @@
       name="site-token"
       content="a275cdfd359e43212d43217d5bO1Hb1231f2d447H83643210"
     />
-    <title>Dashboard | Investorm</title>
-    <link rel="shortcut icon" href="https://app.investorm.xyz/favicon.ico" />
+    <title>Deposit | Evercore </title>
+    <link rel="shortcut icon" href="asset/img/favicon.png" />
     <link rel="stylesheet" href="asset/test2.css" />
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
@@ -35,16 +52,11 @@
         >
           <div class="nk-sidebar-element nk-sidebar-head">
             <div class="nk-sidebar-brand">
-              <a class="logo-link nk-sidebar-logo" href="dashboard.html"
+              <a class="logo-link nk-sidebar-logo" href="dashboard.php?ref=<?php echo $row['ref_id']?>"
                 ><img
-                  class="logo-img logo-light logo-img-md"
+                  class="logo-img  logo-img-md"
                   src="asset/img/logo.png"
-                  srcset="asset/img/logo2x.png 2x"
-                  alt="Investorm" /><img
-                  class="logo-img logo-dark logo-img-md"
-                  src="asset/img/logo-dark.png"
-                  srcset="asset/img/logo-dark2x.png 2x"
-                  alt="Investorm"
+                  
               /></a>
             </div>
 
@@ -57,7 +69,13 @@
               ></a>
             </div>
           </div>
+          <?php
+        $sql = mysqli_query($conn, "SELECT * FROM user WHERE ref_id = {$_SESSION['ref_id']}");
+if (mysqli_num_rows($sql) > 0) {
+   ($row = mysqli_fetch_assoc($sql));
 
+
+?>
           <div class="nk-sidebar-element">
             <div class="nk-sidebar-body" data-simplebar>
               <div class="nk-sidebar-content">
@@ -66,10 +84,10 @@
                     <div class="user-account-main">
                       <h6 class="overline-title-alt">Main Account Balance</h6>
                       <div class="user-balance">
-                        150.00 <small class="currency">USD</small>
+                    <?php echo  $row['balance'] ?> <small class="currency">USD</small>
                       </div>
                       <div class="user-balance-alt">
-                        0.1236 <span class="currency">ETH</span>
+                        0 <span class="currency">ETH</span>
                       </div>
                     </div>
                   </div>
@@ -96,12 +114,12 @@
                   <div class="user-account-actions">
                     <ul class="g-3">
                       <li>
-                        <a href="deposit.html" class="btn btn-primary"
+                        <a href="deposit.php?ref=<?php echo $row['ref_id']?>" class="btn btn-danger"
                           ><span>Deposit</span></a
                         >
                       </li>
                       <li>
-                        <a href="withdraw.html" class="btn btn-warning"
+                        <a href="withdraw.php?ref=<?php echo $row['ref_id']?>" class="btn btn-warning"
                           ><span>Withdraw</span></a
                         >
                       </li>
@@ -122,14 +140,14 @@
                         <div class="user-avatar">
                           <span
                             ><div class="user-avatar bg-info">
-                              <span>DA</span>
+                              <span><?php echo substr($name, 0,2   ); ?></span>
                             </div></span
                           >
                         </div>
                         <div class="user-info">
-                          <span class="lead-text">Daniel Owen Derefaka</span>
+                          <span class="lead-text"><?php echo $row['name'] ?></span>
                           <span class="sub-text"
-                            >danielowenderefaka@gmail.com</span
+                            ><?php echo $row['email'] ?></span
                           >
                         </div>
                         <!-- Start Side Bar Mobile  -->
@@ -147,10 +165,10 @@
                       <div class="user-account-main">
                         <h6 class="overline-title-alt">Main Account Balance</h6>
                         <div class="user-balance">
-                          150.00 <small class="currency">USD</small>
+                         <?php echo  $row['balance'] ?> <small class="currency">USD</small>
                         </div>
                         <div class="user-balance-alt">
-                          0.1236 <span class="currency">ETH</span>
+                          0 <span class="currency">ETH</span>
                         </div>
                       </div>
                     </div>
@@ -180,13 +198,13 @@
                     </ul>
                     <ul class="user-account-links">
                       <li>
-                        <a href="withdraw.html" class="link"
+                        <a href="withdraw.php?ref=<?php echo $row['ref_id']?>" class="link"
                           ><span>Withdraw Funds</span>
                           <em class="icon bx bx-wallet "></em
                         ></a>
                       </li>
                       <li>
-                        <a href="deposit.html" class="link"
+                        <a href="deposit.php?ref=<?php echo $row['ref_id']?>" class="link"
                           ><span>Deposit Funds</span>
                           <em class="icon bx bx-wallet"></em
                         ></a>
@@ -194,13 +212,13 @@
                     </ul>
                     <ul class="link-list">
                       <li>
-                        <a href="profile.html"
+                        <a href="profile.php?ref=<?php echo $row['ref_id']?>"
                           ><em class="icon bx bx-user"></em
                           ><span>View Profile</span></a
                         >
                       </li>
                       <li>
-                        <a href="settings.html"
+                        <a href="settings.php?ref=<?php echo $row['ref_id']?>"
                           ><em class="icon bx bx-cog"></em
                           ><span>Account Setting</span></a
                         >
@@ -211,8 +229,7 @@
                     <ul class="link-list">
                       <li>
                         <a
-                          href="logout.html"
-                          onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                          href="php/logout.php"
                           ><em class="icon ni ni-signout"></em
                           ><span>Sign out</span></a
                         >
@@ -226,8 +243,8 @@
                     <li class="nk-menu-heading">
                       <h6 class="overline-title">Menu</h6>
                     </li>
-                    <li class="nk-menu-item active">
-                      <a href="dashboard.html" class="nk-menu-link">
+                    <li class="nk-menu-item">
+                      <a href="dashboard.php?ref=<?php echo $row['ref_id']?>" class="nk-menu-link">
                         <span class="nk-menu-icon"
                           ><em class="icon bx bx-grid-alt"></em
                         ></span>
@@ -235,7 +252,7 @@
                       </a>
                     </li>
                     <li class="nk-menu-item">
-                      <a href="transactions.html" class="nk-menu-link">
+                      <a href="transactions.php?ref=<?php echo $row['ref_id']?>" class="nk-menu-link">
                         <span class="nk-menu-icon"
                           ><em class="icon bx bx-transfer-alt"></em
                         ></span>
@@ -243,7 +260,7 @@
                       </a>
                     </li>
                     <li class="nk-menu-item">
-                      <a href="investment.html" class="nk-menu-link">
+                      <a href="investment.php?ref=<?php echo $row['ref_id']?>" class="nk-menu-link">
                         <span class="nk-menu-icon"
                           ><i class="icon bx bx-dollar-circle"></i
                         ></span>
@@ -251,7 +268,7 @@
                       </a>
                     </li>
                     <li class="nk-menu-item">
-                      <a href="ourplans.html" class="nk-menu-link">
+                      <a href="ourplans.php?ref=<?php echo $row['ref_id']?>" class="nk-menu-link">
                         <span class="nk-menu-icon"
                           ><i class="icon bx bx-dollar-circle"></i
                         ></span>
@@ -259,7 +276,7 @@
                       </a>
                     </li>
                     <li class="nk-menu-item">
-                      <a href="profile.html" class="nk-menu-link">
+                      <a href="profile.php?ref=<?php echo $row['ref_id']?>" class="nk-menu-link">
                         <span class="nk-menu-icon"
                           ><i class="icon bx bxs-user"></i
                         ></span>
@@ -267,7 +284,7 @@
                       </a>
                     </li>
                     <li class="nk-menu-item">
-                      <a href="referral.html" class="nk-menu-link">
+                      <a href="referral.php?ref=<?php echo $row['ref_id']?>" class="nk-menu-link">
                         <span class="nk-menu-icon"
                           ><i class="icon bx bx-share-alt"></i
                         ></span>
@@ -375,15 +392,15 @@
                         data-toggle="dropdown"
                       >
                         <div class="user-toggle">
-                          <div class="user-avatar sm">
+                          <div class="user-avatar sm" style="background-color: red;">
                             <i class="icon bx bx-user"></i>
                           </div>
                           <div class="user-info d-none d-md-block">
                             <div class="user-status user-status-verified">
-                              Verified
+                            <?php echo $row['stats'] ?>
                             </div>
                             <div class="user-name">
-                              Daniel Owen Derefaka
+                             <?php echo $row['name'] ?>
                               <i class="bx bx-chevron-down"></i>
                             </div>
                           </div>
@@ -395,20 +412,22 @@
                         <div
                           class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block"
                         >
+                       <?php $name = $row['name'] ?>
                           <div class="user-card">
                             <div class="user-avatar">
                               <span
                                 ><div class="user-avatar bg-info">
-                                  <span>DA</span>
+                                  <span><?php echo substr($name, 0,2   ); ?>
+</span>
                                 </div></span
                               >
                             </div>
                             <div class="user-info">
                               <span class="lead-text"
-                                >Daniel Owen Derefaka</span
+                                ><?php echo $row['name'] ?></span
                               >
                               <span class="sub-text"
-                                >danielowenderefaka@gmail.com</span
+                                ><?php echo $row['email'] ?></span
                               >
                             </div>
                           </div>
@@ -416,20 +435,20 @@
                         <div class="dropdown-inner user-account-info">
                           <h6 class="overline-title-alt">Account Balance</h6>
                           <div class="user-balance">
-                            150.00 <small class="currency">USD</small>
+                           <?php echo $row['balance']?> <small class="currency">USD</small>
                           </div>
                           <div class="user-balance-alt">
-                            0.1236 <span class="currency">ETH</span>
+                            0<span class="currency">ETH</span>
                           </div>
                           <ul class="user-account-links">
                             <li>
-                              <a href="deposit.html" class="link"
+                              <a href="deposit.php?ref=<?php echo $row['ref_id']?>" class="link"
                                 ><span>Deposit Funds</span>
                                 <em class="icon bx bx-wallet"></em
                               ></a>
                             </li>
                             <li>
-                              <a href="withdraw.html" class="link"
+                              <a href="withdraw.php?ref=<?php echo $row['ref_id']?>" class="link"
                                 ><span>Withdraw Funds</span>
                                 <em class="icon bx bx-wallet"></em
                               ></a>
@@ -439,13 +458,13 @@
                         <div class="dropdown-inner">
                           <ul class="link-list">
                             <li>
-                              <a href="profile.html"
+                              <a href="profile.php?ref=<?php echo $row['ref_id']?>"
                                 ><em class="icon bx bx-user"></em
                                 ><span>View Profile</span></a
                               >
                             </li>
                             <li>
-                              <a href="settings.html"
+                              <a href="settings.php?ref=<?php echo $row['ref_id']?>"
                                 ><em class="icon bx bx-cog"></em
                                 ><span>Security Setting</span></a
                               >
@@ -456,7 +475,7 @@
                         <div class="dropdown-inner">
                           <ul class="link-list">
                             <li>
-                              <a href="logout">
+                              <a href="php/logout.php">
                                 <em class="icon bx bx-log-out"></em
                                 ><span>Sign out</span></a
                               >
@@ -482,128 +501,133 @@
               </div>
             </div>
           </div>
+          <?php } ?>
+        <div class="nk-content nk-content-fluid">
+          <div class="container-xl wide-lg">
 
-            <div class="nk-content nk-content-fluid">
-                <div class="container-xl wide-lg">
-                    
-                    
-                        <div class="nk-content-body">
-        <div class="page-dw wide-xs m-auto" id="pms-ajcon">
-                        <div class="nk-pps-apps">
-                <div class="nk-pps-steps">
+
+            <div class="nk-content-body">
+              <div class="page-dw wide-xs m-auto" id="pms-ajcon">
+                <div class="nk-pps-apps">
+                  <div class="nk-pps-steps">
                     <span class="step active"></span>
                     <span class="step"></span>
                     <span class="step"></span>
                     <span class="step"></span>
-                </div>
-                <div class="nk-pps-title text-center">
+                  </div>
+                  <div class="nk-pps-title text-center">
                     <h3 class="title">Deposit Funds</h3>
                     <p class="caption-text">Select from payment options below</p>
                     <p class="sub-text-sm">Secure and safely deposit money into your account.</p>
-                </div>
-                <form class="nk-pps-form form-validate is-alter" action="https://app.investorm.xyz/deposit/amount" id="dpst-pm-frm" data-required_msg="To deposit, please select a payment method.">
+                  </div>
+                  <form class="nk-pps-form form-validate is-alter" action="https://app.investorm.xyz/deposit/amount" id="dpst-pm-frm" data-required_msg="To deposit, please select a payment method.">
                     <div class="nk-pps-field form-group">
-                        <ul class="nk-pm-list" id="dpm-list">
-                                                        <li class="nk-pm-item">
-                                <input class="nk-pm-control" type="radio" name="deposit_method" required value="paypal" id="paypal" />
-                                <label class="nk-pm-label" for="paypal">
-                                    <span class="pm-name">PayPal</span>
-                                    <span class="pm-icon"><em class="icon ni ni-paypal-alt"></em></span>
-                                </label>
-                            </li>
-                                                        <li class="nk-pm-item">
-                                <input class="nk-pm-control" type="radio" name="deposit_method" required value="bank-transfer" id="bank-transfer" />
-                                <label class="nk-pm-label" for="bank-transfer">
-                                    <span class="pm-name">Wire Transfer</span>
-                                    <span class="pm-icon"><em class="icon ni ni-building-fill"></em></span>
-                                </label>
-                            </li>
-                                                        <li class="nk-pm-item">
-                                <input class="nk-pm-control" type="radio" name="deposit_method" required value="crypto-wallet" id="crypto-wallet" />
-                                <label class="nk-pm-label" for="crypto-wallet">
-                                    <span class="pm-name">Crypto Wallet</span>
-                                    <span class="pm-icon"><em class="icon ni ni-wallet-fill"></em></span>
-                                </label>
-                            </li>
-                                                    </ul>
+                      <ul class="nk-pm-list" id="dpm-list">
+                        <li class="nk-pm-item">
+                          <input class="nk-pm-control" type="radio" name="deposit_method" required value="paypal" id="paypal" />
+                          <label class="nk-pm-label" for="paypal">
+                            <span class="pm-name">PayPal</span>
+                            <span class="pm-icon"><em class="icon ni ni-paypal-alt"></em></span>
+                          </label>
+                        </li>
+                        <li class="nk-pm-item">
+                          <input class="nk-pm-control" type="radio" name="deposit_method" required value="bank-transfer" id="bank-transfer" />
+                          <label class="nk-pm-label" for="bank-transfer">
+                            <span class="pm-name">Wire Transfer</span>
+                            <span class="pm-icon"><em class="icon ni ni-building-fill"></em></span>
+                          </label>
+                        </li>
+                        <li class="nk-pm-item">
+                          <input class="nk-pm-control" type="radio" name="deposit_method" required value="crypto-wallet" id="crypto-wallet" />
+                          <label class="nk-pm-label" for="crypto-wallet">
+                            <span class="pm-name">Crypto Wallet</span>
+                            <span class="pm-icon"><em class="icon ni ni-wallet-fill"></em></span>
+                          </label>
+                        </li>
+                      </ul>
                     </div>
                     <div class="nk-pps-field form-action text-center">
-                        <div class="nk-pps-action">
-                            <a href="javascript:void(0)" class="btn btn-lg btn-block btn-primary" id="pay-now">
-                                <span>Deposit Now</span>
-                                <span class="spinner-border spinner-border-sm hide" role="status" aria-hidden="true"></span>
-                            </a>
-                        </div>
+                      <div class="nk-pps-action">
+                        <a href="javascript:void(0)" class="btn btn-lg btn-block btn-primary" id="pay-now">
+                          <span>Deposit Now</span>
+                          <span class="spinner-border spinner-border-sm hide" role="status" aria-hidden="true"></span>
+                        </a>
+                      </div>
                     </div>
-                </form>
-            </div>
-                    </div>
-    </div>
-
+                  </form>
                 </div>
+              </div>
             </div>
 
-            <div class="nk-footer">
-	<div class="container-fluid">
-		<div class="nk-footer-wrap">
-		    <div class="nk-footer-copyright">Investorm &copy; 2022. All Rights Reserved.</div>
-		    <div class="nk-footer-links">
-		
-		<ul class="nav nav-sm">
-	
-						<li class="nav-item">
-			<a class="nav-link" href="https://app.investorm.xyz/page/faqs">FAQs</a>
-		</li>
-								<li class="nav-item">
-			<a class="nav-link" href="https://app.investorm.xyz/page/terms-and-condition">Terms and Condition</a>
-		</li>
-								<li class="nav-item">
-			<a class="nav-link" href="https://app.investorm.xyz/page/privacy-policy">Privacy Policy</a>
-		</li>
-				
-		<li class="nav-item">
-		<div class="dropup">
-			<a href="javascript:void(0)" class="dropdown-toggle dropdown-indicator has-indicator nav-link lang-switch-btn toggle-tigger" data-toggle="dropdown">
-								English
-							</a>
-            <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right dropdown-menu-mxh h-max-175px">
-                <ul class="language-list">
-                                            <li>
-                            <a href="https://app.investorm.xyz/language?lang=en" class="language-item justify-center">
-                                <span class="language-name fw-medium">English</span>
-                            </a>
-                        </li>
-                                            <li>
-                            <a href="https://app.investorm.xyz/language?lang=rtl" class="language-item justify-center">
-                                <span class="language-name">RTL Mode</span>
-                            </a>
-                        </li>
-                                    </ul>
-            </div>
-		</div>
-	</li>
-
-
-
-
-		</ul>
-		
-		</div>
-	
-
-		</div>
-	</div>
-</div>            
+          </div>
         </div>
+
+        <div class="nk-footer">
+          <div class="container-fluid">
+            <div class="nk-footer-wrap">
+              <div class="nk-footer-copyright">Investorm &copy; 2022. All Rights Reserved.</div>
+              <div class="nk-footer-links">
+
+                <ul class="nav nav-sm">
+
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://app.investorm.xyz/page/faqs">FAQs</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://app.investorm.xyz/page/terms-and-condition">Terms and Condition</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://app.investorm.xyz/page/privacy-policy">Privacy Policy</a>
+                  </li>
+
+                  <li class="nav-item">
+                    <div class="dropup">
+                      <a href="javascript:void(0)" class="dropdown-toggle dropdown-indicator has-indicator nav-link lang-switch-btn toggle-tigger" data-toggle="dropdown">
+                        English
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right dropdown-menu-mxh h-max-175px">
+                        <ul class="language-list">
+                          <li>
+                            <a href="https://app.investorm.xyz/language?lang=en" class="language-item justify-center">
+                              <span class="language-name fw-medium">English</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="https://app.investorm.xyz/language?lang=rtl" class="language-item justify-center">
+                              <span class="language-name">RTL Mode</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+
+
+
+
+                </ul>
+
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
 
 
-<script type="text/javascript">
-    const updateSetting = "https://app.investorm.xyz/update/setting", upreference = "https://app.investorm.xyz/profile/preference", getTnxDetails = "https://app.investorm.xyz/transactions/details", msgwng = "Sorry, something went wrong!", msgunp = "Unable to process your request.";
-</script>
-<script src="https://app.investorm.xyz/assets/js/bundle.js?ver=133"></script>
-<script src="https://app.investorm.xyz/assets/js/app.js?ver=133"></script>
-<script src="https://app.investorm.xyz/assets/js/charts.js?ver=133"></script>
+  <script type="text/javascript">
+    const updateSetting = "https://app.investorm.xyz/update/setting",
+      upreference = "https://app.investorm.xyz/profile/preference",
+      getTnxDetails = "https://app.investorm.xyz/transactions/details",
+      msgwng = "Sorry, something went wrong!",
+      msgunp = "Unable to process your request.";
+  </script>
+  <script src="https://app.investorm.xyz/assets/js/bundle.js?ver=133"></script>
+  <script src="https://app.investorm.xyz/assets/js/app.js?ver=133"></script>
+  <script src="https://app.investorm.xyz/assets/js/charts.js?ver=133"></script>
 </body>
+
 </html>
