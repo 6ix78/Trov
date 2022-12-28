@@ -12,8 +12,8 @@ if(!empty($email) || !empty($password)){
   if (mysqli_num_rows($sql) > 0){// if user credentials match 
 
     $row = mysqli_fetch_assoc($sql);
-    $stats = " Verified";
-      $sql2 = mysqli_query($conn, "UPDATE user SET stats = '{$stats}' WHERE ref_id = {$row['ref_id']}");
+    // $stats = " Verified";
+    //   $sql2 = mysqli_query($conn, "UPDATE user SET stats = '{$stats}' WHERE ref_id = {$row['ref_id']}");
     
     if($sql){
       $_SESSION['ref_id'] = $row['ref_id'];//using this session

@@ -275,7 +275,7 @@ if (mysqli_num_rows($sql) > 0) {
                         <span class="nk-menu-text">Our Plans</span>
                       </a>
                     </li>
-                    <li class="nk-menu-item active">
+                    <li class="nk-menu-item ">
                       <a href="profile.php?ref=<?php echo $row['ref_id']?>" class="nk-menu-link">
                         <span class="nk-menu-icon"
                           ><i class="icon bx bxs-user"></i
@@ -475,7 +475,7 @@ if (mysqli_num_rows($sql) > 0) {
                         <div class="dropdown-inner">
                           <ul class="link-list">
                             <li>
-                              <a href="php/logout.php">
+                              <a href="php/logout.php?ref=<?php echo $row['ref_id']?>">
                                 <em class="icon bx bx-log-out"></em
                                 ><span>Sign out</span></a
                               >
@@ -520,7 +520,7 @@ if (mysqli_num_rows($sql) > 0) {
                       <ul class="nk-block-tools gx-3">
                         <li>
                           <a
-                            href="transactions_deposit.php"
+                            href="deposit.php?ref=<?php echo $ref ?>"
                             class="btn btn-primary"
                             ><span>Deposit</span>
                             <i class=' icon bx bx-right-arrow-alt' ></i></a>
@@ -532,32 +532,29 @@ if (mysqli_num_rows($sql) > 0) {
 
                 <ul class="nk-nav nav nav-tabs">
                   <li class="nav-item">
-                    <a
-                      class="nav-link"
-                      href="transactions.php"
-                      >History</a
-                    >
+                    <a class="nav-link" href="transactions.php?ref=<?php echo $ref?>">History</a>
                   </li>
                   <li class="nav-item">
-                    <a
-                      class="nav-link"
-                      href="transactions_deposit.php"
+                    <a class="nav-link " href="transactions_deposit.php?ref=<?php echo $ref?>"
                       >Deposit</a
                     >
                   </li>
                   <li class="nav-item">
-                    <a
-                      class="nav-link"
-                      href="transactions_withdraw.php"
+                    <a class="nav-link" href="transactions_withdraw.php?ref=<?php echo $ref?>"
                       >Withdraw</a
                     >
                   </li>
-                  <li class="nav-item">
-                    <a
-                      class="nav-link active"
-                      href="transactions_scheduled.php"
-                    >
-                      Scheduled <span class="badge badge-primary">1</span>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="transactions_scheduled.php?ref=<?php echo $ref?>">
+                    <?php
+ $sql = mysqli_query($conn, "SELECT stats FROM deposit WHERE ref_id = '$ref'");
+
+ $sql3 = mysqli_num_rows($sql);
+ 
+  
+  
+  ?>
+                      Scheduled <span class="badge badge-primary"> <?php echo $sql3 ?></span>
                     </a>
                   </li>
                 </ul>
@@ -595,7 +592,7 @@ if (mysqli_num_rows($sql) > 0) {
                                 >
                               </div>
                               <form
-                                action="https://app.investorm.xyz/transactions"
+                                action=""
                                 method="GET"
                               >
                                 <input
@@ -802,6 +799,16 @@ if (mysqli_num_rows($sql) > 0) {
                     </form>
                   </div>
                   <div class="nk-odr-list is-stretch card card-bordered">
+                  <?php
+  $sql = mysqli_query($conn, "SELECT * FROM deposit WHERE ref_id  = '$ref'");
+if (mysqli_num_rows($sql) > 0) {
+  $count = 1;
+  while($row = $sql->fetch_assoc()) {
+
+
+?> 
+    <tr>
+     
                     <div class="nk-odr-item">
                       <div class="nk-odr-col">
                         <div class="nk-odr-info">
@@ -816,12 +823,12 @@ if (mysqli_num_rows($sql) > 0) {
                           <div class="nk-odr-data">
                             <div class="nk-odr-label">
                               <strong class="ellipsis">
-                                Deposit via Crypto Wallet
+                              <?php echo $row['tran'] ?>
                               </strong>
                             </div>
                             <div class="nk-odr-meta">
-                              <span class="date">Dec 02, 2022</span>
-                              <span class="status ">. Pending </span>
+                              <span class="date"><?php echo $row['date'] ?></span>
+                              <span class="status ">. <?php echo $row['stats'] ?> </span>
                             </div>
                           </div>
                         </div>
@@ -829,11 +836,11 @@ if (mysqli_num_rows($sql) > 0) {
                       <div class="nk-odr-col nk-odr-col-amount">
                         <div class="nk-odr-amount">
                           <div class="number-md text-s text-success">
-                            + 17.02
+                            + <?php echo $row['credit_amount']?>
                             <span class="currency">USD</span>
                           </div>
                           <div class="number-sm">
-                            0.001 <span class="currency">BTC</span>
+                          <?php echo $row['deposit_amount']?> <span class="currency"><?php echo $row['deposit_currency']?></span>
                           </div>
                         </div>
                       </div>
@@ -848,11 +855,19 @@ if (mysqli_num_rows($sql) > 0) {
                         </div>
                       </div>
                     </div>
+                    <?php }}else{
+                    echo "<div class='nk-odr-list is-stretch card card-bordered'>
+                    <div class='nk-odr-item'>
+                      <div class='nk-odr-col'>No transactions found!</div>
+                    </div>
+                  </div>";
+                    } ?>
                   </div>
                   <div class="mt-4"></div>
                 </div>
               </div>
             </div>
+           
           </div>
           <div class="nk-footer">
             <div class="container-fluid">

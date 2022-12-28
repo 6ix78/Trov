@@ -14,6 +14,20 @@ if (isset($_GET['ref'])) {
   $ref = $_GET['ref'];
 }
 
+
+
+if (isset($_POST['submit'])) {
+  $transfer = $_POST['deposit_method'];
+  if ($transfer == 'bank-transfer') {
+    header("Location: Deposit2.php?ref=".$ref);
+        exit();
+  } else {
+    header("Location: Deposit3.php?ref=".$ref);
+    exit();
+  }
+ 
+
+}
 ?>
 <!DOCTYPE html>
 <html lang="en" class="js" id="fabb7b9b">
@@ -525,57 +539,38 @@ if (mysqli_num_rows($sql) > 0) {
                     </div>
                     <form
                       class="nk-pps-form form-validate is-alter"
-                      action="dashboard.php"
-               
+                      action=""
+                      method="post"
                       data-required_msg="To deposit, please select a payment method."
                     >
                       <div class="nk-pps-field form-group">
                         <ul class="nk-pm-list" id="dpm-list">
-                          
-                          <li class="nk-pm-item">
-                            <input
-                              class="nk-pm-control"
-                              type="radio"
-                              name="deposit_method"
-                              
-                              value="bank-transfer"
-                            
-                            />
-                            <label class="nk-pm-label" for="bank-transfer">
-                              <span class="pm-name">Wire Transfer</span>
-                              <span class="pm-icon"
-                                ><em class="icon bx bx-buildings"></em
-                              ></span>
-                            </label>
-                          </li>
-                          <li class="nk-pm-item">
-                            <input
-                              class="nk-pm-control"
-                              type="radio"
-                              name="deposit_method"
-                              required
-                              value="crypto-wallet"
-                      
-                            />
-                            <label class="nk-pm-label" for="crypto-wallet">
-                              <span class="pm-name">Crypto Wallet</span>
-                              <span class="pm-icon"
-                                ><em class="icon bx bx-wallet"></em
-                              ></span>
-                            </label>
-                          </li>
+                     
+                        <!-- <li class="nk-pm-item">
+                                <input class="nk-pm-control" type="radio" name="deposit_method" required value="bank-transfer" id="bank-transfer" />
+                                <label class="nk-pm-label" for="bank-transfer">
+                                    <span class="pm-name">Wire Transfer</span>
+                                    <span class="pm-icon"><em class="icon bx bx-buildings"></em></span>
+                                </label>
+                            </li> -->
+                                                        <li class="nk-pm-item">
+                                <input class="nk-pm-control" type="radio" name="deposit_method" required value="crypto-wallet" id="crypto-wallet" />
+                                <label class="nk-pm-label" for="crypto-wallet">
+                                    <span class="pm-name">Crypto Wallet</span>
+                                    <span class="pm-icon"><em class="icon bx bx-wallet"></em></span>
+                                </label>
+                            </li>
                         </ul>
                       </div>
                       <div class="nk-pps-field form-action text-center">
                         <div class="nk-pps-action">
                         
-                            <button name="submit" type="button" class="btn btn-lg btn-block btn-primary">Deposit Now</button>
+                            <input name="submit" type="submit" class="btn btn-lg btn-block btn-primary"value="Deposit Now">
                             <span
                               class="spinner-border spinner-border-sm hide"
-                              role="status"
-                              aria-hidden="true"
+                              
                             ></span>
-               
+                          
                         </div>
                       </div>
                     </form>
@@ -604,7 +599,7 @@ if (mysqli_num_rows($sql) > 0) {
     </div>
 
     
-    <script src="https://app.investorm.xyz/assets/js/bundle.js?ver=133"></script>
+    <!-- <script src="https://app.investorm.xyz/assets/js/bundle.js?ver=133"></script> -->
     <!-- <script src="https://app.investorm.xyz/assets/js/app.js?ver=133"></script>
     <script src="https://app.investorm.xyz/assets/js/charts.js?ver=133"></script> -->
   </body>

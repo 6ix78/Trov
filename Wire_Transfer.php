@@ -275,7 +275,7 @@ if (mysqli_num_rows($sql) > 0) {
                         <span class="nk-menu-text">Our Plans</span>
                       </a>
                     </li>
-                    <li class="nk-menu-item active">
+                    <li class="nk-menu-item">
                       <a href="profile.php?ref=<?php echo $row['ref_id']?>" class="nk-menu-link">
                         <span class="nk-menu-icon"
                           ><i class="icon bx bxs-user"></i

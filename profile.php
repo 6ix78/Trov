@@ -608,6 +608,16 @@ if (mysqli_num_rows($sql) > 0) {
                         data-toggle="modal"
                         data-target="#profile-edit"
                       >
+                      <?php } ?>
+                     
+                      <?php 
+                      $sql = mysqli_query($conn, "SELECT * FROM user_details WHERE ref_id = {$_SESSION['ref_id']}");
+if (mysqli_num_rows($sql) > 0) {
+   ($row = mysqli_fetch_assoc($sql));
+
+
+?>
+     
                         <div class="data-col">
                           <span class="data-label">Phone Number</span>
                           <span class="data-value"><?php echo $row ['phone']?> </span>
@@ -701,7 +711,7 @@ if (mysqli_num_rows($sql) > 0) {
               </div>
             </div>
           </div>
-
+<?php } ?>
           <div class="nk-footer">
             <div class="container-fluid">
               <div class="nk-footer-wrap">
@@ -1852,7 +1862,7 @@ if (mysqli_num_rows($sql) > 0) {
         </div>
       </div>
     </div>
-    <?php } ?>
+  
     <div
       class="modal fade"
       tabindex="-1"

@@ -275,7 +275,7 @@ if (mysqli_num_rows($sql) > 0) {
                         <span class="nk-menu-text">Our Plans</span>
                       </a>
                     </li>
-                    <li class="nk-menu-item active">
+                    <li class="nk-menu-item">
                       <a href="profile.php?ref=<?php echo $row['ref_id']?>" class="nk-menu-link">
                         <span class="nk-menu-icon"
                           ><i class="icon bx bxs-user"></i
@@ -532,36 +532,33 @@ if (mysqli_num_rows($sql) > 0) {
                 </div>
 
                 <ul class="nk-nav nav nav-tabs">
-                  <li class="nav-item">
-                    <a
-                      class="nav-link active"
-                      href="transactions.php"
-                      >History</a
-                    >
+                  <li class="nav-item active">
+                    <a class="nav-link" href="transactions.php?ref=<?php echo $ref?>">History</a>
                   </li>
                   <li class="nav-item">
-                    <a
-                      class="nav-link"
-                      href="transactions_deposit.php"
+                    <a class="nav-link " href="transactions_deposit.php?ref=<?php echo $ref?>"
                       >Deposit</a
                     >
                   </li>
                   <li class="nav-item">
-                    <a
-                      class="nav-link"
-                      href="transactions_withdraw.php"
+                    <a class="nav-link" href="transactions_withdraw.php?ref=<?php echo $ref?>"
                       >Withdraw</a
                     >
                   </li>
                   <li class="nav-item">
-                    <a
-                      class="nav-link"
-                      href="transactions_scheduled.php"
-                    >
-                      Scheduled <span class="badge badge-primary">1</span>
+                    <a class="nav-link" href="transactions_scheduled.php?ref=<?php echo $ref?>">
+                    <?php
+ $sql = mysqli_query($conn, "SELECT stats FROM deposit WHERE ref_id = '$ref'");
+
+ $sql3 = mysqli_num_rows($sql);
+ 
+  
+  
+  ?>
+                      Scheduled <span class="badge badge-primary"><?php echo $sql3 ?></span>
                     </a>
                   </li>
-                </ul>
+                </ul> 
                 <div class="nk-block nk-block-xs">
                   <div class="nk-block-head nk-block-head-sm">
                     <div class="nk-block-between">
