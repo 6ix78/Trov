@@ -2,6 +2,7 @@
 session_start();
 include 'config.php';
 
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -49,37 +50,53 @@ if (!empty($name) || !empty($email) || !empty($password)) {
         header("Location: ../register.php.php?error=<div style='color:red'> An Error Occured </div> ");
       } else {
         
+        header("Location: ../otp.php");
+        
                 //Server settings
                 $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
                 $mail->isSMTP();                                            //Send using SMTP
-                $mail->Host       = 'mail.dxcodingweb.site';                     //Set the SMTP server to send through
+                $mail->Host       = 'smtp.zoho.com';                     //Set the SMTP server to send through
                 $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-                $mail->Username   = 'danieldx@dxcodingweb.site';                     //SMTP username
-                $mail->Password   = ';(4Gg*4#1qDr';                               //SMTP password
+                $mail->Username   = 'danieldx@dxcodes.42web.io';                     //SMTP username
+                $mail->Password   = 'Dxcoding1';                               //SMTP password
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
                 $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
             
                 //Recipients
-                $mail->setFrom('danieldx@dxcodingweb.site', 'Dxcodingweb');
+                $mail->setFrom('danieldx@dxcodes.42web.io', 'Dxcodingweb');
                 $mail->addAddress($email, 'Daniel Dx');     //Add a recipient
        
                 //Content
                 $mail->isHTML(true);                                  //Set email format to HTML
                 $mail->Subject = 'Email Verification Code';
-                $mail->Body    =  " Your Verification Email is $code <br>
-                <br>
-                Eco fX";
+                $mail->Body    =  " 
+                <div style=' justify-content:center; align-items: center; display:flex'>
+                <div style=' border-radius:10px;
+                height:300px;
+                border:1px solid #ccc;
+                overflow:hidden;
+                background:white;
+                width:700px;'>
+                <div style='background:red;
+                height:50px; color:white; font-size: 30px; text-align: center;' color:white;>EVERCORE</div>
+                <div style='padding: 20px;'>
+                    <h4> Hello, $name</h4>
+                    <p>Your confirmation code is <b>$code</b>.</p>
+                    <p> This code will be active for one hour.</p>
+                </div>
+               
+                </div>
+            </div>
+            ";
+
                 $mail->AltBody = 'From $name';
                
             
                 $mail->send();
-             
+
                 $info = "We've sent a verification code to your email - $email";
-                
-                $_SESSION['ref_id'] = $row['ref_id'];//using this session
-                // header("Location: ../login.php?error= <div style='font-size:12px; color:green; text-align:center;'>Sucessful</div>");
+               
             
-                header("Location: ../otp.php?ref=".$ref_id);
        
       }
     }

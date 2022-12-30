@@ -59,36 +59,56 @@ if(isset($_POST['check-email'])){
         $insert_code = "UPDATE user SET code = $code WHERE email = '$email'";
         $run_query =  mysqli_query($conn, $insert_code);
         if($run_query){
-            
-            //Server settings
-            $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-            $mail->isSMTP();                                            //Send using SMTP
-            $mail->Host       = 'mail.dxcodingweb.site';                     //Set the SMTP server to send through
-            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-            $mail->Username   = 'danieldx@dxcodingweb.site';                     //SMTP username
-            $mail->Password   = ';(4Gg*4#1qDr';                               //SMTP password
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-            $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+            header('location: ../forgot_password_verification.php');
+  
+         //Server settings
+         $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+         $mail->isSMTP();                                            //Send using SMTP
+         $mail->Host       = 'smtp.zoho.com';                     //Set the SMTP server to send through
+         $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+         $mail->Username   = 'danieldx@dxcodes.42web.io';                     //SMTP username
+         $mail->Password   = 'Dxcoding1';                               //SMTP password
+         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+         $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+     
+         //Recipients
+         $mail->setFrom('danieldx@dxcodes.42web.io', 'Dxcodingweb');
+         $mail->addAddress($email, 'Daniel Dx');     //Add a recipient
+
+         //Content
+         $mail->isHTML(true);                                  //Set email format to HTML
+         $mail->Subject = 'Password Reset  Code';
+         $mail->Body    =  " 
+         <div style=' justify-content:center; align-items: center; display:flex'>
+         <div style=' border-radius:10px;
+         height:300px;
+         border:1px solid #ccc;
+         overflow:hidden;
+         background:white;
+         width:700px;'>
+         <div style='background:red;
+         height:50px; color:white; font-size: 30px; text-align: center;' color:white;>EVERCORE</div>
+         <div style='padding: 20px;'>
+             <h4> Hello, $email</h4>
+             <p>Your Password Reset code is <b>$code</b>.</p>
+            /
+         </div>
         
-            //Recipients
-            $mail->setFrom('danieldx@dxcodingweb.site', 'Dxcodingweb');
-            $mail->addAddress($email, 'Daniel Dx');     //Add a recipient
+         </div>
+     </div>
+     ";
+
+         $mail->AltBody = 'From $name';
+        
+     
+         $mail->send();
+
    
-            //Content
-            $mail->isHTML(true);                                  //Set email format to HTML
-            $mail->Subject = 'Password Reset Code';
-            $mail->Body    =  " Your password reset code is $code <br>
-            <br>
-            ";
-            $mail->AltBody = 'From $name';
-           
-         
-            $mail->send();
+        
 
                 $info = "We've sent a passwrod reset otp to your email - $email";
             
-                header('location: ../forgot_password_verification.php');
-                exit();
+              
             }else{
                 // $errors['otp-error'] = "Failed while sending code!";
                 header("Location: ../forgot_password.php?error=<div  style='color:red'> Failed while sending code!</div> ");

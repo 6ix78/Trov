@@ -26,48 +26,26 @@ if (isset($_GET['ref'])) {
 }
 
 
+                $sql = mysqli_query($conn, "SELECT * FROM user WHERE ref_id = {$_SESSION['ref_id']}");
+                if (mysqli_num_rows($sql) > 0) {
+                    ($row = mysqli_fetch_assoc($sql));
+
+
+             $email = $row['email'];
+
 if (isset($_POST['depo'])) {
     $deposit_amount = $_POST['deposit_amount'];
     $credit_amount = $_POST['credit_amount'];
     $ref_id = $ref;
     $deposit_currency = $_POST['deposit_currency'];
     $trans_id = rand(999999, 111111);
-    $stats = "pending";
+    $stats = "Pending";
     $tran = "Deposit";
 
     if (!empty($deposit_amount) && !empty($credit_amount) && !empty($credit_amount)) {
 
         $sql = mysqli_query($conn, "INSERT INTO deposit(ref_id,deposit_currency,deposit_amount,trans_id,stats,credit_amount,tran) value('$ref_id','$deposit_currency','$deposit_amount','$trans_id', '$stats','$credit_amount', '$tran')");
 
-        if($sql){
-            
-    //     //Server settings
-    //     $mail->SMTPDebug = SMTP::DEBUG_SERVER; //Enable verbose debug output
-    //     $mail->isSMTP(); //Send using SMTP
-    //     $mail->Host = 'mail.dxcodingweb.site'; //Set the SMTP server to send through
-    //     $mail->SMTPAuth = true; //Enable SMTP authentication
-    //     $mail->Username = 'danieldx@dxcodingweb.site'; //SMTP username
-    //     $mail->Password = ';(4Gg*4#1qDr'; //SMTP password
-    //     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; //Enable implicit TLS encryption
-    //     $mail->Port = 465; //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-
-    //     //Recipients
-    //     $mail->setFrom('danieldx@dxcodingweb.site', 'Dxcodingweb');
-    //     $mail->addAddress('danielderefaka@yahoo.com', 'Daniel Dx'); //Add a recipient
-
-    //     //Content
-    //     $mail->isHTML(true); //Set email format to HTML
-    //     $mail->Subject = 'Email Verification Code';
-    //     $mail->Body = " Your Verification Email is  <br>
-    //              <br>
-    //              Eco fX";
-    //     $mail->AltBody = 'From';
-
-
-    //     $mail->send();
-
-
-    }
         }
 
 
@@ -77,10 +55,68 @@ if (isset($_POST['confirm_payment'])) {
 
     $trans_id = $_POST['trans_id'];
     $sql2 = mysqli_query($conn, "UPDATE deposit SET  confirm_payment = '{$reference}'WHERE trans_id = $trans_id");
-    header("Location: transactions_scheduled.php?ref=" . $ref);
-    exit();
+    header("Location: transactions_scheduled.php?ref=".$ref);
+
+
+
+         
+    //Server settings
+    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+    $mail->isSMTP();                                            //Send using SMTP
+    $mail->Host       = 'smtp.zoho.com';                     //Set the SMTP server to send through
+    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+    $mail->Username   = 'danieldx@dxcodes.42web.io';                     //SMTP username
+    $mail->Password   = 'Dxcoding1';                               //SMTP password
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+    $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+    //Recipients
+    $mail->setFrom('danieldx@dxcodes.42web.io', 'Dxcodingweb');
+    $mail->addAddress($email, 'Daniel Dx');     //Add a recipient
+    $sql = mysqli_query($conn, "SELECT * FROM deposit WHERE trans_id = '$trans_id'");
+    if (mysqli_num_rows($sql) > 0) {
+        ($row = mysqli_fetch_assoc($sql));
+
+        $deposit_amount = $row['deposit_amount'];
+        $deposit_currency = $row['deposit_currency'];
+            $credit_amount = $row['credit_amount'];
+            $stats = $row['stats'];
+    //Content
+    $mail->isHTML(true);                                  //Set email format to HTML
+    $mail->Subject = " Deposit $trans_id";
+    $mail->Body    =  " 
+    <div style=' justify-content:center; align-items: center; display:flex'>
+    <div style=' border-radius:10px;
+    height:300px;
+    border:1px solid #ccc;
+    overflow:hidden;
+    background:white;
+    width:700px;'>
+    <div style='background:red;
+    height:50px; color:white; font-size: 30px; text-align: center;' color:white;>EVERCORE</div>
+    <div style='padding: 20px;'>
+        <h4> Deposit  </h4>
+        <p>Your Made a Deposit of  <b>$deposit_amount $deposit_currency</b>.</p>
+        <p> Amount is Usdt = $credit_amount
+        <p> The Status for Now = $stats </p>
+    </div>
+   
+    </div>
+</div>
+";
+
+    $mail->AltBody = 'From $trans_id';
+   
+
+    $mail->send();
+
+ 
+
+   
 }
 ?>
+   <?php } ?>
+<?php } ?>
 <!DOCTYPE html>
 <html lang="en" class="js" id="fabb7b9b">
 
