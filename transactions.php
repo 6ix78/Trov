@@ -521,7 +521,7 @@ if (mysqli_num_rows($sql) > 0) {
                       <ul class="nk-block-tools gx-3">
                         <li>
                           <a
-                            href="transactions_deposit.php"
+                            href="deposit.php?ref=<?php echo $ref ?>"
                             class="btn btn-primary"
                             ><span>Deposit</span>
                             <i class=' icon bx bx-right-arrow-alt' ></i></a>

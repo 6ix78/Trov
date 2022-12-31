@@ -415,243 +415,112 @@ if (isset($_POST['submit'])) {
           </div>
         </div>
 
-<?php } ?>
-        <div class="nk-content nk-content-fluid">
-          <div class="container-xl wide-lg">
 
 
-            <div class="nk-content-body">
-              <div class="page-dw wide-xs m-auto" id="wds-ajcon">
-                <div class="nk-pps-apps">
-                  <div class="nk-pps-steps">
-                    <span class="step"></span>
-                    <span class="step active"></span>
-                    <span class="step"></span>
-                    <span class="step"></span>
-                  </div>
-                  <div class="nk-pps-title text-center">
-                    <h3 class="title">Withdraw Funds</h3>
-                    <p class="caption-text">via <strong>Wallet</strong></p>
-                    <p class="sub-text-sm">Withdraw your fund via crypto wallet</p>
-                  </div>
-                  <form class="nk-pps-form" action="" method="POST" id="wdm-continue-from">
-                    <div class="nk-pps-field form-group">
-                      <div class="form-label-group">
-                        <label class="form-label">Withdraw To</label>
-                        <a href="profile_account.php?ref=<?php echo $ref ?>" class="link wd-new-account">
-                          New Wallet
-                        </a>
-                      </div>
-                      <input type="hidden" value="VzM3OU1RLzJCdWF0NStROERDcmpnUT09" name="wd_account" id="wdm-account">
-                      <input type="hidden" value="1" name="wd_amount_by" id="wdm-amount-by">
-                      <div class="dropdown nk-pps-dropdown">
-                      <?php
-        $sql = mysqli_query($conn, "SELECT * FROM user_wallet WHERE ref_id = '$ref'");
-        if (mysqli_num_rows($sql) > 0) {
-          ($row = mysqli_fetch_assoc($sql));
+      <div class="nk-content nk-content-fluid">
+        <div class="container-xl wide-lg">
 
 
-        ?>
-                        <a href="javascript:void(0)" class="dropdown-indicator" data-toggle="dropdown" id="wdm-account-name" aria-expanded="false">
-                          <div class="nk-cm-item">
-                            <div class="nk-cm-text">
-                              <span class="label fw-bold">Crypto Wallet</span>
-                              <span class="desc"><?php echo $row['btc'] ?></span>
-                            </div>
-                          </div>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-auto dropdown-menu-mxh" style="">
-                          <ul class="nk-dlist">
-
-                            <li class="nk-dlist-item ">
-                            <a href="javascript:void(0)" class="nk-dlist-opt wdm-change" data-change="wdm-account"  data-currency="BTC">
-                                <div class="nk-cm-item">
-                                  <div class="nk-cm-text">
-                                    <span class="label fw-bold">Crypto Wallet</span>
-                                    <span class="desc"><?php echo $row['btc'] ?> </span>
-                                  </div>
-                                </div>
-                              </a>
-                            </li>
-
-                           
-
-                           
-                            <li class="nk-dlist-item">
-                              <a href="javascript:void(0)" class="nk-dlist-opt wdm-change" data-change="wdm-account"  data-currency="USDT">
-                                <div class="nk-cm-item">
-                                  <div class="nk-cm-text">
-                                    <span class="label fw-bold">Crypto Wallet</span>
-                                    <span class="desc"><?php echo $row['usdt'] ?> </span>
-                                  </div>
-                                </div>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                      <?php } ?>
-                    </div>
-                    <div class="nk-pps-field-set">
-                      <div class="nk-pps-field-row row gy-gs">
-                        <div class="nk-pps-field-col col-12 col-sm-6 wdm-account-fmsa">
-                          <div class="nk-pps-field form-group">
-                            <div class="form-label-group">
-                              <label class="form-label" for="wdm-amount-from">Withdraw Amount</label>
-                            </div>
-                            <div class="form-control-group">
-                              <div class="form-text-hint">
-                                <span class="overline-title">USD</span>
-                              </div>
-                              <input type="text" class="form-control form-control-lg form-control-number wd-amount" id="wdm-amount-from" name="wd_amount" placeholder="0.00">
-                              <input type="hidden" name="wd_currency" id="wdm-base-currency" value="USD">
-                            </div>
-                            <div class="form-note-group">
-                              <span class="nk-pps-bal form-note-alt">Current Balance: <strong class="text-base amount">150.00 USD</strong></span>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="nk-pps-field-col col-12 col-sm-6 wdm-account-tora">
-                          <div class="nk-pps-field form-group">
-                            <div class="form-label-group">
-                              <label class="form-label" for="wdm-amount-to">Amount in <strong class="wdmcur">BTC</strong></label>
-                            </div>
-                            <div class="form-control-group">
-                              <div class="form-text-hint">
-                                <span class="overline-title" id="wdm-account-currency-code">BTC</span>
-                              </div>
-                              <input type="text" class="form-control form-control-lg form-control-number wd-amount" id="wdm-amount-to" name="wd_amount_to" placeholder="0.00">
-                              <input type="hidden" id="wdm-account-currency" name="wd_currency_to" value="BTC">
-                            </div>
-                            <div class="form-note-group" id="wdm-account-rate">
-                              <span class="nk-pps-rate form-note-alt">
-                                1 USD = <span class="fxrate">0.00006047 BTC</span>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="nk-pps-field form-group">
-                      <div class="form-label-group">
-                        <label class="form-label" for="withdraw-desc">Description <small class="text-soft fw-normal">(Optional)</small></label>
-                      </div>
-                      <div class="form-control-group">
-                        <input type="text" class="form-control form-control-lg" id="withdraw-desc" name="wd_desc" placeholder="">
-                      </div>
-                    </div>
-                    <div class="nk-pps-field form-action text-center">
-                      <div class="nk-pps-action">
-                        <a href="#" class="btn btn-lg btn-block btn-primary pps-btn-action" id="wdm-continue">
-                          <span>Continue to Withdraw</span>
-                          <span class="spinner-border spinner-border-sm hide" role="status" aria-hidden="true"></span>
-                        </a>
-                      </div>
-                      <div class="nk-pps-action pt-3">
-                        <a href="https://app.investorm.xyz/withdraw" class="btn btn-outline-secondary btn-trans pps-btn-action" data-action="prev">Back to previous</a>
-                      </div>
-                    </div>
-                  </form>
-                  <script type="text/javascript">
-                    var fxCur = {
-                        base: "USD",
-                        alter: "ETH",
-                        rates: {
-                          "BTC": 6.04700000000000021022940333015327496468671597540378570556640625e-5,
-                          "LTC": 0.01474999999999999922284388276239042170345783233642578125,
-                          "BNB": 0.00408799999999999962019270327573394752107560634613037109375,
-                          "USDC": 1,
-                          "USDT": 1,
-                          "TRX": 18.300000000000000710542735760100185871124267578125,
-                          "USD": 1
-                        },
-                        data: {
-                          "BTC": {
-                            "rate": 6.04700000000000021022940333015327496468671597540378570556640625e-5,
-                            "min": 0.001000000000000000020816681711721685132943093776702880859375,
-                            "max": 0.6047000000000000152766688188421539962291717529296875,
-                            "code": "BTC",
-                            "dp": 8,
-                            "dx": 8
-                          },
-                          "LTC": {
-                            "rate": 0.01474999999999999922284388276239042170345783233642578125,
-                            "min": 0.1000000000000000055511151231257827021181583404541015625,
-                            "max": 0.5,
-                            "code": "LTC",
-                            "dp": 8,
-                            "dx": 8
-                          },
-                          "BNB": {
-                            "rate": 0.00408799999999999962019270327573394752107560634613037109375,
-                            "min": 3.06599999999999983657517077517695724964141845703125,
-                            "max": 40.88000000000000255795384873636066913604736328125,
-                            "code": "BNB",
-                            "dp": 8,
-                            "dx": 8
-                          },
-                          "USDC": {
-                            "rate": 1,
-                            "min": 10,
-                            "max": 100,
-                            "code": "USDC",
-                            "dp": 8,
-                            "dx": 8
-                          },
-                          "USDT": {
-                            "rate": 1,
-                            "min": 10,
-                            "max": 100,
-                            "code": "USDT",
-                            "dp": 8,
-                            "dx": 8
-                          },
-                          "TRX": {
-                            "rate": 18.300000000000000710542735760100185871124267578125,
-                            "min": 0.1000000000000000055511151231257827021181583404541015625,
-                            "max": 1000,
-                            "code": "TRX",
-                            "dp": 8,
-                            "dx": 8
-                          },
-                          "USD": {
-                            "rate": "1",
-                            "min": 50,
-                            "max": 10000,
-                            "code": "USD",
-                            "dp": 3,
-                            "dx": 3
-                          }
-                        }
-                      },
-                      account = 150,
-                      reqMsg = {
-                        required: "You must enter your withdraw amount.",
-                        balance: "The amount exceeds your current balance.",
-                        invalid: "Sorry, but we&#039;re facing some technical issue."
-                      };
-                  </script>
+          <div class="nk-content-body">
+            <div class="page-dw wide-xs m-auto" id="wds-ajcon">
+              <div class="nk-pps-apps">
+                <div class="nk-pps-steps">
+                  <span class="step active"></span>
+                  <span class="step"></span>
+                  <span class="step"></span>
+                  <span class="step"></span>
                 </div>
+                <div class="nk-pps-title text-center">
+                  <h3 class="title">Withdraw Funds</h3>
+                  <p class="caption-text">Select from withdraw options below</p>
+                  <p class="sub-text-sm">Withdraw funds from your account directly.</p>
+                </div>
+                <form class="nk-pps-form" action="php/withdraw.php" method="POST">
+                  <div class="nk-pps-field form-group">
+                    <ul class="nk-pm-list" id="wd-option-list">
+                     <input type="text" name="ref_id" value="<?php echo $ref ?>" hidden>
+                      <li class="nk-pm-item">
+                        <input class="nk-pm-control" type="radio" name="withdraw_method" required value="wd-crypto-wallet" id="wd-crypto-wallet" />
+                        <label class="nk-pm-label" for="wd-crypto-wallet">
+                          <span class="pm-name">Crypto Wallet</span>
+                          <span class="pm-icon"><em class="icon bx bx-wallet"></em></span>
+                        </label>
+                      </li>
+                     
+                    </ul>
+                  </div>
+                  <div class="nk-pps-field form-group">
+                    <div class="form-label-group">
+                      <label class="form-label">Withdraw From</label>
+                    </div>
+                    <input type="hidden" value="main_wallet" name="wd_source" id="nk-pps-source-wdm">
+                    <div class="dropdown nk-pps-dropdown">
+                      <a href="#" class="dropdown-indicator is-single">
+                        <div class="nk-cm-item">
+                          <div class="nk-cm-text">
+                            <span class="label fw-bold">Main Account</span>
+                            <span class="desc">Available Balance (<?php echo $row['balance']?>.00 USD)</span>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="nk-pps-field form-action text-center">
+                    <div class="nk-pps-action">
+                 
+                        <button class="btn btn-lg btn-block btn-primary" name="submit">Withdraw Now</button>
+                        <!-- <span class="spinner-border spinner-border-sm hide" role="status" aria-hidden="true"></span> -->
+               
+                    </div>
+                  </div>
 
+                </form>
               </div>
             </div>
+          </div>
+          <?php } ?>
+        </div>
+      </div>
+
+      <div class="nk-footer">
+        <div class="container-fluid">
+          <div class="nk-footer-wrap">
+            <div class="nk-footer-copyright">Investorm &copy; 2022. All Rights Reserved.</div>
+            <div class="nk-footer-links">
+
+              
+                    </div>
+                  </div>
+                </li>
+
+
+
+
+              </ul>
+
+            </div>
+
 
           </div>
         </div>
+      </div>
+      </div>
+    </div>
+  </div>
 
-        <div class="modal fade" role="dialog" id="withdraw-account-modal">
-        </div>
-        <script type="text/javascript">
-          const updateSetting = "https://app.investorm.xyz/update/setting",
-            upreference = "https://app.investorm.xyz/profile/preference",
-            getTnxDetails = "https://app.investorm.xyz/transactions/details",
-            msgwng = "Sorry, something went wrong!",
-            msgunp = "Unable to process your request.";
-        </script>
-        <script src="https://app.investorm.xyz/assets/js/bundle.js?ver=133"></script>
-        <script src="https://app.investorm.xyz/assets/js/app.js?ver=133"></script>
-        <script src="https://app.investorm.xyz/assets/js/charts.js?ver=133"></script>
+
+  <div class="modal fade" role="dialog" id="withdraw-account-modal">
+  </div>
+  <script type="text/javascript">
+    const updateSetting = "https://app.investorm.xyz/update/setting",
+      upreference = "https://app.investorm.xyz/profile/preference",
+      getTnxDetails = "https://app.investorm.xyz/transactions/details",
+      msgwng = "Sorry, something went wrong!",
+      msgunp = "Unable to process your request.";
+  </script>
+  <script src="https://app.investorm.xyz/assets/js/bundle.js?ver=133"></script>
+  <script src="https://app.investorm.xyz/assets/js/app.js?ver=133"></script>
+  <script src="https://app.investorm.xyz/assets/js/charts.js?ver=133"></script>
 </body>
 
 </html>
