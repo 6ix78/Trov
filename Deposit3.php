@@ -442,11 +442,11 @@ $msg = "";
                                 <div class="dropdown-menu dropdown-menu-right text-center">
                                   <ul class="link-list-plain li-col3x" name="currency_list" id="currency-list">
                                     <li><a class="switch-currency" href="javascript:void(0)" value="BTC" data-switch="prm" data-currency="BTC">BTC</a></li>
-                                    <li><a class="switch-currency" href="javascript:void(0)" value="ETH" data-switch="prm" data-currency="ETH">ETH</a></li>
-                                    <li><a class="switch-currency" href="javascript:void(0)" value="BNB" data-switch="prm" data-currency="BNB">BNB</a></li>
-                                    <li><a class="switch-currency" href="javascript:void(0)" value="USDC" data-switch="prm" data-currency="USDC">USDC</a></li>
+                                    <!-- <li><a class="switch-currency" href="javascript:void(0)" value="ETH" data-switch="prm" data-currency="ETH">ETH</a></li> -->
+                                    <!-- <li><a class="switch-currency" href="javascript:void(0)" value="BNB" data-switch="prm" data-currency="BNB">BNB</a></li> -->
+                                    <!-- <li><a class="switch-currency" href="javascript:void(0)" value="USDC" data-switch="prm" data-currency="USDC">USDC</a></li> -->
                                     <li><a class="switch-currency" href="javascript:void(0)" value="USDT" data-switch="prm" data-currency="USDT">USDT</a></li>
-                                    <li><a class="switch-currency" href="javascript:void(0)" value="TRX" data-switch="prm" data-currency="TRX">TRX</a></li>
+                                    <!-- <li><a class="switch-currency" href="javascript:void(0)" value="TRX" data-switch="prm" data-currency="TRX">TRX</a></li> -->
                                   </ul>
                                 </div>
                               </div>

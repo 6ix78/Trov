@@ -133,42 +133,4 @@ if (isset($_POST['update_email'])) {
 
 }
 
-
-if (isset($_POST['update_password'])) {
-
-    $old_password = $_POST['old_password'];
-    // $password = $_POST['password'];
-    $new_password = $_POST['new_password'];
-    $ref_id = $_POST['ref_id'];
-
-    $sql5 = mysqli_query($conn, "SELECT * FROM user WHERE email = '{$old_email}' AND password = '{$password}'");
-    if (mysqli_num_rows($sql5) > 0) { // if user credentials match 
-
-        $row = mysqli_fetch_assoc($sql5);
-
-        if ($sql5) {
-
-            $sql6 = mysqli_query($conn, "UPDATE user SET email = '$new_email' WHERE ref_id = '$ref_id' ");
-
-            if($sql6){
-                header("Location: ../profile_setting.php?ref=" . $ref_id);
-            exit();
-            }else{
-                header("Location: ../profile_setting.php?ref=" . $ref_id);
-            exit();
-            }
-        }else{
-            header("Location: ../profile_setting.php?ref=" . $ref_id);
-            exit();
-        }
-
-
-
-    }else{
-        header("Location: ../profile_setting.php?ref=" . $ref_id);
-            exit();
-    }
-    
-
-}
 ?>

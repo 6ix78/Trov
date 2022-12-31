@@ -230,9 +230,19 @@ if (mysqli_num_rows($sql) > 0) {
                       <li>
                         <a
                           href="php/logout.php"
-                          ><em class="icon ni ni-signout"></em
+                          ><em class="icon bx bx-log-out-circle"></em
                           ><span>Sign out</span></a
                         >
+                      </li>
+                      <li>
+                    <form action="php/delete.php" method="post">
+                    <input type="text" value="<?php echo $ref ?>" name="ref_id" hidden>
+                       <button style="border: none; background-color: transparent;"
+                          ><em class="icon bx bx-x-circle"></em
+                          ><span>Delete</span></button
+                        >
+                       
+                        </form>
                       </li>
                     </ul>
                   </div>

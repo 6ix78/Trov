@@ -428,66 +428,66 @@ if (isset($_POST['depo'])) {
                                     <span class="step"></span>
                                 </div>
                                 <form action="deposit-complete.php?ref=<?php echo $ref ?>" method="post">
-                                <div class="nk-pps-title text-center">
-                                    <h3 class="title">Confirm Your Deposit</h3>
-                                    <p class="caption-text">You are about to deposit <strong class="text-dark"><?php echo  $deposit_amount ?> <?php echo $deposit_currency ?></strong> in your account.</p>
-                                    <p class="sub-text-sm">Please review the information and confirm.</p>
-                                </div>
-                                <div class="nk-pps-data">
-                                    <ul class="nk-olist">
-                                        <li class="nk-olist-item">
-                                            <div class="label lead-text">Payment method</div>
-                                            <div class="data"><span class="method"><em class="icon bx bxs-wallet-alt"></em> <span>Crypto Wallet</span></span></div>
-                                        </li>
+                                    <div class="nk-pps-title text-center">
+                                        <h3 class="title">Confirm Your Deposit</h3>
+                                        <p class="caption-text">You are about to deposit <strong class="text-dark"><?php echo  $deposit_amount ?> <?php echo $deposit_currency ?></strong> in your account.</p>
+                                        <p class="sub-text-sm">Please review the information and confirm.</p>
+                                    </div>
+                                    <div class="nk-pps-data">
+                                        <ul class="nk-olist">
+                                            <li class="nk-olist-item">
+                                                <div class="label lead-text">Payment method</div>
+                                                <div class="data"><span class="method"><em class="icon bx bxs-wallet-alt"></em> <span>Crypto Wallet</span></span></div>
+                                            </li>
 
-                                        <li class="nk-olist-item is-grouped">
-                                            <div class="label lead-text">Amount to deposit</div>
-                                            <div class="data"><span class="amount"><?php echo $deposit_amount ?> <?php echo $deposit_currency ?></span></div>
-                                        </li>
+                                            <li class="nk-olist-item is-grouped">
+                                                <div class="label lead-text">Amount to deposit</div>
+                                                <div class="data"><span class="amount"><?php echo $deposit_amount ?> <?php echo $deposit_currency ?></span></div>
+                                            </li>
 
 
-                                        <li class="nk-olist-item small">
-                                            <!-- <div class="label">Exchange rate</div>
+                                            <li class="nk-olist-item small">
+                                                <!-- <div class="label">Exchange rate</div>
                                             <div class="data fw-normal text-soft">
                                                 <span class="amount">1 USD = 0.00005941 BTC</span>
                                             </div> -->
-                                        </li>
+                                            </li>
 
-                                        <li class="nk-olist-item">
-                                            <div class="label lead-text">
-                                                Amount to credit
-                                                <em class="icon bx bx-info-circle small text-soft nk-tooltip" title="" data-original-title="The amount will be added into your main balance."></em>
-                                            </div>
-                                            <div class="data"><span class="amount"><?php echo $credit_amount ?> USD</span></div>
-                                        </li>
-                                    </ul>
-                                    <ul class="nk-olist">
-                                        <li class="nk-olist-item nk-olist-item-final">
-                                            <div class="label lead-text">You will send (Total)</div>
-                                            <div class="data"><span class="amount"> <?php echo  $deposit_amount ?> <?php echo $deposit_currency ?> </span></div>
-                                        </li>
-                                    </ul>
+                                            <li class="nk-olist-item">
+                                                <div class="label lead-text">
+                                                    Amount to credit
+                                                    <em class="icon bx bx-info-circle small text-soft nk-tooltip" title="" data-original-title="The amount will be added into your main balance."></em>
+                                                </div>
+                                                <div class="data"><span class="amount"><?php echo $credit_amount ?> USD</span></div>
+                                            </li>
+                                        </ul>
+                                        <ul class="nk-olist">
+                                            <li class="nk-olist-item nk-olist-item-final">
+                                                <div class="label lead-text">You will send (Total)</div>
+                                                <div class="data"><span class="amount"> <?php echo  $deposit_amount ?> <?php echo $deposit_currency ?> </span></div>
+                                            </li>
+                                        </ul>
 
 
-                                    <div class="sub-text-sm">* Payment info (<?php echo $deposit_currency ?> wallet) will available once you proceed.</div>
-                                </div>
-                                <input type="text" name="deposit_amount" hidden value="<?php echo $deposit_amount ?>">
-                                <input type="text" name="deposit_currency" hidden value="<?php echo $deposit_currency ?>">
-                                <input type="text" name="credit_amount" hidden value="<?php echo  $credit_amount ?>">
-                             
-                             
+                                        <div class="sub-text-sm">* Payment info (<?php echo $deposit_currency ?> wallet) will available once you proceed.</div>
+                                    </div>
+                                    <input type="text" name="deposit_amount" hidden value="<?php echo $deposit_amount ?>">
+                                    <input type="text" name="deposit_currency" hidden value="<?php echo $deposit_currency ?>">
+                                    <input type="text" name="credit_amount" hidden value="<?php echo  $credit_amount ?>">
 
-                                <div class="nk-pps-field form-action text-center">
-                                    <div class="nk-pps-action">
-                                  
+
+
+                                    <div class="nk-pps-field form-action text-center">
+                                        <div class="nk-pps-action">
+
                                             <input class="btn btn-lg btn-block btn-primary" name="depo" value="Confirm &amp; Pay" type="submit">
-                                          
-                                        </a>
+
+                                            </a>
+                                        </div>
+                                        <div class="nk-pps-action pt-3">
+                                            <a href="deposit.php" class="btn btn-outline-danger btn-trans">Cancel Order</a>
+                                        </div>
                                     </div>
-                                    <div class="nk-pps-action pt-3">
-                                        <a href="deposit.php" class="btn btn-outline-danger btn-trans">Cancel Order</a>
-                                    </div>
-                                </div>
                             </div>
                             </form>
                         </div>
@@ -495,7 +495,7 @@ if (isset($_POST['depo'])) {
 
                 </div>
             </div>
-         
+
             <script src="https://app.investorm.xyz/assets/js/bundle.js?ver=133"></script>
             <script src="https://app.investorm.xyz/assets/js/app.js?ver=133"></script>
             <script src="https://app.investorm.xyz/assets/js/charts.js?ver=133"></script>

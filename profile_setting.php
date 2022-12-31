@@ -15,6 +15,44 @@ if (isset($_GET['ref'])) {
 }
 
 
+
+
+if (isset($_POST['update_password'])) {
+
+  $current_password = $_POST['current_password'];
+  // $password = $_POST['password'];
+  $new_password = $_POST['new_password'];
+  $new_password_confirmation = $_POST['new_password_confirmation'];
+  $ref_id = $_POST['ref_id'];
+
+  $sql7 = mysqli_query($conn, "SELECT * FROM user WHERE password = '{$current_password}'");
+  
+  if (mysqli_num_rows($sql7) > 0) { // if user credentials match 
+
+      $row = mysqli_fetch_assoc($sql7);
+
+      if($sql7){
+
+          if($new_password == $new_password_confirmation){
+
+              $sql8 = mysqli_query($conn, "UPDATE user SET password = '$new_password' WHERE ref_id = '$ref_id' ");
+
+              if($sql8){
+                echo "<script> alert('Password Changed successfully</script>";
+              }
+
+          }else{
+              echo "<script> alert('Confrimation doesnt match') </script>";
+
+            
+          }
+      }
+
+      
+  }else{
+    echo "<script> alert('Incorrect Curret Password') </script>";
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en" class="js" id="fabb7b9b">
@@ -231,7 +269,7 @@ if (mysqli_num_rows($sql) > 0) {
                       <li>
                         <a
                           href="php/logout.php"
-                          ><em class="icon ni ni-signout"></em
+                          ><em class="icon bx bx-log-out"></em
                           ><span>Sign out</span></a
                         >
                       </li>
@@ -557,7 +595,7 @@ if (mysqli_num_rows($sql) > 0) {
                       </div>
                     </div>
                   </div>
-                 <!-- <?php echo $info ?> -->
+              
                   <div class="card card-bordered">
                     <div class="card-inner-group">
                       
@@ -619,7 +657,7 @@ if (mysqli_num_rows($sql) > 0) {
                           </div>
                         </div>
                       </div>
-                      <div class="card-inner">
+                      <!-- <div class="card-inner">
                         <div
                           class="between-center flex-wrap flex-md-nowrap g-3"
                         >
@@ -646,7 +684,7 @@ if (mysqli_num_rows($sql) > 0) {
                             >
                           </div>
                         </div>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                 </div>
@@ -753,7 +791,8 @@ if (mysqli_num_rows($sql) > 0) {
                   <input type="text" value="<?php echo $ref ?>" name="ref_id" hidden>
                   <button
                    name="update_email"
-                  
+                  data-target="#confirm-email"
+                  data-toggle="modal"
                     class="btn btn-md btn-primary"
                   >
                     Change Email
@@ -768,7 +807,7 @@ if (mysqli_num_rows($sql) > 0) {
               <div class="notes mt-gs">
                 <ul>
                   <li class="alert-note is-plain text-danger">
-                    <em class="icon ni ni-alert-circle"></em>
+                    <em class="icon bx bx-bug-alt"></em>
                     <p>
                       We will send you a link to your new email address to
                       confirm the change.
@@ -786,7 +825,7 @@ if (mysqli_num_rows($sql) > 0) {
       <div class="modal-dialog modal-dialog-centered modal-md" role="document">
         <div class="modal-content">
           <a href="#" class="close" data-dismiss="modal"
-            ><em class="icon ni ni-cross-sm"></em
+            ><em class="icon bx bx-x"></em
           ></a>
           <div class="modal-body modal-body-lg">
             <h5 class="title mb-3">Verify Your Email</h5>
@@ -800,7 +839,7 @@ if (mysqli_num_rows($sql) > 0) {
                 <button
                   class="btn btn-primary email-rq-verify"
                   data-action="resend"
-                  data-url="https://app.investorm.xyz/profile/settings/email/resend"
+                  data-url=""
                 >
                   Resend Email
                 </button>
@@ -809,7 +848,7 @@ if (mysqli_num_rows($sql) > 0) {
                 <button
                   class="btn btn-dim btn-danger email-rq-verify"
                   data-action="cancel"
-                  data-url="https://app.investorm.xyz/profile/settings/email/cancel"
+                  data-url=""
                 >
                   Cancel Request
                 </button>
@@ -824,12 +863,12 @@ if (mysqli_num_rows($sql) > 0) {
       <div class="modal-dialog modal-dialog-centered modal-md" role="document">
         <div class="modal-content">
           <a href="#" class="close" data-dismiss="modal"
-            ><em class="icon ni ni-cross-sm"></em
+            ><em class="icon bx bx-x"></em
           ></a>
           <div class="modal-body modal-body-md">
             <h5 class="title">Change Password</h5>
             <form
-              action="https://app.investorm.xyz/profile/settings/password"
+              action=""
               method="POST"
               class="form-validate is-alter mt-4 form-authentic"
               id="change-password-form"
@@ -843,7 +882,7 @@ if (mysqli_num_rows($sql) > 0) {
                     type="password"
                     name="current_password"
                     class="form-control form-control-lg"
-                    id="current-password"
+                  
                     placeholder="Enter Current Password"
                     required
                     maxlength="190"
@@ -865,6 +904,7 @@ if (mysqli_num_rows($sql) > 0) {
                     maxlength="190"
                   />
                 </div>
+                <input type="text" value="<?php echo $ref ?>" name="ref_id" hidden>
               </div>
               <div class="form-group">
                 <label class="form-label" for="new-password"
@@ -885,8 +925,8 @@ if (mysqli_num_rows($sql) > 0) {
               <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
                 <li>
                   <button
-                    type="button"
-                    id="update-password"
+                   
+                   name="update_password"
                     class="btn btn-primary"
                   >
                     Update Password
@@ -918,7 +958,7 @@ if (mysqli_num_rows($sql) > 0) {
           <div class="modal-body modal-body-lg text-center">
             <div class="nk-modal">
               <em
-                class="nk-modal-icon icon icon-circle icon-circle-xxl ni ni-check bg-success"
+                class="nk-modal-icon icon icon-circle icon-circle-xxl bx bx-check bg-success"
               ></em>
               <h4 class="nk-modal-title title">
                 Password changed successfully!
@@ -959,7 +999,7 @@ if (mysqli_num_rows($sql) > 0) {
       <div class="modal-dialog modal-dialog-centered modal-md" role="document">
         <div class="modal-content">
           <a href="#" class="close" data-dismiss="modal"
-            ><em class="icon ni ni-cross-sm"></em
+            ><em class="icon bx bx-cross"></em
           ></a>
           <div class="modal-body modal-body-md">
             <h5 class="title">Enter Your Valid Email Address</h5>
@@ -1019,7 +1059,7 @@ if (mysqli_num_rows($sql) > 0) {
               <div class="notes mt-gs">
                 <ul>
                   <li class="alert-note is-plain text-danger">
-                    <em class="icon ni ni-alert-circle"></em>
+                    <em class="icon bx bx-bug-alt"></em>
                     <p>
                       Wether you verify your email or not, from next login you
                       have to use your new email address.
@@ -1042,7 +1082,7 @@ if (mysqli_num_rows($sql) > 0) {
       <div class="modal-dialog modal-dialog-centered modal-md" role="document">
         <div class="modal-content">
           <a href="#" class="close" data-dismiss="modal"
-            ><em class="icon ni ni-cross-sm"></em
+            ><em class="icon bx bx-cross"></em
           ></a>
           <div class="modal-body modal-body-md">
             <h5 class="title">Resend Email Verification Link</h5>
@@ -1076,7 +1116,7 @@ if (mysqli_num_rows($sql) > 0) {
               <div class="notes mt-gs">
                 <ul>
                   <li class="alert-note is-plain text-danger">
-                    <em class="icon ni ni-alert-circle"></em>
+                    <em class="icon bx bx-bug-alt"></em>
                     <p>
                       After verification, from next login you have to use your
                       new verified email address.
@@ -1094,7 +1134,7 @@ if (mysqli_num_rows($sql) > 0) {
       <div class="modal-dialog modal-dialog-centered modal-md" role="document">
         <div class="modal-content">
           <a href="#" class="close" data-dismiss="modal"
-            ><em class="icon ni ni-cross-sm"></em
+            ><em class="icon bx bx-x"></em
           ></a>
           <div class="modal-body modal-body-md">
             <h5 class="modal-title">Enable 2FA Authentication</h5>
@@ -1204,7 +1244,7 @@ if (mysqli_num_rows($sql) > 0) {
       <div class="modal-dialog modal-dialog-centered modal-md" role="document">
         <div class="modal-content">
           <a href="#" class="close" data-dismiss="modal"
-            ><em class="icon ni ni-cross-sm"></em
+            ><em class="icon bx bx-x"></em
           ></a>
           <div class="modal-body modal-body-md">
             <h5 class="title"></h5>
