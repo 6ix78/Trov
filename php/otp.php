@@ -28,7 +28,7 @@ if(isset($_POST['check'])){
         $fetch_code = $fetch_data['code'];
         $email = $fetch_data['email'];
         $code = 0;
-        $stats = 'verified';
+        $stats = 'Verified';
         $update_otp = "UPDATE user SET code = $code, stats = '$stats' WHERE code = $fetch_code";
         $update_res = mysqli_query($conn, $update_otp);
         if($update_res){

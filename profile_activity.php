@@ -517,34 +517,34 @@ if (mysqli_num_rows($sql) > 0) {
                   </div>
                 </div>
                 <ul class="nk-nav nav nav-tabs">
-                    <li class="nav-item ">
-                      <a class="nav-link" href="profile.html"
-                        >Profile</a
-                      >
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        class="nav-link"
-                        href="profile_account.html"
-                        >Accounts</a
-                      >
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        class="nav-link"
-                        href="profile_setting.html"
-                        >Security</a
-                      >
-                    </li>
-                    <li class="nav-item active">
-                      <a
-                        class="nav-link"
-                        href="profile_activity.html"
-                        >Activity</a
-                      >
-                    </li>
-                  </ul>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="profile.php?ref=<?php echo $row['ref_id']?>"
+                      >Profile</a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      href="profile_account.php?ref=<?php echo $row['ref_id']?>"
+                      >Accounts</a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      href="profile_setting.php?ref=<?php echo $row['ref_id']?>"
+                      >Security</a
+                    >
+                  </li>
+                  <!-- <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      href="profile_activity.php?ref=<?php echo $row['ref_id']?>"
+                      >Activity</a
+                    >
+                  </li> -->
                 </ul>
+              
                 <div class="nk-block">
                   <div class="nk-block-head">
                     <div class="nk-block-between-md g-3">

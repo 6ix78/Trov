@@ -537,13 +537,13 @@ if (mysqli_num_rows($sql) > 0) {
                       >Security</a
                     >
                   </li>
-                  <li class="nav-item">
+                  <!-- <li class="nav-item">
                     <a
                       class="nav-link"
                       href="profile_activity.php?ref=<?php echo $row['ref_id']?>"
                       >Activity</a
                     >
-                  </li>
+                  </li> -->
                 </ul>
                 <div class="nk-block">
                   <div class="nk-block-head">
@@ -608,16 +608,7 @@ if (mysqli_num_rows($sql) > 0) {
                         data-toggle="modal"
                         data-target="#profile-edit"
                       >
-                      <?php } ?>
-                     
-                      <?php 
-                      $sql = mysqli_query($conn, "SELECT * FROM user_details WHERE ref_id = {$_SESSION['ref_id']}");
-if (mysqli_num_rows($sql) > 0) {
-   ($row = mysqli_fetch_assoc($sql));
-
-
-?>
-     
+         
                         <div class="data-col">
                           <span class="data-label">Phone Number</span>
                           <span class="data-value"><?php echo $row ['phone']?> </span>
@@ -667,6 +658,15 @@ if (mysqli_num_rows($sql) > 0) {
                         data-target="#profile-edit"
                         data-tab-target="#address"
                       >
+                      <?php } ?>
+                      <?php 
+                      $sql = mysqli_query($conn, "SELECT * FROM user_address WHERE ref_id = {$_SESSION['ref_id']}");
+if (mysqli_num_rows($sql) > 0) {
+   ($row = mysqli_fetch_assoc($sql));
+
+
+?>
+     
                         <div class="data-col">
                           <span class="data-label"
                             >Country
@@ -695,7 +695,7 @@ if (mysqli_num_rows($sql) > 0) {
                           <span class="data-label">Address</span>
                           <span class="data-value">
                             <span class="text-soft font-italic"
-                              ><?php echo $row['address'] ?></span
+                              ><?php echo $row['address_line'] ?></span
                             >
                           </span>
                         </div>
@@ -730,6 +730,13 @@ if (mysqli_num_rows($sql) > 0) {
       </div>
     </div>
 
+    <?php
+        $sql = mysqli_query($conn, "SELECT * FROM user WHERE ref_id = {$_SESSION['ref_id']}");
+if (mysqli_num_rows($sql) > 0) {
+   ($row = mysqli_fetch_assoc($sql));
+
+
+?>
     <div class="modal fade" role="dialog" id="profile-edit">
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
@@ -754,7 +761,7 @@ if (mysqli_num_rows($sql) > 0) {
             <div class="tab-content">
               <div class="tab-pane active" id="personal">
                 <form
-                  action=""
+                  action="php/profile.php"
                   method="POST"
                   class="form-validate is-alter form-profile"
         
@@ -798,6 +805,7 @@ if (mysqli_num_rows($sql) > 0) {
                           >
                         </div>
 
+                        <input type="text"  value="<?php echo $row['ref_id']?>" name="ref_id" hidden>
                         <div class="form-control-wrap">
                           <input
                             type="text"
@@ -810,7 +818,9 @@ if (mysqli_num_rows($sql) > 0) {
                         </div>
                       </div>
                     </div>
-                   
+
+                    
+                   <?php } ?>
                     
 
                     <div class="col-md-6">
@@ -858,7 +868,7 @@ if (mysqli_num_rows($sql) > 0) {
                           <button
                            
                             class="btn btn-lg btn-primary ua-updp"
-                          name="submit"
+                          name="user"
                           >
                             Update Profile
                           </button>
@@ -1745,7 +1755,7 @@ if (mysqli_num_rows($sql) > 0) {
                       </div>
                     </div>
                   </div>
-
+<input type="text" value="<?php echo $ref ?>" name="ref_id" hidden>
                   <div class="row gy-4">
                     <div class="col-12">
                       <ul

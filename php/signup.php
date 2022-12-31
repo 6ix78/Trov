@@ -23,7 +23,8 @@ $balance = $_POST['balance'];
 
 $code = rand(999999, 111111);
 
-$ref_id = rand(time(), 10000);
+// $ref_id = rand(time(), 10000);
+$ref_id = rand(999999, 111111);
 
 if (!empty($name) || !empty($email) || !empty($password)) {
 
@@ -43,6 +44,9 @@ if (!empty($name) || !empty($email) || !empty($password)) {
       $sql2 = mysqli_query($conn, "INSERT INTO balance(ref_id,main_balance) VALUES ('{$ref_id}', '{$balance}') ");
 
       $sql3 = mysqli_query($conn, "INSERT INTO user_details(id,ref_id) VALUES ('', '{$ref_id}') ");
+
+      $sql4 = mysqli_query($conn, "INSERT INTO user_address(id,ref_id) VALUES ('', '{$ref_id}') ");
+      $sql5 = mysqli_query($conn, "INSERT INTO user_wallet(id,ref_id) VALUES ('', '{$ref_id}') ");
 
       // $sql3 = mysqli_query($conn, "INSERT INTO wallet (ref_id, btc, usdt) VALUE('{$ref_id}', '{$btc}', '{$usdt}')");
 

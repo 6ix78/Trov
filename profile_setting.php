@@ -14,6 +14,7 @@ if (isset($_GET['ref'])) {
   $ref = $_GET['ref'];
 }
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en" class="js" id="fabb7b9b">
@@ -518,33 +519,33 @@ if (mysqli_num_rows($sql) > 0) {
                   </div>
                 </div>
                 <ul class="nk-nav nav nav-tabs">
-                    <li class="nav-item ">
-                      <a class="nav-link" href="profile.html"
-                        >Profile</a
-                      >
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        class="nav-link"
-                        href="profile_account.html"
-                        >Accounts</a
-                      >
-                    </li>
-                    <li class="nav-item active">
-                      <a
-                        class="nav-link"
-                        href="profile_setting.html"
-                        >Security</a
-                      >
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        class="nav-link"
-                        href="profile_activity.html"
-                        >Activity</a
-                      >
-                    </li>
-                  </ul>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="profile.php?ref=<?php echo $row['ref_id']?>"
+                      >Profile</a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      href="profile_account.php?ref=<?php echo $row['ref_id']?>"
+                      >Accounts</a
+                    >
+                  </li>
+                  <li class="nav-item active">
+                    <a
+                      class="nav-link"
+                      href="profile_setting.php?ref=<?php echo $row['ref_id']?>"
+                      >Security</a
+                    >
+                  </li>
+                  <!-- <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      href="profile_activity.php?ref=<?php echo $row['ref_id']?>"
+                      >Activity</a
+                    >
+                  </li> -->
+                </ul>
                 <div class="nk-block">
                   <div class="nk-block-head">
                     <div class="nk-block-head-content">
@@ -556,79 +557,11 @@ if (mysqli_num_rows($sql) > 0) {
                       </div>
                     </div>
                   </div>
+                 <!-- <?php echo $info ?> -->
                   <div class="card card-bordered">
                     <div class="card-inner-group">
-                      <div class="card-inner">
-                        <div
-                          class="between-center flex-wrap flex-md-nowrap g-3"
-                        >
-                          <div class="nk-block-text">
-                            <h6>Save my Activity Logs</h6>
-                            <p>
-                              Save your all
-                              <a
-                                href="https://app.investorm.xyz/profile/activity"
-                                class="link link-primary"
-                                >activity logs</a
-                              >
-                              including unusual activity detected.
-                            </p>
-                          </div>
-                          <div class="nk-block-actions">
-                            <ul class="align-center gx-3">
-                              <li class="order-md-last">
-                                <div class="custom-control custom-switch mr-n2">
-                                  <input
-                                    type="checkbox"
-                                    name="activity_log"
-                                    class="custom-control-input qup-profile"
-                                    checked
-                                    id="activity-log"
-                                    data-key="setting"
-                                  />
-                                  <label
-                                    class="custom-control-label"
-                                    for="activity-log"
-                                  ></label>
-                                </div>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card-inner">
-                        <div
-                          class="between-center flex-wrap flex-md-nowrap g-3"
-                        >
-                          <div class="nk-block-text">
-                            <h6>Email me if encounter unusual activity</h6>
-                            <p>
-                              You will get email notification whenever encounter
-                              invalid login activity.
-                            </p>
-                          </div>
-                          <div class="nk-block-actions">
-                            <ul class="align-center gx-3">
-                              <li class="order-md-last">
-                                <div class="custom-control custom-switch mr-n2">
-                                  <input
-                                    type="checkbox"
-                                    name="unusual_activity"
-                                    class="custom-control-input qup-profile"
-                                    checked
-                                    id="unusual-activity"
-                                    data-key="setting"
-                                  />
-                                  <label
-                                    class="custom-control-label"
-                                    for="unusual-activity"
-                                  ></label>
-                                </div>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
+                      
+                      
                       <div class="card-inner">
                         <div
                           class="between-center flex-wrap flex-md-nowrap g-3"
@@ -745,10 +678,11 @@ if (mysqli_num_rows($sql) > 0) {
           <a href="#" class="close" data-dismiss="modal"
             ><em class="icon bx bx-cross"></em
           ></a>
+         
           <div class="modal-body modal-body-md">
             <h5 class="title">Change Email</h5>
             <form
-              action="https://app.investorm.xyz/profile/settings/email"
+              action="php/profile.php"
               method="POST"
               class="form-validate is-alter mt-4 form-authentic"
               id="change-email-form"
@@ -758,15 +692,23 @@ if (mysqli_num_rows($sql) > 0) {
                 <label class="form-label" for="email-address"
                   >Current Email Address</label
                 >
+                <?php
+        $sql = mysqli_query($conn, "SELECT * FROM user WHERE ref_id = '$ref'");
+if (mysqli_num_rows($sql) > 0) {
+   ($row = mysqli_fetch_assoc($sql));
+
+
+?>
                 <div class="form-control-wrap">
                   <input
                     type="email"
                     class="form-control form-control-lg"
-                    id="email-address"
+                  name="old_email"
                     readonly
-                    value="danielowenderefaka@gmail.com"
+                    value="<?php echo $row['email']?>"
                   />
                 </div>
+                <?php } ?>
               </div>
               <div class="form-group">
                 <label class="form-label" for="new-email-address"
@@ -776,10 +718,10 @@ if (mysqli_num_rows($sql) > 0) {
                   <input
                     type="email"
                     autocomplete="new-email"
-                    name="user_new_email"
+                    name="new_email"
                     value=""
                     class="form-control form-control-lg"
-                    id="new-email-address"
+                   
                     placeholder="Enter Email Address"
                     required
                     maxlength="190"
@@ -799,7 +741,7 @@ if (mysqli_num_rows($sql) > 0) {
                     autocomplete="new-password"
                     name="password"
                     class="form-control form-control-lg"
-                    id="password"
+                    
                     placeholder="Enter current password"
                     required
                     maxlength="190"
@@ -808,9 +750,10 @@ if (mysqli_num_rows($sql) > 0) {
               </div>
               <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
                 <li>
+                  <input type="text" value="<?php echo $ref ?>" name="ref_id" hidden>
                   <button
-                    type="button"
-                    id="update-email"
+                   name="update_email"
+                  
                     class="btn btn-md btn-primary"
                   >
                     Change Email

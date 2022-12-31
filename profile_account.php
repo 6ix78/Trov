@@ -418,19 +418,33 @@ if (isset($_GET['ref'])) {
               </div>
             </div>
             <ul class="nk-nav nav nav-tabs">
-              <li class="nav-item ">
-                <a class="nav-link" href="profile.php">Profile</a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="profile_account.html">Accounts</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="profile_setting.html">Security</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="profile_activity.html">Activity</a>
-              </li>
-            </ul>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="profile.php?ref=<?php echo $row['ref_id']?>"
+                      >Profile</a
+                    >
+                  </li>
+                  <li class="nav-item active">
+                    <a
+                      class="nav-link"
+                      href="profile_account.php?ref=<?php echo $row['ref_id']?>"
+                      >Accounts</a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      href="profile_setting.php?ref=<?php echo $row['ref_id']?>"
+                      >Security</a
+                    >
+                  </li>
+                  <!-- <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      href="profile_activity.php?ref=<?php echo $row['ref_id']?>"
+                      >Activity</a
+                    >
+                  </li> -->
+                </ul>
             <div class="nk-block">
               <div class="nk-block-head">
                 <div class="nk-block-between-md g-3">
@@ -447,24 +461,14 @@ if (isset($_GET['ref'])) {
                       <a href="#" class="btn btn-primary" data-toggle="dropdown">Add Account</a>
                       <div class="dropdown-menu dropdown-menu-right">
                         <ul class="link-list-opt no-bdr">
-                          <li>
-                            <a href="javascript:void(0)" class="wd-new-account" data-action="https://app.investorm.xyz/withdraw/account/paypal" data-modal="wdm-account">
-                              <em class="icon bx bxl-paypal"></em>
-                              <span>PayPal Account</span>
-                            </a>
-                          </li>
+                        
                           <li>
                             <a href="javascript:void(0)" class="wd-new-account" data-toggle="modal" data-target="#profile-edit">
                               <em class="icon bx bx-wallet"></em>
                               <span>Crypto Wallet</span>
                             </a>
                           </li>
-                          <li>
-                            <a href="javascript:void(0)" class="wd-new-account" data-action="https://app.investorm.xyz/withdraw/account/bank" data-modal="wdm-account">
-                              <em class="icon bx bx-buildings"></em>
-                              <span>Bank Account</span>
-                            </a>
-                          </li>
+                          
                         </ul>
                       </div>
                     </div>
@@ -473,45 +477,47 @@ if (isset($_GET['ref'])) {
               </div>
               <div class="card card-bordered" id="wd-account-list">
                 <div class="nk-data data-list">
+                <?php
+        $sql = mysqli_query($conn, "SELECT * FROM user_wallet WHERE ref_id = '$ref'");
+        if (mysqli_num_rows($sql) > 0) {
+          ($row = mysqli_fetch_assoc($sql));
+
+
+        ?>
                   <div class="data-item">
                     <div class="data-col">
                       <span class="data-label">
-                        Crypto Wallet (dx)
+                        Crypto Wallet
                         <br />
                         <em class="small text-soft"></em>
                       </span>
-                      <span class="data-value">BTC / bc1q07...683syh<br /></span>
+                      <span class="data-value"><?php echo $row['btc']?><br /></span>
                     </div>
                     <div class="data-col data-col-end">
-                      <a class="wd-view-account" href="javascript:void(0);" data-action="profile_account.html" data-modal="wdm-account"><span class="data-more"><em class="bx bx-right-arrow-alt"></em></span></a>
+                      <a class="wd-view-account" href="javascript:void(0);" data-toggle="modal" data-target="#profile-edit"><span class="data-more"><em class="bx bx-right-arrow-alt"></em></span></a>
                     </div>
                   </div>
                   <div class="data-item">
                     <div class="data-col">
                       <span class="data-label">
-                        Crypto Wallet (AC-1588-7191)
+                        Crypto Wallet
                         <br />
                         <em class="small text-soft"></em>
                       </span>
-                      <span class="data-value">BTC / bc1q07...683syh<br /></span>
+                      <span class="data-value"><?php echo $row['usdt']?><br /></span>
                     </div>
                     <div class="data-col data-col-end">
-                      <a class="wd-view-account" href="javascript:void(0);" data-action="https://app.investorm.xyz/withdraw/account/crypto-withdraw/QnR5UEh0TlhYQTBjUWRpTlQ1ZG9hUT09" data-modal="wdm-account"><span class="data-more"><em class=" bx bx-right-arrow-alt "></em></span></a>
+                      <a  href="javascript:void(0)" class="wd-view-account"  data-toggle="modal" data-target="#profile-edit"><span class="data-more"><em class="bx bx-right-arrow-alt"></em></span></a>
                     </div>
                   </div>
-                  <div class="data-item">
-                    <div class="data-col">
-                      <span class="data-label">
-                        Crypto Wallet (dx3)
-                        <br />
-                        <em class="small text-soft"></em>
-                      </span>
-                      <span class="data-value">BTC / bc1q07...683syh<br /></span>
+                  <?php }else{
+                    echo "<div class='nk-odr-list is-stretch card card-bordered'>
+                    <div class='nk-odr-item'>
+                      <div class='nk-odr-col'>No Wallet found!</div>
                     </div>
-                    <div class="data-col data-col-end">
-                      <a class="wd-view-account" href="javascript:void(0);" data-action="https://app.investorm.xyz/withdraw/account/crypto-withdraw" data-modal="wdm-account"><span class="data-more"><em class="icon bx bx-right-arrow-alts"></em></span></a>
-                    </div>
-                  </div>
+                  </div>";
+                    } ?>
+                  
                 </div>
               </div>
               <div class="notes mt-4">
@@ -564,148 +570,57 @@ if (isset($_GET['ref'])) {
       <div class="modal-content">
         <a href="javascript:void(0)" class="close" data-dismiss="modal"><em class="icon bx bx-x"></em></a>
         <div class="modal-body modal-body-md">
-          <h4 class="title">Update Profile</h4>
+          <h4 class="title">Add Wallet</h4>
           <ul class="nk-nav nav nav-tabs">
             <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" href="#personal">Personal</a>
+              <a class="nav-link active" data-toggle="tab" href="#personal">Wallet</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#address">Address</a>
-            </li>
+            
           </ul>
 
           <div class="tab-content">
             <div class="tab-pane active" id="personal">
-              <form action="" method="POST" class="form-validate is-alter form-profile">
+              <form action="php/profile.php" method="POST" class="form-validate is-alter form-profile">
                 <input type="hidden" name="_token" />
                 <div class="row gy-4">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <div class="form-label-group">
-                        <label class="form-label" for="full-name">Full Name <span class="text-danger">*</span></label>
-                      </div>
+                 
 
-                      <div class="form-control-wrap">
-                        <input type="text" name="name" value="<?php echo $row['name'] ?>" class="form-control form-control-lg" placeholder="Enter Full name" required maxlength="190" />
-                      </div>
-                    </div>
-                  </div>
-
-
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <div class="form-label-group">
-                        <label class="form-label" for="phone-no">Phone Number
-                          <span class="text-danger">*</span></label>
-                      </div>
-
-                      <div class="form-control-wrap">
-                        <input type="text" name="phone" value="<?php echo $row['phone'] ?>" class="form-control form-control-lg" placeholder="Phone Number" />
-                      </div>
-                    </div>
-                  </div>
 
 
 
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label class="form-label" for="gender">Gender</label>
-                      <select name="gender" class="form-select" data-placeholder="Please select">
+                      <label class="form-label" for="gender">Wallet</label>
+                      <select name="wall_et" class="form-select" data-placeholder="Please select">
                         <option value=""></option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                        <option value="other">Others</option>
+                        <option value="btc">Bitcoin</option>
+                        <option value="usdt">Usdt </option>
+                        <!-- <option value="other">Others</option> -->
                       </select>
                     </div>
                   </div>
+                  <input type="text" name="ref_id" value="<?php echo $ref ?>" hidden >
+
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label class="form-label" for="birth-day">Date of Birth
-                        <span class="text-danger">*</span></label>
-                      <input type="text" name="dob" value="07/29/2022" data-date-start-date="-85y" data-date-end-date="-12y" class="form-control form-control-lg date-picker-alt" required placeholder="Enter your date of birth" />
+                      <div class="form-label-group">
+                        <label class="form-label" for="full-name">Wallet Address <span class="text-danger">*</span></label>
+                      </div>
+
+                      <div class="form-control-wrap">
+                        <input type="text" name="wallet" value="" class="form-control form-control-lg" placeholder="Enter Full name" required maxlength="190" />
+                      </div>
                     </div>
                   </div>
 
-                  <div class="col-12">
-                    <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2 pt-2">
-                      <li>
-                        <button class="btn btn-lg btn-primary ua-updp" name="submit">
-                          Update Profile
-                        </button>
-                      </li>
-                      <li>
-                        <a href="#" data-dismiss="modal" class="link link-light">Cancel</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </form>
-            </div>
-            <!-- Country  -->
-            <div class="tab-pane" id="address">
-              <form action="php/profile.php" method="POST" class="form-validate is-alter form-profile">
-
-                <div class="row gy-4">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <div class="form-label-group">
-                        <label class="form-label" for="address-l1">Address Line 1
-                          <span class="text-danger">*</span></label>
-                      </div>
-                      <div class="form-control-wrap">
-                        <input type="text" name="address_line" class="form-control form-control-lg" id="address-l1" value="" required maxlength="190" />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <div class="form-label-group">
-                        <label class="form-label" for="address-l2">Address Line 2</label>
-                      </div>
-                      <div class="form-control-wrap">
-                        <input type="text" name="second_address_line" class="form-control form-control-lg" id="address-l2" value="" maxlength="190" />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-12 col-lg-6">
-                    <div class="form-group">
-                      <div class="form-label-group">
-                        <label class="form-label" for="address-city">City</label>
-                      </div>
-                      <div class="form-control-wrap">
-                        <input type="text" name="city" class="form-control form-control-lg" id="address-city" value="" maxlength="190" />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6 col-lg-3">
-                    <div class="form-group">
-                      <div class="form-label-group">
-                        <label class="form-label" for="address-st">State / Province
-                          <span class="text-danger">*</span></label>
-                      </div>
-                      <div class="form-control-wrap">
-                        <input type="text" name="user_state" class="form-control form-control-lg" id="address-st" value="" required maxlength="190" />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6 col-lg-3">
-                    <div class="form-group">
-                      <div class="form-label-group">
-                        <label class="form-label" for="address-zip">Zip / Postal Code</label>
-                      </div>
-                      <div class="form-control-wrap">
-                        <input type="text" name="profile_zip" class="form-control form-control-lg" id="address-zip" value="" maxlength="50" />
-                      </div>
-                    </div>
-                  </div>
                   
+                 
 
-                <div class="row gy-4">
                   <div class="col-12">
                     <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2 pt-2">
                       <li>
-                        <button class="btn btn-lg btn-primary ua-updp" name="submit_add">
-                          Update Address
+                        <button class="btn btn-lg btn-primary ua-updp" name="submit_wallet">
+                          Update Wallet
                         </button>
                       </li>
                       <li>
@@ -716,11 +631,76 @@ if (isset($_GET['ref'])) {
                 </div>
               </form>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+                  </div>
+            <!-- Modal 2 -->
+           
+  <div class="modal fade" role="dialog" id="profile-edit">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <a href="javascript:void(0)" class="close" data-dismiss="modal"><em class="icon bx bx-x"></em></a>
+        <div class="modal-body modal-body-md">
+          <h4 class="title">Update Wallet</h4>
+          <ul class="nk-nav nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#personal">Wallet</a>
+            </li>
+            
+          </ul>
+
+          <div class="tab-content">
+            <div class="tab-pane active" id="personal">
+              <form action="php/profile.php" method="POST" class="form-validate is-alter form-profile">
+                <input type="hidden" name="_token" />
+                <div class="row gy-4">
+                 
+
+
+
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="form-label" for="gender">Wallet</label>
+                      <select name="wall_et" class="form-select" data-placeholder="Please select">
+                        <option value=""></option>
+                        <option value="btc">Bitcoin</option>
+                        <option value="usdt">Usdt </option>
+                        <!-- <option value="other">Others</option> -->
+                      </select>
+                    </div>
+                  </div>
+                  <input type="text" name="ref_id" value="<?php echo $ref ?>" hidden >
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <div class="form-label-group">
+                        <label class="form-label" for="full-name">Wallet Address <span class="text-danger">*</span></label>
+                      </div>
+
+                      <div class="form-control-wrap">
+                        <input type="text" name="wallet" value="" class="form-control form-control-lg" placeholder="Enter Full name" required maxlength="190" />
+                      </div>
+                    </div>
+                  </div>
+
+                  
+                 
+
+                  <div class="col-12">
+                    <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2 pt-2">
+                      <li>
+                        <button class="btn btn-lg btn-primary ua-updp" name="submit_wallet">
+                          Update Wallet
+                        </button>
+                      </li>
+                      <li>
+                        <a href="#" data-dismiss="modal" class="link link-light">Cancel</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </form>
+            </div>
+           
 
   
 
