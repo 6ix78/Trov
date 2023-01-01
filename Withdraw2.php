@@ -440,7 +440,7 @@ if (isset($_POST['submit'])) {
                     <p class="caption-text">via <strong>Wallet</strong></p>
                     <p class="sub-text-sm">Withdraw your fund via crypto wallet</p>
                   </div>
-                  <form class="nk-pps-form" action="Withdraw3.php" method="POST" id="wdm-continue-from">
+                  <form class="nk-pps-form" action="Withdraw3.php?ref=<?php echo $ref?>" method="POST" id="wdm-continue-from">
                     <?php echo $msg ?>
                     <div class="nk-pps-field form-group">
                       <div class="form-label-group">

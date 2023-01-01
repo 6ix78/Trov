@@ -1,5 +1,6 @@
 <?php
 session_start();
+$msg = "";
 if (!isset($_SESSION['ref_id'])) {
   header("location: login.php");
 }
@@ -24,13 +25,14 @@ if(isset($_POST['sub'])){
   $withdrawal_id = rand(999999, 111111);
     $btc_wallet = $_POST['btc_wallet'];
 
+    
     // if($withdraw_amount > $balance){
     //   $msg = "insufficient Balance";
         
     // }else{
    
-    //   $withdraw = mysqli_query($conn, "INSERT INTO user_withdraw(ref_id,withdrawal_id,withdraw_amount,withdraw_amount_btc,withdraw_des) VALUES('$ref_id',
-    //     '$withdrawal_id','$withdraw_amount', '$withdraw_amount_btc','$withdraw_des')");
+    //   $withdraw = mysqli_query($conn, "INSERT INTO user_withdraw(ref_id,withdrawal_id,withdraw_amount,withdraw_amount_btc,withdraw_des,btc_wallet) VALUES('$ref_id',
+    //     '$withdrawal_id','$withdraw_amount', '$withdraw_amount_btc','$withdraw_des','$btc_wallet')");
   
     //   if ($withdraw) {
     //     $bal = $balance - $withdraw_amount;
@@ -44,6 +46,41 @@ if(isset($_POST['sub'])){
   
     //   }
     // }
+  
+  
+  }
+
+  if(isset($_POST['withdraw_sub'])){
+
+    $withdraw_amount = $_POST['withdraw_amount'];
+    $withdraw_amount_btc = $_POST['withdraw_amount_btc'];
+    $ref_id = $_POST['ref_id'];
+    $balance = $_POST['balance'];
+    $withdraw_des = $_POST['withdraw_des'];
+  $withdrawal_id = rand(999999, 111111);
+    $btc_wallet = $_POST['btc_wallet'];
+
+    
+    if($withdraw_amount > $balance){
+      $msg = "insufficient Balance";
+        
+    }else{
+   
+      $withdraw = mysqli_query($conn, "INSERT INTO user_withdraw(ref_id,withdrawal_id,withdraw_amount,withdraw_amount_btc,withdraw_des,btc_wallet) VALUES('$ref_id',
+        '$withdrawal_id','$withdraw_amount', '$withdraw_amount_btc','$withdraw_des','$btc_wallet')");
+  
+      if ($withdraw) {
+        $bal = $balance - $withdraw_amount;
+        $sql2 = mysqli_query($conn, "UPDATE user SET balance = '{$bal}' WHERE ref_id = '$ref_id'");
+  
+        if ($sql2) {
+          $msg = "Sucessful";
+        } else {
+          $msg = "Unsucessful";
+        }
+  
+      }
+    }
   
   
   }
@@ -453,6 +490,7 @@ if(isset($_POST['sub'])){
         <span class="step active"></span>
         <span class="step"></span>
     </div>
+    <?php echo $msg ?>
     <div class="nk-pps-title text-center">
         <h3 class="title">Confirm Your Withdrawal</h3>
         <p class="caption-text">You are about to withdraw <strong><?php echo $withdraw_amount_btc?> BTC</strong> via <strong>Wallet</strong> (<?php echo $btc_wallet ?>).
@@ -506,13 +544,14 @@ if(isset($_POST['sub'])){
            <form action="" method="POST">
             <input type="text" value="<?php echo $ref ?>" name="ref_id">
             <input type="text" value="<?php echo $withdraw_amount ?>" name="withdraw_amount">
-            <input type="text" value="<?php echo $withdraw_amount_btc ?>" name=" $withdraw_amount_btc">
-            <input type="text" value="<?php echo $btc_wallet ?>" name=" $btc_wallet">
-            <input type="text" value="<?php echo $withdraw_des ?>" name=" $withdraw_des">
-            <input type="text" value="<?php echo $withdrawal_id ?>" name=" $withdrawal_id">
+            <input type="text" value="<?php echo $withdraw_amount_btc ?>" name="withdraw_amount_btc">
+            <input type="text" value="<?php echo $btc_wallet ?>" name="btc_wallet">
+            <input type="text" value="<?php echo $withdraw_des ?>" name="withdraw_des">
+            <input type="text" value="<?php echo $balance ?>" name="balance">
+       
             
-                <button class="btn btn-lg btn-block btn-primary">Confirm &amp; Withdraw</button>
-               </form
+                <button name="withdraw_sub" class="btn btn-lg btn-block btn-primary">Confirm &amp; Withdraw</button>
+        </form>
          
         </div>
         <div class="nk-pps-action pt-3">
