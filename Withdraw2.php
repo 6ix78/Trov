@@ -434,7 +434,7 @@ if (isset($_POST['submit'])) {
                     <p class="caption-text">via <strong>Wallet</strong></p>
                     <p class="sub-text-sm">Withdraw your fund via crypto wallet</p>
                   </div>
-                  <form class="nk-pps-form" action="" method="POST" id="wdm-continue-from">
+                  <form class="nk-pps-form" action="php/withdraw.php" method="POST" id="wdm-continue-from">
                     <div class="nk-pps-field form-group">
                       <div class="form-label-group">
                         <label class="form-label">Withdraw To</label>
@@ -473,7 +473,8 @@ if (isset($_POST['submit'])) {
                                 </div>
                               </a>
                             </li>
-
+                           
+              
                            
 
                            
@@ -492,6 +493,14 @@ if (isset($_POST['submit'])) {
                       </div>
                       <?php } ?>
                     </div>
+                    <?php 
+
+$sql = mysqli_query($conn, "SELECT * FROM user WHERE ref_id = '$ref'");
+if (mysqli_num_rows($sql) > 0) {
+  ($row = mysqli_fetch_assoc($sql));
+
+
+?>
                     <div class="nk-pps-field-set">
                       <div class="nk-pps-field-row row gy-gs">
                         <div class="nk-pps-field-col col-12 col-sm-6 wdm-account-fmsa">
@@ -503,14 +512,16 @@ if (isset($_POST['submit'])) {
                               <div class="form-text-hint">
                                 <span class="overline-title">USD</span>
                               </div>
-                              <input type="text" class="form-control form-control-lg form-control-number wd-amount" id="wdm-amount-from" name="wd_amount" placeholder="0.00">
+                              <input type="text" class="form-control form-control-lg form-control-number wd-amount" id="wdm-amount-from" name="withdraw_amount" placeholder="0.00">
                               <input type="hidden" name="wd_currency" id="wdm-base-currency" value="USD">
                             </div>
                             <div class="form-note-group">
-                              <span class="nk-pps-bal form-note-alt">Current Balance: <strong class="text-base amount">150.00 USD</strong></span>
+                              <input type="text" value="<?php echo $row['balance'] ?>" name="balance" hidden>
+                              <span class="nk-pps-bal form-note-alt">Current Balance: <strong class="text-base amount"><?php echo $row['balance']?>.00 USD</strong></span>
                             </div>
                           </div>
                         </div>
+                        <?php } ?>
 
                         <div class="nk-pps-field-col col-12 col-sm-6 wdm-account-tora">
                           <div class="nk-pps-field form-group">
@@ -521,8 +532,10 @@ if (isset($_POST['submit'])) {
                               <div class="form-text-hint">
                                 <span class="overline-title" id="wdm-account-currency-code">BTC</span>
                               </div>
-                              <input type="text" class="form-control form-control-lg form-control-number wd-amount" id="wdm-amount-to" name="wd_amount_to" placeholder="0.00">
+
+                              <input type="text" class="form-control form-control-lg form-control-number wd-amount" id="wdm-amount-to" name="withdraw_amount_btc" placeholder="0.00">
                               <input type="hidden" id="wdm-account-currency" name="wd_currency_to" value="BTC">
+                              <input type="hidden"  name="ref_id" value="<?php echo $ref ?>">
                             </div>
                             <div class="form-note-group" id="wdm-account-rate">
                               <span class="nk-pps-rate form-note-alt">
@@ -538,14 +551,14 @@ if (isset($_POST['submit'])) {
                         <label class="form-label" for="withdraw-desc">Description <small class="text-soft fw-normal">(Optional)</small></label>
                       </div>
                       <div class="form-control-group">
-                        <input type="text" class="form-control form-control-lg" id="withdraw-desc" name="wd_desc" placeholder="">
+                        <input type="text" class="form-control form-control-lg" id="withdraw-desc" name="withdraw_des" placeholder="">
                       </div>
                     </div>
                     <div class="nk-pps-field form-action text-center">
                       <div class="nk-pps-action">
-                        <a href="#" class="btn btn-lg btn-block btn-primary pps-btn-action" id="wdm-continue">
-                          <span>Continue to Withdraw</span>
-                          <span class="spinner-border spinner-border-sm hide" role="status" aria-hidden="true"></span>
+                        
+                          <button name="sub"  class="btn btn-lg btn-block btn-primary pps-btn-action">Continue to Withdraw</button>
+                          <!-- <span class="spinner-border spinner-border-sm hide" role="status" aria-hidden="true"></span> -->
                         </a>
                       </div>
                       <div class="nk-pps-action pt-3">
