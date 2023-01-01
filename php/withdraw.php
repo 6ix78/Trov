@@ -24,25 +24,6 @@ if(isset($_POST['submit'])){
 
 
 
-if(isset($_POST['sub'])){
-
-    $withdraw_amount = $_POST['withdraw_amount'];
-    $withdraw_amount_btc = $_POST['withdraw_amount_btc'];
-    $ref_id = $_POST['ref_id'];
-    $balance = $_POST['balance'];
-    $withdraw_des = $_POST['withdraw_des'];
-
-    if($withdraw_amount > $balance){
-        echo "it is above";
-        
-    }else{
-        echo "correct";
-    }
-
-
-}
-
-
 
 
 
