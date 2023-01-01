@@ -14,18 +14,39 @@ if (isset($_GET['ref'])) {
   $ref = $_GET['ref'];
 }
 
+if(isset($_POST['sub'])){
 
+    $withdraw_amount = $_POST['withdraw_amount'];
+    $withdraw_amount_btc = $_POST['withdraw_amount_btc'];
+    $ref_id = $_POST['ref_id'];
+    $balance = $_POST['balance'];
+    $withdraw_des = $_POST['withdraw_des'];
+  $withdrawal_id = rand(999999, 111111);
+    $btc_wallet = $_POST['btc_wallet'];
 
-if (isset($_POST['submit'])) {
-  $transfer = $_POST['deposit_method'];
-  if ($transfer == 'bank-transfer') {
-    header("Location: Deposit2.php?ref=" . $ref);
-    exit();
-  } else {
-    header("Location: Deposit3.php?ref=" . $ref);
-    exit();
+    // if($withdraw_amount > $balance){
+    //   $msg = "insufficient Balance";
+        
+    // }else{
+   
+    //   $withdraw = mysqli_query($conn, "INSERT INTO user_withdraw(ref_id,withdrawal_id,withdraw_amount,withdraw_amount_btc,withdraw_des) VALUES('$ref_id',
+    //     '$withdrawal_id','$withdraw_amount', '$withdraw_amount_btc','$withdraw_des')");
+  
+    //   if ($withdraw) {
+    //     $bal = $balance - $withdraw_amount;
+    //     $sql2 = mysqli_query($conn, "UPDATE user SET balance = '{$bal}' WHERE ref_id = '$ref_id'");
+  
+    //     if ($sql2) {
+    //       $msg = "Sucessful";
+    //     } else {
+    //       $msg = "Unsucessful";
+    //     }
+  
+    //   }
+    // }
+  
+  
   }
-}
 ?>
 <!DOCTYPE html>
 <html lang="en" class="js" id="fabb7b9b">
@@ -188,7 +209,7 @@ if (isset($_POST['submit'])) {
                     <!-- Mobile Nav End  -->
                     <ul class="link-list">
                       <li>
-                        <a href="php/logout.php"><em class="icon ni ni-signout"></em><span>Sign out</span></a>
+                        <a href="php/logout.php"><em class="icon bx bx-log-out"></em><span>Sign out</span></a>
                       </li>
                     </ul>
                   </div>
@@ -434,7 +455,7 @@ if (isset($_POST['submit'])) {
     </div>
     <div class="nk-pps-title text-center">
         <h3 class="title">Confirm Your Withdrawal</h3>
-        <p class="caption-text">You are about to withdraw <strong>0.006019 BTC</strong> via <strong>Wallet</strong> (bc1q07...683syh).
+        <p class="caption-text">You are about to withdraw <strong><?php echo $withdraw_amount_btc?> BTC</strong> via <strong>Wallet</strong> (<?php echo $btc_wallet ?>).
         </p>
         <p class="sub-text-sm">Please review the information and confirm.</p>
     </div>
@@ -442,11 +463,11 @@ if (isset($_POST['submit'])) {
         <ul class="nk-olist">
             <li class="nk-olist-item">
                 <div class="label lead-text">Withdraw Account (Bitcoin Wallet)</div>
-                <div class="data"><span class="method"><em class="icon ni ni-wallet-fill"></em> <span class="ellipsis w-max-225px">bc1q07...683syh</span></span></div>
+                <div class="data"><span class="method"><em class="icon bx bx-wallet"></em> <span class="ellipsis w-max-225px"><?php echo $btc_wallet ?></span></span></div>
             </li>
             <li class="nk-olist-item is-grouped">
                 <div class="label lead-text">Amount to withdraw</div>
-                <div class="data"><span class="amount">0.006019 BTC</span></div>
+                <div class="data"><span class="amount"><?php $withdraw_amount_btc ?> BTC</span></div>
             </li>
 
                         
@@ -460,35 +481,42 @@ if (isset($_POST['submit'])) {
             <li class="nk-olist-item">
                 <div class="label lead-text">
                     Total amount to debit 
-                    <em class="icon ni ni-info small text-soft nk-tooltip" title="" data-original-title="The amount will be deducted from your main balance."></em>
+                    <em class="icon bx bx-info-circle small text-soft nk-tooltip" title="" data-original-title="The amount will be deducted from your main balance."></em>
                 </div>
-                <div class="data"><span class="amount">100.00 USD</span></div>
+                <div class="data"><span class="amount"><?php echo $withdraw_amount?>.00 USD</span></div>
             </li>
         </ul>
 
                 <ul class="nk-olist">
             <li class="nk-olist-item">
                 <div class="label">Description</div>
-                <div class="data note">pay</div>
+                <div class="data note"><?php echo $withdraw_des ?></div>
             </li>
         </ul>
         
         <ul class="nk-olist">
             <li class="nk-olist-item nk-olist-item-final">
                 <div class="label lead-text">Amount transferred to Account <span class="small">*</span></div>
-                <div class="data"><span class="amount">0.006019 BTC</span></div>
+                <div class="data"><span class="amount"><?php echo $withdraw_amount_btc?> BTC</span></div>
             </li>
         </ul>
             </div>
     <div class="nk-pps-field form-action text-center">
         <div class="nk-pps-action">
-            <a href="javascript:void(0)" class="btn btn-lg btn-block btn-primary" data-url="https://app.investorm.xyz/withdraw/confirm" id="wd-confirm">
-                <span>Confirm &amp; Withdraw</span>
-                <span class="spinner-border spinner-border-sm hide" role="status" aria-hidden="true"></span>
-            </a>
+           <form action="" method="POST">
+            <input type="text" value="<?php echo $ref ?>" name="ref_id">
+            <input type="text" value="<?php echo $withdraw_amount ?>" name="withdraw_amount">
+            <input type="text" value="<?php echo $withdraw_amount_btc ?>" name=" $withdraw_amount_btc">
+            <input type="text" value="<?php echo $btc_wallet ?>" name=" $btc_wallet">
+            <input type="text" value="<?php echo $withdraw_des ?>" name=" $withdraw_des">
+            <input type="text" value="<?php echo $withdrawal_id ?>" name=" $withdrawal_id">
+            
+                <button class="btn btn-lg btn-block btn-primary">Confirm &amp; Withdraw</button>
+               </form
+         
         </div>
         <div class="nk-pps-action pt-3">
-            <a href="https://app.investorm.xyz/withdraw" class="btn btn-outline-danger btn-trans">Cancel Withdraw</a>
+            <a href="withdraw.php?ref=<?php echo $ref ?>" class="btn btn-outline-danger btn-trans">Cancel Withdraw</a>
         </div>
     </div>
 </div>

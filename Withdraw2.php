@@ -29,37 +29,7 @@ if (isset($_POST['submit'])) {
 }
 
 
-if(isset($_POST['sub'])){
 
-  $withdraw_amount = $_POST['withdraw_amount'];
-  $withdraw_amount_btc = $_POST['withdraw_amount_btc'];
-  $ref_id = $_POST['ref_id'];
-  $balance = $_POST['balance'];
-  $withdraw_des = $_POST['withdraw_des'];
-$withdrawal_id = rand(999999, 111111);
-  if($withdraw_amount > $balance){
-    $msg = "insufficient Balance";
-      
-  }else{
- 
-    $withdraw = mysqli_query($conn, "INSERT INTO user_withdraw(ref_id,withdrawal_id,withdraw_amount,withdraw_amount_btc,withdraw_des) VALUES('$ref_id',
-      '$withdrawal_id','$withdraw_amount', '$withdraw_amount_btc','$withdraw_des')");
-
-    if ($withdraw) {
-      $bal = $balance - $withdraw_amount;
-      $sql2 = mysqli_query($conn, "UPDATE user SET balance = '{$bal}' WHERE ref_id = '$ref_id'");
-
-      if ($sql2) {
-        $msg = "Sucessful";
-      } else {
-        $msg = "Unsucessful";
-      }
-
-    }
-  }
-
-
-}
 
 
 ?>
@@ -470,7 +440,7 @@ $withdrawal_id = rand(999999, 111111);
                     <p class="caption-text">via <strong>Wallet</strong></p>
                     <p class="sub-text-sm">Withdraw your fund via crypto wallet</p>
                   </div>
-                  <form class="nk-pps-form" action="" method="POST" id="wdm-continue-from">
+                  <form class="nk-pps-form" action="Withdraw3.php" method="POST" id="wdm-continue-from">
                     <?php echo $msg ?>
                     <div class="nk-pps-field form-group">
                       <div class="form-label-group">
@@ -506,6 +476,7 @@ $withdrawal_id = rand(999999, 111111);
                                   <div class="nk-cm-text">
                                     <span class="label fw-bold">Crypto Wallet</span>
                                     <span class="desc"><?php echo $row['btc'] ?> </span>
+                                    <input type="text" value="<?php echo $row['btc'] ?>" name="btc_wallet"> 
                                   </div>
                                 </div>
                               </a>
