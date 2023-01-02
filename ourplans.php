@@ -532,14 +532,21 @@ if (mysqli_num_rows($sql) > 0) {
                         <div class="card-inner-group">
                           <div class="card-inner">
                             <div class="nk-ivp-title card-title">
-                              <h4 class="title">Mercury</h4>
+                            <?php
+        $sql = mysqli_query($conn, "SELECT * FROM ourplans  WHERE plan_name = 'Mercury'");
+        if (mysqli_num_rows($sql) > 0) {
+          ($row = mysqli_fetch_assoc($sql));
+
+
+        ?>
+                              <h4 class="title"><?php echo $row['plan_name']?></h4>
                             </div>
                             <div class="nk-ivp-summary card-text">
                               <div class="row">
                                 <div class="col-6">
                                   <span class="lead-text"
                                     ><span class="small text-dark"
-                                      >0.45%</span
+                                      ><?php echo $row['plan_rate']?></span
                                     ></span
                                   >
                                   <span class="sub-text">Hourly Interest</span>
@@ -547,7 +554,7 @@ if (mysqli_num_rows($sql) > 0) {
                                 <div class="col-6">
                                   <span class="lead-text"
                                     ><span class="small text-dark"
-                                      >1</span
+                                      ><?php echo $row['plan_days']?></span
                                     ></span
                                   >
                                   <span class="sub-text">Term Days</span>
@@ -561,7 +568,7 @@ if (mysqli_num_rows($sql) > 0) {
                                 <li>
                                   <span class="label">Deposit Amount</span> -
                                   <span class="data fw-medium text-dark"
-                                    >100.00 USD</span
+                                    ><?php echo $row['plan_price']?> USD</span
                                   >
                                 </li>
                                 <li>
@@ -580,30 +587,46 @@ if (mysqli_num_rows($sql) > 0) {
                                 </li>
                               </ul>
                               <div class="nk-ivp-action">
-                                <a
-                                  class="btn btn-primary"
-                                  href="in"
-                                  ><span>Invest Now</span></a
-                                >
+                              <form action="confirm_investplans.php?ref=<?php echo $ref;?>" method="post">
+       
+       <input type="text" name="plan_name" value="<?php echo $row['plan_name'] ?>" hidden>
+       <input type="text"  name="plan_rate" value="<?php echo $row['plan_rate'] ?>" hidden>
+       <input type="text"  name="plan_days" value="<?php echo $row['plan_days'] ?>" hidden>
+       <input type="text"  name="plan_price" value="<?php echo $row['plan_price'] ?>" hidden>
+       <input type="text"  name="plan_profit" value="<?php echo $row['plan_profit'] ?>" hidden>
+                                <button  class="btn btn-primary">Invest Now</button>
+                              
                               </div>
                             </div>
+        </form>
                           </div>
                         </div>
                       </div>
                     </div>
+                    <?php } ?>
+                    <!-- Second  -->
                     <div class="col-md-6 col-lg-4">
                       <div class="nk-ivp-card card card-bordered card-full">
                         <div class="card-inner-group">
                           <div class="card-inner">
+
+                          <?php
+        $sql = mysqli_query($conn, "SELECT * FROM ourplans  WHERE plan_name = 'Venus'");
+        if (mysqli_num_rows($sql) > 0) {
+          ($row = mysqli_fetch_assoc($sql));
+
+
+        ?>
+                          
                             <div class="nk-ivp-title card-title">
-                              <h4 class="title">Venus</h4>
+                              <h4 class="title"><?php echo $row['plan_name']?></h4>
                             </div>
                             <div class="nk-ivp-summary card-text">
                               <div class="row">
                                 <div class="col-6">
                                   <span class="lead-text"
                                     ><span class="small text-dark"
-                                      >5.75%</span
+                                      ><?php echo $row['plan_rate']?></span
                                     ></span
                                   >
                                   <span class="sub-text">Weekly Interest</span>
@@ -611,7 +634,7 @@ if (mysqli_num_rows($sql) > 0) {
                                 <div class="col-6">
                                   <span class="lead-text"
                                     ><span class="small text-dark"
-                                      >3</span
+                                      ><?php echo $row['plan_days']?></span
                                     ></span
                                   >
                                   <span class="sub-text">Term Months</span>
@@ -625,7 +648,7 @@ if (mysqli_num_rows($sql) > 0) {
                                 <li>
                                   <span class="label">Deposit Amount</span> -
                                   <span class="data fw-medium text-dark"
-                                    >250.00 USD</span
+                                    ><?php echo $row['plan_price']?> USD</span
                                   >
                                 </li>
                                 <li>
@@ -644,30 +667,43 @@ if (mysqli_num_rows($sql) > 0) {
                                 </li>
                               </ul>
                               <div class="nk-ivp-action">
-                                <a
-                                  class="btn btn-primary"
-                                  href="invest.html"
-                                  ><span>Invest Now</span></a
-                                >
+                              <form action="confirm_investplans.php?ref=<?php echo $ref;?>" method="post">
+       
+       <input type="text" name="plan_name" value="<?php echo $row['plan_name'] ?>" hidden>
+       <input type="text"  name="plan_rate" value="<?php echo $row['plan_rate'] ?>" hidden>
+       <input type="text"  name="plan_days" value="<?php echo $row['plan_days'] ?>" hidden>
+       <input type="text"  name="plan_price" value="<?php echo $row['plan_price'] ?>" hidden>
+       <input type="text"  name="plan_profit" value="<?php echo $row['plan_profit'] ?>" hidden>
+                                <button  class="btn btn-primary">Invest Now</button>
+                              
                               </div>
                             </div>
+        </form>
                           </div>
                         </div>
                       </div>
                     </div>
+                    <?php } ?>
                     <div class="col-md-6 col-lg-4">
                       <div class="nk-ivp-card card card-bordered card-full">
                         <div class="card-inner-group">
                           <div class="card-inner">
                             <div class="nk-ivp-title card-title">
-                              <h4 class="title">Jupiter</h4>
+                            <?php
+        $sql = mysqli_query($conn, "SELECT * FROM ourplans  WHERE plan_name = 'Jupiter'");
+        if (mysqli_num_rows($sql) > 0) {
+          ($row = mysqli_fetch_assoc($sql));
+
+
+        ?>
+                              <h4 class="title"><?php echo $row['plan_name']?></h4>
                             </div>
                             <div class="nk-ivp-summary card-text">
                               <div class="row">
                                 <div class="col-6">
                                   <span class="lead-text"
                                     ><span class="small text-dark"
-                                      >9.5%</span
+                                      ><?php echo $row['plan_rate']?></span
                                     ></span
                                   >
                                   <span class="sub-text">Monthly Interest</span>
@@ -675,7 +711,7 @@ if (mysqli_num_rows($sql) > 0) {
                                 <div class="col-6">
                                   <span class="lead-text"
                                     ><span class="small text-dark"
-                                      >1</span
+                                      ><?php echo $row['plan_days']?></span
                                     ></span
                                   >
                                   <span class="sub-text">Term Years</span>
@@ -689,7 +725,7 @@ if (mysqli_num_rows($sql) > 0) {
                                 <li>
                                   <span class="label">Deposit Amount</span> -
                                   <span class="data fw-medium text-dark"
-                                    >500.00 USD</span
+                                    ><?php echo $row['plan_price']?> USD</span
                                   >
                                 </li>
                                 <li>
@@ -708,17 +744,24 @@ if (mysqli_num_rows($sql) > 0) {
                                 </li>
                               </ul>
                               <div class="nk-ivp-action">
-                                <a
-                                  class="btn btn-primary"
-                                  href="invest.html"
-                                  ><span>Invest Now</span></a
-                                >
+                              <form action="confirm_investplans.php?ref=<?php echo $ref;?>" method="post">
+       
+       <input type="text" name="plan_name" value="<?php echo $row['plan_name'] ?>" hidden>
+       <input type="text"  name="plan_rate" value="<?php echo $row['plan_rate'] ?>" hidden>
+       <input type="text"  name="plan_days" value="<?php echo $row['plan_days'] ?>" hidden>
+       <input type="text"  name="plan_price" value="<?php echo $row['plan_price'] ?>" hidden>
+       <input type="text"  name="plan_profit" value="<?php echo $row['plan_profit'] ?>" hidden>
+                                <button name="submit"  class="btn btn-primary">Invest Now</button>
+                              
                               </div>
                             </div>
+        </form>
                           </div>
                         </div>
                       </div>
                     </div>
+                    <?php } ?>
+
                     <div class="col-md-6 col-lg-4">
                       <div class="nk-ivp-card card card-bordered card-full">
                         <div class="card-inner-group">
@@ -772,17 +815,23 @@ if (mysqli_num_rows($sql) > 0) {
                                 </li>
                               </ul>
                               <div class="nk-ivp-action">
-                                <a
-                                  class="btn btn-primary"
-                                  href="invest.html"
-                                  ><span>Invest Now</span></a
-                                >
+                              <form action="confirm_investplans.php?ref=<?php echo $ref;?>" method="post">
+       
+       <input type="text" name="plan_name" value="<?php echo $row['plan_name'] ?>" hidden>
+       <input type="text"  name="plan_rate" value="<?php echo $row['plan_rate'] ?>" hidden>
+       <input type="text"  name="plan_days" value="<?php echo $row['plan_days'] ?>" hidden>
+       <input type="text"  name="plan_price" value="<?php echo $row['plan_price'] ?>" hidden>
+       <input type="text"  name="plan_profit" value="<?php echo $row['plan_profit'] ?>" hidden>
+                                <button name="submit"  class="btn btn-primary">Invest Now</button>
+                              
                               </div>
                             </div>
+        </form>
                           </div>
                         </div>
                       </div>
                     </div>
+                    <?php } ?>
                     <div class="col-md-6 col-lg-4">
                       <div class="nk-ivp-card card card-bordered card-full">
                         <div class="card-inner-group">

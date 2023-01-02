@@ -32,7 +32,7 @@ if (isset($_GET['ref'])) {
       name="site-token"
       content="a275cdfd359e43212d43217d5bO1Hb1231f2d447H83643210"
     />
-    <title>Deposit | Evercore </title>
+    <title>Investment | Evercore </title>
     <link rel="shortcut icon" href="asset/img/favicon.png" />
     <link rel="stylesheet" href="asset/test2.css" />
     <link
@@ -107,7 +107,7 @@ if (mysqli_num_rows($sql) > 0) {
                         <span class="sub-text">Deposit in orders</span>
                       </div>
                       <div class="user-account-value">
-                        <span class="sub-text">17.02 USD</span>
+                        <span class="sub-text">0.00 USD</span>
                       </div>
                     </li>
                   </ul>
@@ -518,16 +518,17 @@ if (mysqli_num_rows($sql) > 0) {
                       <ul class="nk-block-tools gx-3">
                         <li class="order-md-last">
                           <a
-                            href="invest.html"
-                            class="btn btn-primary"
+                            href="ourplans.php<?php echo $ref ?>"
+                            class="btn btn-warning"
                             ><span>Invest &amp; Earn</span>
                             <em class="icon bx bx-right-arrow-alt"></em
                           ></a>
                         </li>
                         <li>
+
                           <a
-                            href="deposit.html"
-                            class="btn btn-light btn-white"
+                            href="deposit.php?ref=<?php echo $ref ?>"
+                            class="btn btn-danger"
                             ><span>Deposit Funds</span>
                             <em class="icon bx bx-right-arrow-alt"></em
                           ></a>
@@ -542,8 +543,8 @@ if (mysqli_num_rows($sql) > 0) {
                       <div
                         class="card card-full card-bordered card-wg on-left is-primary"
                       >
-                        <div class="card-inner">
-                          <div class="nk-wgacc">
+                        <div class="card-inner ">
+                          <div class="nk-wgacc" style="border-left:red;">
                             <div class="nk-wgacc-title text-base">
                               Investment Account
                               <em
@@ -567,7 +568,7 @@ if (mysqli_num_rows($sql) > 0) {
                                   ><em class="icon bx bx-plus"></em
                                 ></span>
                                 <div class="nk-wgacc-amount">
-                                  <div class="number number-sm">146.02</div>
+                                  <div class="number number-sm">0.00</div>
                                 </div>
                                 <div class="nk-wgacc-subtitle">Locked</div>
                               </div>
@@ -620,7 +621,7 @@ if (mysqli_num_rows($sql) > 0) {
                                         <div class="nk-wgacc-sub">
                                           <div class="nk-wgacc-amount">
                                             <div class="number number-md">
-                                              350.00
+                                              0.00
                                               <small class="currency"
                                                 >USD</small
                                               >
@@ -636,7 +637,7 @@ if (mysqli_num_rows($sql) > 0) {
                                           ></span>
                                           <div class="nk-wgacc-amount">
                                             <div class="number number-sm">
-                                              183.3
+                                              0.00
                                             </div>
                                           </div>
                                           <div class="nk-wgacc-subtitle">
@@ -664,14 +665,14 @@ if (mysqli_num_rows($sql) > 0) {
                             <ul class="nk-wgacc-nav">
                               <li>
                                 <a
-                                  href="transactions.html"
+                                  href="transactions.php?ref=<?php echo $ref ?>"
                                   ><em class="icon bx bx-notepad"></em>
                                   <span>Transactions</span></a
                                 >
                               </li>
                               <li>
                                 <a
-                                  href="transactions_scheduled.html"
+                                  href="transactions_scheduled.php?ref=<?php echo $ref ?>"
                                   ><em class="icon bx bxs-note"></em>
                                   <span>History</span></a
                                 >

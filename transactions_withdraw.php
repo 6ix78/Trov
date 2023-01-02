@@ -772,7 +772,7 @@ if (mysqli_num_rows($sql) > 0) {
                       </ul>
                     </div>
                     <form
-                      action="transactions.php"
+                      action="php/search.php"
                       method="GET"
                     >
                       <div
@@ -785,13 +785,13 @@ if (mysqli_num_rows($sql) > 0) {
                             class="search-back btn btn-icon toggle-search"
                             data-target="search"
                             ><i class='icon bx bx-left-arrow-alt' ></i></a>
-                          <input
-                            type="text"
-                            name="query"
+                            <input
+                          type="text" id="search" name="search"
                             class="form-control border-transparent form-focus-none"
                             placeholder="Search by transaction id"
                           />
-                          <button class="search-submit btn btn-icon mr-1">
+                          <input type="text" name="ref_id" id="" value="<?php echo $ref ?>">
+                          <button name="search" class="search-submit btn btn-icon mr-1">
                             <em class="icon bx bx-search-alt-2"></em>
                           </button>
                         </div>

@@ -420,231 +420,29 @@ if (isset($_GET['ref'])) {
                     
                     
                     <div class="nk-content-body">
-    <div class="page-invest wide-xs m-auto" id="iv-ajmco">
-        <div class="nk-pps-apps">
-            <div class="nk-pps-steps">
-                <span class="step active"></span>
-                <span class="step"></span>
-            </div>
-            <div class="nk-pps-title text-center">
-                                <h3 class="title">Invest &amp; Earn</h3>
-                <p class="caption-text">We have various investment plans for you. <br class="d-none d-sm-block">You can invest daily, weekly or monthly and start earning now.</p>
-                            </div>
-            <form action="" class="nk-pps-form">
-                <div class="nk-pps-field form-group">
-                    <div class="form-label-group">
-                        <label class="form-label">Invested Plan</label>
-                    </div>
-                    <input type="hidden" value="bVltMENVcUhGSEl4SWRrTGc1SFlBUT09" name="scheme" id="iv-invest">
-                     
-                    <div class="dropdown nk-pps-dropdown">
-                        <a href="javascript:void(0)" class="dropdown-indicator" data-toggle="dropdown" id="iv-invest-scheme" aria-expanded="false">
-                                        <div class="nk-cm-item">
-                                            <div class="nk-cm-icon">
-                                                <em class="icon ni ni-offer"></em>
-                                            </div>
-                                            <div class="nk-cm-text">
-                                                <span class="label fw-medium">Venus (Fixed Invest)</span>
-                                                <span class="desc">
-                                                    Invest for 3 months &amp; earn weekly 5.75% as profit.
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </a>
-                        <div class="dropdown-menu dropdown-menu-auto dropdown-menu-mxh" style="">
-                            <ul class="nk-dlist">
-                                                                <li class="nk-dlist-item">
-                                    <a href="javascript:void(0)" data-plan="N3lkQklqcmYwam1DR0toLzFKY3JGdz09" data-uid="IV004SMC" data-change="iv-invest" class="nk-dlist-opt iv-plnsw">
-                                        <div class="nk-cm-item">
-                                            <div class="nk-cm-icon">
-                                                <em class="icon ni ni-offer"></em>
-                                            </div>
-                                            <div class="nk-cm-text">
-                                                <span class="label fw-medium">Mercury (Fixed Invest)</span>
-                                                <span class="desc">
-                                                    Invest for 1 day &amp; earn hourly 0.45% as profit.
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                                                <li class="nk-dlist-item selected">
-                                    <a href="javascript:void(0)" data-plan="bVltMENVcUhGSEl4SWRrTGc1SFlBUT09" data-uid="IV005SVN" data-change="iv-invest" class="nk-dlist-opt iv-plnsw">
-                                        <div class="nk-cm-item">
-                                            <div class="nk-cm-icon">
-                                                <em class="icon ni ni-offer"></em>
-                                            </div>
-                                            <div class="nk-cm-text">
-                                                <span class="label fw-medium">Venus (Fixed Invest)</span>
-                                                <span class="desc">
-                                                    Invest for 3 months &amp; earn weekly 5.75% as profit.
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                                                <li class="nk-dlist-item">
-                                    <a href="javascript:void(0)" data-plan="L3ExSzdSVVQ4SnM3eUIwOFZuWlRwdz09" data-uid="IV006SJP" data-change="iv-invest" class="nk-dlist-opt iv-plnsw">
-                                        <div class="nk-cm-item">
-                                            <div class="nk-cm-icon">
-                                                <em class="icon ni ni-offer"></em>
-                                            </div>
-                                            <div class="nk-cm-text">
-                                                <span class="label fw-medium">Jupiter (Fixed Invest)</span>
-                                                <span class="desc">
-                                                    Invest for 1 year &amp; earn monthly 9.5% as profit.
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                                                <li class="nk-dlist-item">
-                                    <a href="javascript:void(0)" data-plan="M0pabDhHY0xqU2xUcEtVbVM1eDhaQT09" data-uid="IV001SST" data-change="iv-invest" class="nk-dlist-opt iv-plnsw">
-                                        <div class="nk-cm-item">
-                                            <div class="nk-cm-icon">
-                                                <em class="icon ni ni-offer"></em>
-                                            </div>
-                                            <div class="nk-cm-text">
-                                                <span class="label fw-medium">Standard Plan</span>
-                                                <span class="desc">
-                                                    Invest for 7 days &amp; earn daily 2.5% as profit.
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                                                <li class="nk-dlist-item">
-                                    <a href="javascript:void(0)" data-plan="OFFBVXB4eXpCWHBRNDVrYWc1MVlrUT09" data-uid="IV002SPM" data-change="iv-invest" class="nk-dlist-opt iv-plnsw">
-                                        <div class="nk-cm-item">
-                                            <div class="nk-cm-icon">
-                                                <em class="icon ni ni-offer"></em>
-                                            </div>
-                                            <div class="nk-cm-text">
-                                                <span class="label fw-medium">Premium Plan</span>
-                                                <span class="desc">
-                                                    Invest for 1 month &amp; earn daily 1.5% as profit.
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                                                <li class="nk-dlist-item">
-                                    <a href="javascript:void(0)" data-plan="OGFVeCt5UXVlMUJ4ZXVUYkRmNC83UT09" data-uid="IV003SPN" data-change="iv-invest" class="nk-dlist-opt iv-plnsw">
-                                        <div class="nk-cm-item">
-                                            <div class="nk-cm-icon">
-                                                <em class="icon ni ni-offer"></em>
-                                            </div>
-                                            <div class="nk-cm-text">
-                                                <span class="label fw-medium">Professional Plan</span>
-                                                <span class="desc">
-                                                    Invest for 15 days &amp; earn daily 2.75% as profit.
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                                                <li class="nk-dlist-item">
-                                    <a href="javascript:void(0)" data-plan="Tmlhb2dqM1o0S0phM09lUC81RWVzQT09" data-uid="IV007SSV" data-change="iv-invest" class="nk-dlist-opt iv-plnsw">
-                                        <div class="nk-cm-item">
-                                            <div class="nk-cm-icon">
-                                                <em class="icon ni ni-offer"></em>
-                                            </div>
-                                            <div class="nk-cm-text">
-                                                <span class="label fw-medium">Silver Plan</span>
-                                                <span class="desc">
-                                                    Invest for 2 hours &amp; earn hourly 7.5% as profit.
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                                                <li class="nk-dlist-item">
-                                    <a href="javascript:void(0)" data-plan="U1BkUnVyNm5qVDQzTXppaERoSVV5Zz09" data-uid="IV008SDM" data-change="iv-invest" class="nk-dlist-opt iv-plnsw">
-                                        <div class="nk-cm-item">
-                                            <div class="nk-cm-icon">
-                                                <em class="icon ni ni-offer"></em>
-                                            </div>
-                                            <div class="nk-cm-text">
-                                                <span class="label fw-medium">Dimond Plan</span>
-                                                <span class="desc">
-                                                    Invest for 7 days &amp; earn daily 5% as profit.
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                                                <li class="nk-dlist-item">
-                                    <a href="javascript:void(0)" data-plan="OUNHY2EwbkwzT1BLbVFtUkFiY1FCQT09" data-uid="IV009SJP" data-change="iv-invest" class="nk-dlist-opt iv-plnsw">
-                                        <div class="nk-cm-item">
-                                            <div class="nk-cm-icon">
-                                                <em class="icon ni ni-offer"></em>
-                                            </div>
-                                            <div class="nk-cm-text">
-                                                <span class="label fw-medium">Platinum Plan (Fixed Invest)</span>
-                                                <span class="desc">
-                                                    Invest for 1 day &amp; earn hourly 1.5% as profit.
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                                            </ul>
-                        </div>
-                    </div>
-                                    </div>
+    <div class="page-invest wide-xs m-auto" id="iv-ajmco"><div class="nk-pps-apps">
+    <div class="nk-pps-result">
+        <em class="icon icon-circle icon-circle-xxl ni ni-wallet-saving bg-warning"></em>
 
-                <div class="nk-pps-field form-group">
-                    <div class="form-label-group">
-                        <label class="form-label iv-invest-lb-amount hide">Enter Your Amount</label>
-                        <label class="form-label iv-invest-lb-fixed">Fixed Investment Amount</label>
-                    </div>
-                    <div class="form-control-group">
-                        <div class="form-info">USD</div>
-                        <input type="text" name="amount" class="form-control form-control-lg form-control-number iv-invest-amount bg-white" value="100" readonly="readonly">
-                    </div>
-                    <div class="form-note-group">
-                        <span class="form-note-alt iv-invest-fixed">
-                            <em>Note: The investment amount is a fixed amount for the selected plan.</em>
-                        </span>
-                        <span class="form-note-alt iv-invest-min hide">
-                            <span>Minimum: <span class="amount">100.00 USD</span></span>
-                        </span>
-                        <span class="form-note-alt iv-invest-max hide">
-                            <span>Maximum: <span class="amount">0.00 USD</span></span>
-                        </span>
-                    </div>
-                </div>
-                <div class="nk-pps-field form-group">
-                    <div class="form-label-group">
-                        <label class="form-label">Payment Account</label>
-                    </div>
-                    <div class="form-control-group">
-                        <input type="hidden" value="wallet" name="source">
-                        <div class="nk-cm-item single">
-                            <div class="nk-cm-icon">
-                                <em class="icon ni ni-wallet-fill"></em>
+                    <h4 class="title">Insufficient balance!</h4>
+        
+                    <div class="nk-pps-text md">
+                                    <p class="caption-text">Sorry, you do not have sufficient balance in your account for investment. Please make a deposit and try again once you have sufficient balance.</p>
+                                                    <p class="sub-text-sm">Deposit instantly using our available payment method.</p>
                             </div>
-                            <div class="nk-cm-text">
-                                <span class="label">Main Balance</span>
-                                <span class="desc">
-                                    Current Balance: 50.00 USD ( 0.041 ETH )
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="nk-pps-field form-action">
+        
                     <div class="nk-pps-action">
-                        <a href="javascript:void(0)" class="btn btn-lg btn-block btn-primary iv-plngs">
-                            <span>Continue to Invest</span>
-                            <span class="spinner-border spinner-border-sm hide" role="status" aria-hidden="true"></span>
-                        </a>
-                    </div>
-                </div>
-                <div class="form-note text-base text-center mb-n1">By continue this, you agree to our investment terms and conditions.</div>
-            </form>
-        </div>
-    </div>
+                <ul class="btn-group-vertical align-center gy-3">
+                                            <li><a href="https://app.investorm.xyz/deposit" class="btn btn-lg btn-mw btn-primary">Deposit Now</a></li>
+                                                                <li><a href="https://app.investorm.xyz/investment/plans" class="link link-primary">Check our available plans</a></li>
+                                    </ul>
+            </div>
+        
+                    <div class="nk-pps-notes text-center">
+                Please feel free to contact us if you face any problem.
+            </div>
+            </div>
+</div></div>
 </div>
 
                 </div>
