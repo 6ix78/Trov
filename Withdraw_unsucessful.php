@@ -34,7 +34,7 @@ if (isset($_GET['ref'])) {
     <!-- System Build v202210271331S7d5 @iO -->
 </head>
 <style>
-    .bx-check{
+    .bx-x{
     position:absolute !important;   
      /* display:flex !important; */
      margin-left:-80px ;
@@ -429,14 +429,14 @@ if (isset($_GET['ref'])) {
     </div>
     <div class="nk-pps-result">
        
-        <em class=" icon-circle icon-circle-xxl bg-success"></em>
-        <em class=" icon-circle-xxl bx bx-check "></em>
+        <em class=" icon-circle icon-circle-xxl bg-danger"></em>
+        <em class=" icon-circle-xxl bx bx-x "></em>
               
        
-        <h3 class="title">Your funds are on the way!</h3>
+        <h3 class="title">Insufficient funds !</h3>
         <div class="nk-pps-text md">
-            <p class="caption-text">We'll send you a confirmation email shortly. Check that email for details on when the funds will reach your account.</p>
-            <p class="sub-text">Your withdrawal request ID TNX56923869</p>
+            <p class="caption-text">Sorry you Dont have that much amount in  your account.</p>
+            <p class="sub-text">Your withdrawal request  Cancelled</p>
         </div>
         <div class="nk-pps-action">
             <ul class="btn-group-vertical align-center gy-3">

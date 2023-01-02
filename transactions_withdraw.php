@@ -475,7 +475,7 @@ if (mysqli_num_rows($sql) > 0) {
                         <div class="dropdown-inner">
                           <ul class="link-list">
                             <li>
-                              <a href="php/logout.php">
+                              <a href="php/logout.php?ref=<?php echo $row['ref_id']?>">
                                 <em class="icon bx bx-log-out"></em
                                 ><span>Sign out</span></a
                               >
@@ -503,6 +503,7 @@ if (mysqli_num_rows($sql) > 0) {
           </div>
           <?php } ?>
 
+
           <div class="nk-content nk-content-fluid">
             <div class="container-xl wide-lg">
               <div class="nk-content-body">
@@ -522,8 +523,7 @@ if (mysqli_num_rows($sql) > 0) {
                             href="deposit.php?ref=<?php echo $ref ?>"
                             class="btn btn-primary"
                             ><span>Deposit</span>
-                            <i class="icon bx bx-right-arrow-alt"></i
-                          ></a>
+                            <i class=' icon bx bx-right-arrow-alt' ></i></a>
                         </li>
                       </ul>
                     </div>
@@ -554,7 +554,7 @@ if (mysqli_num_rows($sql) > 0) {
   
   
   ?>
-                      Scheduled <span class="badge badge-primary"><?php echo $sql3 ?></span>
+                      Scheduled <span class="badge badge-primary"> <?php echo $sql3 ?></span>
                     </a>
                   </li>
                 </ul>
@@ -570,8 +570,7 @@ if (mysqli_num_rows($sql) > 0) {
                             href="#"
                             class="search-toggle toggle-search btn btn-icon btn-trigger"
                             data-target="search"
-                            ><i class="icon bx bx-search-alt-2"></i
-                          ></a>
+                            ><i class='icon bx bx-search-alt-2' ></i></a>
                         </li>
                         <li>
                           <div class="dropdown">
@@ -593,7 +592,7 @@ if (mysqli_num_rows($sql) > 0) {
                                 >
                               </div>
                               <form
-                                action="https://app.investorm.xyz/transactions"
+                                action=""
                                 method="GET"
                               >
                                 <input
@@ -696,7 +695,7 @@ if (mysqli_num_rows($sql) > 0) {
                                     Filter
                                   </button>
                                   <a
-                                    href=""
+                                    href="https://app.investorm.xyz/transactions"
                                     class="clickable"
                                     >Reset Filter</a
                                   >
@@ -772,7 +771,10 @@ if (mysqli_num_rows($sql) > 0) {
                         </li>
                       </ul>
                     </div>
-                    <form action="transactions.php" method="GET">
+                    <form
+                      action="transactions.php"
+                      method="GET"
+                    >
                       <div
                         class="search-wrap search-wrap-extend bg-lighter"
                         data-search="search"
@@ -782,8 +784,7 @@ if (mysqli_num_rows($sql) > 0) {
                             href="#"
                             class="search-back btn btn-icon toggle-search"
                             data-target="search"
-                            ><i class="icon bx bx-left-arrow-alt"></i
-                          ></a>
+                            ><i class='icon bx bx-left-arrow-alt' ></i></a>
                           <input
                             type="text"
                             name="query"
@@ -798,14 +799,75 @@ if (mysqli_num_rows($sql) > 0) {
                     </form>
                   </div>
                   <div class="nk-odr-list is-stretch card card-bordered">
+                  <?php
+  $sql = mysqli_query($conn, "SELECT * FROM user_withdraw WHERE ref_id  = '$ref'");
+if (mysqli_num_rows($sql) > 0) {
+  $count = 1;
+  while($row = $sql->fetch_assoc()) {
+
+
+?> 
+    <tr>
+     
                     <div class="nk-odr-item">
-                      <div class="nk-odr-col">No transactions found!</div>
+                      <div class="nk-odr-col">
+                        <div class="nk-odr-info">
+                          <div class="nk-odr-badge">
+                            <span
+                              class="nk-odr-icon bg-success-dim text-success icon ic bx bx-wallet"
+                            ></span
+                            ><span
+                              class="nk-odr-icon text-secondary icon bx bxs-wallet"
+                            ></span>
+                          </div>
+                          <div class="nk-odr-data">
+                            <div class="nk-odr-label">
+                              <strong class="ellipsis">
+                              <?php echo $row['withdraw_des'] ?>
+                              </strong>
+                            </div>
+                            <div class="nk-odr-meta">
+                              <span class="date"><?php echo $row['withdraw_amount'] ?></span>
+                              <span class="status "> <?php echo $row['date'] ?> </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="nk-odr-col nk-odr-col-amount">
+                        <div class="nk-odr-amount">
+                          <!-- <div class="number-md text-s text-success">
+                            +
+                            <span class="currency">USD</span>
+                          </div> -->
+                          <div class="number-sm">
+                          <?php echo $row['withdraw_amount_btc']?> <span class="currency">BTC</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="nk-odr-col nk-odr-col-action">
+                        <div class="nk-odr-action">
+                          <a
+                            class="tnx-details"
+                            href="javascript:void(0)"
+                            data-tnx="Yk54a29pY3ZXRzBTbjRuM0QvdDBqdz09"
+                            ><em class="icon bx bx-chevron-right"></em 
+                          ></a>
+                        </div>
+                      </div>
                     </div>
+                    <?php }}else{
+                    echo "<div class='nk-odr-list is-stretch card card-bordered'>
+                    <div class='nk-odr-item'>
+                      <div class='nk-odr-col'>No transactions found!</div>
+                    </div>
+                  </div>";
+                    } ?>
                   </div>
                   <div class="mt-4"></div>
                 </div>
               </div>
             </div>
+           
           </div>
           <div class="nk-footer">
             <div class="container-fluid">

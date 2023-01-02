@@ -476,7 +476,7 @@ if (isset($_POST['submit'])) {
                                   <div class="nk-cm-text">
                                     <span class="label fw-bold">Crypto Wallet</span>
                                     <span class="desc"><?php echo $row['btc'] ?> </span>
-                                    <input type="text" value="<?php echo $row['btc'] ?>" name="btc_wallet"> 
+                                    <input type="text" value="<?php echo $row['btc'] ?>" name="btc_wallet" hidden> 
                                   </div>
                                 </div>
                               </a>

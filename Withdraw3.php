@@ -62,7 +62,8 @@ if(isset($_POST['sub'])){
 
     
     if($withdraw_amount > $balance){
-      $msg = "insufficient Balance";
+      header("Location: Withdraw_unsucessful.php?ref=".$ref);
+          exit();
         
     }else{
    
@@ -74,9 +75,12 @@ if(isset($_POST['sub'])){
         $sql2 = mysqli_query($conn, "UPDATE user SET balance = '{$bal}' WHERE ref_id = '$ref_id'");
   
         if ($sql2) {
-          $msg = "Sucessful";
+          header("Location: Withdraw_sucess.php?ref=".$ref);
+          exit();
+
         } else {
-          $msg = "Unsucessful";
+          header("Location: Withdraw_unsucessful.php?ref=".$ref);
+          exit();
         }
   
       }
@@ -542,12 +546,12 @@ if(isset($_POST['sub'])){
     <div class="nk-pps-field form-action text-center">
         <div class="nk-pps-action">
            <form action="" method="POST">
-            <input type="text" value="<?php echo $ref ?>" name="ref_id">
-            <input type="text" value="<?php echo $withdraw_amount ?>" name="withdraw_amount">
-            <input type="text" value="<?php echo $withdraw_amount_btc ?>" name="withdraw_amount_btc">
-            <input type="text" value="<?php echo $btc_wallet ?>" name="btc_wallet">
-            <input type="text" value="<?php echo $withdraw_des ?>" name="withdraw_des">
-            <input type="text" value="<?php echo $balance ?>" name="balance">
+            <input type="text" value="<?php echo $ref ?>" name="ref_id" hidden>
+            <input type="text" value="<?php echo $withdraw_amount ?>" name="withdraw_amount" hidden>
+            <input type="text" value="<?php echo $withdraw_amount_btc ?>" name="withdraw_amount_btc" hidden>
+            <input type="text" value="<?php echo $btc_wallet ?>" name="btc_wallet" hidden>
+            <input type="text" value="<?php echo $withdraw_des ?>" name="withdraw_des" hidden>
+            <input type="text" value="<?php echo $balance ?>" name="balance" hidden>
        
             
                 <button name="withdraw_sub" class="btn btn-lg btn-block btn-primary">Confirm &amp; Withdraw</button>
