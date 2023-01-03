@@ -34,7 +34,7 @@ if (isset($_GET['ref'])) {
     <!-- System Build v202210271331S7d5 @iO -->
 </head>
 <style>
-    .bx-check {
+    .bx-wallet {
         position: absolute !important;
         /* display:flex !important; */
         margin-left: -80px;
@@ -424,7 +424,10 @@ if (isset($_GET['ref'])) {
                         <div class="page-invest wide-xs m-auto" id="iv-ajmco">
                             <div class="nk-pps-apps">
                                 <div class="nk-pps-result">
-                                    <em class="icon icon-circle icon-circle-xxl bx bx-wallet bg-warning"></em>
+                                <em class=" icon-circle icon-circle-xxl bg-warning"></em>
+                                 <em class=" icon-circle-xxl bx bx-wallet "></em>
+<!--               
+                                    <em class="icon icon-circle icon-circle-xxl  "></em> -->
 
                                     <h4 class="title">Insufficient balance!</h4>
 
@@ -435,8 +438,8 @@ if (isset($_GET['ref'])) {
 
                                     <div class="nk-pps-action">
                                         <ul class="btn-group-vertical align-center gy-3">
-                                            <li><a href="https://app.investorm.xyz/deposit" class="btn btn-lg btn-mw btn-primary">Deposit Now</a></li>
-                                            <li><a href="https://app.investorm.xyz/investment/plans" class="link link-primary">Check our available plans</a></li>
+                                            <li><a href="deposit.php?ref=<?php echo $ref ?>" class="btn btn-lg btn-mw btn-primary">Deposit Now</a></li>
+                                            <li><a href="investment.php?ref=<?php echo $ref ?>" class="link link-primary">Check our available plans</a></li>
                                         </ul>
                                     </div>
 

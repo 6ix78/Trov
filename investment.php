@@ -518,7 +518,7 @@ if (mysqli_num_rows($sql) > 0) {
                       <ul class="nk-block-tools gx-3">
                         <li class="order-md-last">
                           <a
-                            href="ourplans.php<?php echo $ref ?>"
+                            href="ourplans.php?ref=<?php echo $ref ?>"
                             class="btn btn-warning"
                             ><span>Invest &amp; Earn</span>
                             <em class="icon bx bx-right-arrow-alt"></em
