@@ -34,15 +34,16 @@ if (isset($_GET['ref'])) {
     <!-- System Build v202210271331S7d5 @iO -->
 </head>
 <style>
-    .bx-check{
-    position:absolute !important;   
-     /* display:flex !important; */
-     margin-left:-80px ;
-     color:white;
-     margin-top:15px;
-     font-size: 50px;
-}
+    .bx-check {
+        position: absolute !important;
+        /* display:flex !important; */
+        margin-left: -80px;
+        color: white;
+        margin-top: 15px;
+        font-size: 50px;
+    }
 </style>
+
 <body class="nk-body npc-cryptlite has-sidebar has-sidebar-fat" data-theme="">
     <div class="nk-app-root">
         <div class="nk-main">
@@ -417,33 +418,35 @@ if (isset($_GET['ref'])) {
 
             <div class="nk-content nk-content-fluid">
                 <div class="container-xl wide-lg">
-                    
-                    
-                    <div class="nk-content-body">
-    <div class="page-invest wide-xs m-auto" id="iv-ajmco"><div class="nk-pps-apps">
-    <div class="nk-pps-result">
-        <em class="icon icon-circle icon-circle-xxl ni ni-wallet-saving bg-warning"></em>
 
-                    <h4 class="title">Insufficient balance!</h4>
-        
-                    <div class="nk-pps-text md">
-                                    <p class="caption-text">Sorry, you do not have sufficient balance in your account for investment. Please make a deposit and try again once you have sufficient balance.</p>
-                                                    <p class="sub-text-sm">Deposit instantly using our available payment method.</p>
-                            </div>
-        
-                    <div class="nk-pps-action">
-                <ul class="btn-group-vertical align-center gy-3">
+
+                    <div class="nk-content-body">
+                        <div class="page-invest wide-xs m-auto" id="iv-ajmco">
+                            <div class="nk-pps-apps">
+                                <div class="nk-pps-result">
+                                    <em class="icon icon-circle icon-circle-xxl bx bx-wallet bg-warning"></em>
+
+                                    <h4 class="title">Insufficient balance!</h4>
+
+                                    <div class="nk-pps-text md">
+                                        <p class="caption-text">Sorry, you do not have sufficient balance in your account for investment. Please make a deposit and try again once you have sufficient balance.</p>
+                                        <p class="sub-text-sm">Deposit instantly using our available payment method.</p>
+                                    </div>
+
+                                    <div class="nk-pps-action">
+                                        <ul class="btn-group-vertical align-center gy-3">
                                             <li><a href="https://app.investorm.xyz/deposit" class="btn btn-lg btn-mw btn-primary">Deposit Now</a></li>
-                                                                <li><a href="https://app.investorm.xyz/investment/plans" class="link link-primary">Check our available plans</a></li>
-                                    </ul>
-            </div>
-        
-                    <div class="nk-pps-notes text-center">
-                Please feel free to contact us if you face any problem.
-            </div>
-            </div>
-</div></div>
-</div>
+                                            <li><a href="https://app.investorm.xyz/investment/plans" class="link link-primary">Check our available plans</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="nk-pps-notes text-center">
+                                        Please feel free to contact us if you face any problem.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>

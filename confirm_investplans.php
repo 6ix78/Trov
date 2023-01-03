@@ -14,17 +14,21 @@ if (isset($_GET['ref'])) {
   $ref = $_GET['ref'];
 }
 
-
+$msg = "";
 
 $plan_name = $_POST['plan_name'];
 $plan_rate = $_POST['plan_rate'];
 $plan_days = $_POST['plan_days'];
 $plan_price = $_POST['plan_price'];
 $plan_profit = $_POST['plan_profit'];
+$balance = $_POST['balance'];
+
+$total_return = 1.5;
+$total = $total_return + $plan_price;
 
 
 
-if(isset($_POST['sub2'])){
+if(isset($_POST['sub'])){
 
     $plan_name = $_POST['plan_name'];
     $plan_rate = $_POST['plan_rate'];
@@ -35,13 +39,26 @@ if(isset($_POST['sub2'])){
     $total = $_POST['total'];
     $stats = "Active";
 
-    $sql = mysqli_query($conn, "INSERT INTO investments (plan_name, plan_rate, plan_days,plan_price,plan_profit,ref_id,total,stats) VALUE ('$plan_name', '$plan_rate', '$plan_days', '$plan_price', '$plan_profit', '$ref_id','$total', '$stats')" );
+    if($plan_price > $balance){
 
-    if($sql){
-        header("Location: invest.php?ref=".$ref);
+      header("Location: insufficient.php?ref=".$ref);
         exit();
-        set_time_limit(5);
+    }else{
+
+      $sql = mysqli_query($conn, "INSERT INTO investments (plan_name, plan_rate, plan_days,plan_price,plan_profit,ref_id,total,stats) VALUE ('$plan_name', '$plan_rate', '$plan_days', '$plan_price', '$plan_profit', '$ref_id','$total', '$stats')" );
+
+      if($sql){
+          header("Location: invest.php?ref=".$ref);
+          exit();
+         
+      }else{
+  
+      }
+
     }
+
+
+   
 
 
 }
@@ -553,15 +570,15 @@ if (mysqli_num_rows($sql) > 0) {
         <ul class="nk-glist text-center">
             <li class="nk-glist-item">
                 <div class="sub-text">Plan Name</div>
-                <div class="lead-text fw-bold">Standard Plan</div>
+                <div class="lead-text fw-bold"><?php echo $plan_name ?></div>
             </li>
             <li class="nk-glist-item">
                 <div class="sub-text">Duration</div>
-                <div class="lead-text fw-bold">7 days</div>
+                <div class="lead-text fw-bold"><?php echo $plan_days ?></div>
             </li>
             <li class="nk-glist-item">
                 <div class="sub-text">Daily Profit</div>
-                <div class="lead-text fw-bold">2.5%</div>
+                <div class="lead-text fw-bold"><?php echo $plan_rate ?></div>
             </li>
         </ul>
     </div>
@@ -569,26 +586,26 @@ if (mysqli_num_rows($sql) > 0) {
         <ul class="nk-olist">
             <li class="nk-olist-item">
                 <div class="label lead-text">Payment Account</div>
-                <div class="data"><span class="method"><em class="icon ni ni-wallet-fill"></em> <span>Main Balance</span></span></div>
+                <div class="data"><span class="method"><em class="icon bx bx-wallet"></em> <span>Main Balance</span></span></div>
             </li>
             <li class="nk-olist-item is-grouped">
                 <div class="label lead-text">Amount to Invest</div>
-                <div class="data"><span class="amount">10.00 USD</span></div>
+                <div class="data"><span class="amount"><?php echo $plan_price ?> USD</span></div>
             </li>
             <li class="nk-olist-item">
                 <div class="label">Total Profit Earn</div>
-                <div class="data text-soft"><span class="amount">1.75 USD</span></div>
+                <div class="data text-soft"><span class="amount"><?php echo $total_return ?> USD</span></div>
             </li>
             <li class="nk-olist-item">
                 <div class="label lead-text">Total Return (inc. cap)</div>
-                <div class="data"><span class="amount">11.75 USD</span></div>
+                <div class="data"><span class="amount"><?php echo $total ?> USD</span></div>
             </li>
         </ul>
 
         <ul class="nk-olist">
             <li class="nk-olist-item nk-olist-item-final">
                 <div class="label lead-text">Amount to Debit</div>
-                <div class="data"><span class="amount">10.00 USD</span></div>
+                <div class="data"><span class="amount"><?php echo $plan_price ?> USD</span></div>
             </li>
         </ul>
         <div class="sub-text-sm">
@@ -607,7 +624,7 @@ if (mysqli_num_rows($sql) > 0) {
            <input type="text" name="total" value="<?php echo  $total_return?> " hidden> 
            <input type="text" name="ref_id" value="<?php echo $ref?>" hidden>
             
-                <button class="btn btn-lg btn-block btn-primary iv-plnin" >Confirm &amp; Procced</button>
+                <input type="submit" name="sub" class="btn btn-lg btn-block btn-primary iv-plnin" value="Confirm &amp; Procced">
                 <!-- <span class="spinner-border spinner-border-sm hide" role="status" aria-hidden="true"></span> -->
         </form>
         </div>
@@ -630,7 +647,7 @@ if (mysqli_num_rows($sql) > 0) {
         msgunp = "Unable to process your request.";
     </script>
     <script src="https://app.investorm.xyz/assets/js/bundle.js?ver=133"></script>
-    <script src="https://app.investorm.xyz/assets/js/app.js?ver=133"></script>
-    <script src="https://app.investorm.xyz/assets/js/charts.js?ver=133"></script>
+    <!-- <script src="https://app.investorm.xyz/assets/js/app.js?ver=133"></script>
+    <script src="https://app.investorm.xyz/assets/js/charts.js?ver=133"></script> -->
   </body>
 </html>

@@ -14,6 +14,17 @@ if (isset($_GET['ref'])) {
   $ref = $_GET['ref'];
 }
 
+
+
+
+$sql = mysqli_query($conn, "SELECT * FROM user WHERE ref_id = '$ref'");
+if (mysqli_num_rows($sql) > 0) {
+  ($row = mysqli_fetch_assoc($sql));
+
+
+  $balance = $row['balance'];
+
+}
 ?>
 <!DOCTYPE html>
 <html lang="en" class="js" id="fabb7b9b">
@@ -594,7 +605,8 @@ if (mysqli_num_rows($sql) > 0) {
        <input type="text"  name="plan_days" value="<?php echo $row['plan_days'] ?>" hidden>
        <input type="text"  name="plan_price" value="<?php echo $row['plan_price'] ?>" hidden>
        <input type="text"  name="plan_profit" value="<?php echo $row['plan_profit'] ?>" hidden>
-                                <button  class="btn btn-primary">Invest Now</button>
+       <input type="text"  name="balance" value="<?php echo $balance?>" hidden>
+                                <button name="submit"  class="btn btn-primary">Invest Now</button>
                               
                               </div>
                             </div>
@@ -674,7 +686,8 @@ if (mysqli_num_rows($sql) > 0) {
        <input type="text"  name="plan_days" value="<?php echo $row['plan_days'] ?>" hidden>
        <input type="text"  name="plan_price" value="<?php echo $row['plan_price'] ?>" hidden>
        <input type="text"  name="plan_profit" value="<?php echo $row['plan_profit'] ?>" hidden>
-                                <button  class="btn btn-primary">Invest Now</button>
+       <input type="text"  name="balance" value="<?php echo $balance?>" hidden>
+                                <button name="submit"  class="btn btn-primary">Invest Now</button>
                               
                               </div>
                             </div>
@@ -751,6 +764,7 @@ if (mysqli_num_rows($sql) > 0) {
        <input type="text"  name="plan_days" value="<?php echo $row['plan_days'] ?>" hidden>
        <input type="text"  name="plan_price" value="<?php echo $row['plan_price'] ?>" hidden>
        <input type="text"  name="plan_profit" value="<?php echo $row['plan_profit'] ?>" hidden>
+       <input type="text"  name="balance" value="<?php echo $balance?>" hidden>
                                 <button name="submit"  class="btn btn-primary">Invest Now</button>
                               
                               </div>
@@ -829,6 +843,7 @@ if (mysqli_num_rows($sql) > 0) {
        <input type="text"  name="plan_days" value="<?php echo $row['plan_days'] ?>" hidden>
        <input type="text"  name="plan_price" value="<?php echo $row['plan_price'] ?>" hidden>
        <input type="text"  name="plan_profit" value="<?php echo $row['plan_profit'] ?>" hidden>
+       <input type="text"  name="balance" value="<?php echo $balance?>" hidden>
                                 <button name="submit"  class="btn btn-primary">Invest Now</button>
                               
                               </div>
@@ -906,6 +921,7 @@ if (mysqli_num_rows($sql) > 0) {
        <input type="text"  name="plan_days" value="<?php echo $row['plan_days'] ?>" hidden>
        <input type="text"  name="plan_price" value="<?php echo $row['plan_price'] ?>" hidden>
        <input type="text"  name="plan_profit" value="<?php echo $row['plan_profit'] ?>" hidden>
+       <input type="text"  name="balance" value="<?php echo $balance?>" hidden>
                                 <button name="submit"  class="btn btn-primary">Invest Now</button>
                               
                               </div>
@@ -983,6 +999,7 @@ if (mysqli_num_rows($sql) > 0) {
        <input type="text"  name="plan_rate" value="<?php echo $row['plan_rate'] ?>" hidden>
        <input type="text"  name="plan_days" value="<?php echo $row['plan_days'] ?>" hidden>
        <input type="text"  name="plan_price" value="<?php echo $row['plan_price'] ?>" hidden>
+       <input type="text"  name="balance" value="<?php echo $balance?>" hidden>
        <input type="text"  name="plan_profit" value="<?php echo $row['plan_profit'] ?>" hidden>
                                 <button name="submit"  class="btn btn-primary">Invest Now</button>
                               
