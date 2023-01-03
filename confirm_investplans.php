@@ -45,17 +45,24 @@ if(isset($_POST['sub'])){
       header("Location: insufficient.php?ref=".$ref);
         exit();
     }else{
+      
 
       $sql = mysqli_query($conn, "INSERT INTO investments (plan_name, plan_rate, plan_days,plan_price,plan_profit,ref_id,total,stats) VALUE ('$plan_name', '$plan_rate', '$plan_days', '$plan_price', '$plan_profit', '$ref_id','$total', '$stats')" );
 
       if($sql){
-        
+         
+        $bal = $balance - $plan_price;
+        $sql2 = mysqli_query($conn, "UPDATE user SET balance = '{$bal}' WHERE ref_id = '$ref_id'");
+        if($sql2){
+
           header("Location: investment.php?ref=".$ref);
           exit();
          
       }else{
-  
+        $msg = "Unsucessful"; 
       }
+        }
+          
 
     }
 
