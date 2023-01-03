@@ -689,11 +689,26 @@ if (mysqli_num_rows($sql) > 0) {
                   <div class="nk-block-head-sm">
                     <div class="nk-block-head-content">
                       <h5 class="nk-block-title">
-                        Active Plan <span class="count text-base">(2)</span>
+                      <?php
+ $sql = mysqli_query($conn, "SELECT stats FROM investments WHERE ref_id = '$ref'");
+
+ $sql3 = mysqli_num_rows($sql);
+ 
+  
+  
+  ?>
+                        Active Plan <span class="count text-base">( <?php echo $sql3 ?> )</span>
                       </h5>
                     </div>
                   </div>
+                  <?php
+  $sql = mysqli_query($conn, "SELECT * FROM investments WHERE ref_id  = '$ref'");
+if (mysqli_num_rows($sql) > 0) {
+  $count = 1;
+  while($row = $sql->fetch_assoc()) {
 
+
+?> 
                   <div class="nk-plan-list">
                     <div class="nk-plan-item">
                       <div class="nk-plan-icon is-running">
@@ -701,10 +716,10 @@ if (mysqli_num_rows($sql) > 0) {
                       </div>
                       <div class="nk-plan-info w-max-275px">
                         <div class="nk-plan-name">
-                          Venus - Weekly 5.75% for 3 Months
+                          <?php echo $row['plan_name']?> -   <?php echo $row['plan_rate']?>for  <?php echo $row['plan_days']?>
                         </div>
                         <div class="nk-plan-desc">
-                          Invested: <span class="amount">250.00 USD</span>
+                          Invested: <span class="amount"> <?php echo $row['plan_price']?> USD</span>
                         </div>
                       </div>
                       <div class="nk-plan-term">
@@ -713,34 +728,34 @@ if (mysqli_num_rows($sql) > 0) {
                             >Start Date</span
                           >
                           <span class="nk-plan-value date"
-                            >Dec 13, 2022 05:35 PM</span
+                            > <?php echo $row['date']?></span
                           >
                         </div>
-                        <div class="nk-plan-end nk-plan-order">
+                        <!-- <div class="nk-plan-end nk-plan-order">
                           <span class="nk-plan-label text-soft">End Date</span>
                           <span class="nk-plan-value date"
                             >Mar 13, 2023 05:36 PM</span
                           >
-                        </div>
+                        </div> -->
                       </div>
                       <div class="nk-plan-amount">
                         <div class="nk-plan-amount-a nk-plan-order">
                           <span class="nk-plan-label text-soft"
                             >Total Return</span
                           >
-                          <span class="nk-plan-value amount">422.5 USD</span>
+                          <span class="nk-plan-value amount"> <?php echo $row['total']?> USD</span>
                         </div>
                         <div class="nk-plan-amount-b nk-plan-order">
                           <span class="nk-plan-label text-soft">
                             Net Profit
                           </span>
-                          <span class="nk-plan-value amount">172.5 USD</span>
+                   
                         </div>
                       </div>
                       <div class="nk-plan-more">
                         <a
                           class="btn btn-icon btn-lg btn-round btn-trans"
-                          href="https://app.investorm.xyz/investment/plan/Z2FUbURBb3U2M3BUa2xOMFdxZ1FQQT09"
+                          href=""
                           ><em class="icon bx bx-chevron-right"></em
                         ></a>
                       </div>
@@ -748,59 +763,12 @@ if (mysqli_num_rows($sql) > 0) {
                         <div class="progress-bar" data-progress="0"></div>
                       </div>
                     </div>
-                    <div class="nk-plan-item">
-                      <div class="nk-plan-icon is-running">
-                        <em class="icon bx bx-timer"></em>
-                      </div>
-                      <div class="nk-plan-info w-max-275px">
-                        <div class="nk-plan-name">
-                          Mercury - Hourly 0.45% for 1 Day
-                        </div>
-                        <div class="nk-plan-desc">
-                          Invested: <span class="amount">100.00 USD</span>
-                        </div>
-                      </div>
-                      <div class="nk-plan-term">
-                        <div class="nk-plan-start nk-plan-order">
-                          <span class="nk-plan-label text-soft"
-                            >Start Date</span
-                          >
-                          <span class="nk-plan-value date"
-                            >Dec 05, 2022 06:44 PM</span
-                          >
-                        </div>
-                        <div class="nk-plan-end nk-plan-order">
-                          <span class="nk-plan-label text-soft">End Date</span>
-                          <span class="nk-plan-value date"
-                            >Dec 06, 2022 06:45 PM</span
-                          >
-                        </div>
-                      </div>
-                      <div class="nk-plan-amount">
-                        <div class="nk-plan-amount-a nk-plan-order">
-                          <span class="nk-plan-label text-soft"
-                            >Total Return</span
-                          >
-                          <span class="nk-plan-value amount">110.8 USD</span>
-                        </div>
-                        <div class="nk-plan-amount-b nk-plan-order">
-                          <span class="nk-plan-label text-soft">
-                            Net Profit
-                          </span>
-                          <span class="nk-plan-value amount">10.8 USD</span>
-                        </div>
-                      </div>
-                      <div class="nk-plan-more">
-                        <a
-                          class="btn btn-icon btn-lg btn-round btn-trans"
-                          href="investment.html"
-                          ><em class="icon bx bx-chevron-right"></em
-                        ></a>
-                      </div>
-                      <div class="nk-plan-progress">
-                        <div class="progress-bar" data-progress="100"></div>
-                      </div>
-                    </div>
+<?php }} ?>
+                  </div>
+                  </div>
+                  </div>
+                  
+                    
                   </div>
                 </div>
               </div>

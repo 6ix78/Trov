@@ -37,9 +37,10 @@ if(isset($_POST['sub'])){
     $plan_profit = $_POST['plan_profit'];
     $ref_id = $_POST['ref_id'];
     $total = $_POST['total'];
+  $balance = $_POST['balance'];
     $stats = "Active";
 
-    if($plan_price > $balance){
+    if($balance < $plan_price){
 
       header("Location: insufficient.php?ref=".$ref);
         exit();
@@ -48,7 +49,8 @@ if(isset($_POST['sub'])){
       $sql = mysqli_query($conn, "INSERT INTO investments (plan_name, plan_rate, plan_days,plan_price,plan_profit,ref_id,total,stats) VALUE ('$plan_name', '$plan_rate', '$plan_days', '$plan_price', '$plan_profit', '$ref_id','$total', '$stats')" );
 
       if($sql){
-          header("Location: invest.php?ref=".$ref);
+        
+          header("Location: investment.php?ref=".$ref);
           exit();
          
       }else{
@@ -622,6 +624,7 @@ if (mysqli_num_rows($sql) > 0) {
            <input type="text" name="plan_profit" value="<?php echo  $plan_profit?> " hidden> 
            <input type="text" name="plan_rate" value="<?php echo  $plan_rate?> " hidden> 
            <input type="text" name="total" value="<?php echo  $total_return?> " hidden> 
+           <input type="text" name="balance" value="<?php echo  $balance?> " hidden> 
            <input type="text" name="ref_id" value="<?php echo $ref?>" hidden>
             
                 <input type="submit" name="sub" class="btn btn-lg btn-block btn-primary iv-plnin" value="Confirm &amp; Procced">

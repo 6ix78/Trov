@@ -876,61 +876,7 @@ if (mysqli_num_rows($sql) > 0) {
                   Investorm &copy; 2022. All Rights Reserved.
                 </div>
                 <div class="nk-footer-links">
-                  <ul class="nav nav-sm">
-                    <li class="nav-item">
-                      <a
-                        class="nav-link"
-                        href="https://app.investorm.xyz/page/faqs"
-                        >FAQs</a
-                      >
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        class="nav-link"
-                        href="https://app.investorm.xyz/page/terms-and-condition"
-                        >Terms and Condition</a
-                      >
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        class="nav-link"
-                        href="https://app.investorm.xyz/page/privacy-policy"
-                        >Privacy Policy</a
-                      >
-                    </li>
-
-                    <li class="nav-item">
-                      <div class="dropup">
-                        <a
-                          href="javascript:void(0)"
-                          class="dropdown-toggle dropdown-indicator has-indicator nav-link lang-switch-btn toggle-tigger"
-                          data-toggle="dropdown"
-                        >
-                          English
-                        </a>
-                        <div
-                          class="dropdown-menu dropdown-menu-sm dropdown-menu-right dropdown-menu-mxh h-max-175px"
-                        >
-                          <ul class="language-list">
-                            <li>
-                              <a
-                                href="https://app.investorm.xyz/language?lang=en"
-                                class="language-item justify-center"
-                              >
-                                <span class="language-name fw-medium"
-                                  >English</span
-                                >
-                              </a>
-                            </li>
-                            <li>
-                              <a
-                                href="https://app.investorm.xyz/language?lang=rtl"
-                                class="language-item justify-center"
-                              >
-                                <span class="language-name">RTL Mode</span>
-                              </a>
-                            </li>
-                          </ul>
+                 
                         </div>
                       </div>
                     </li>
