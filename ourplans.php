@@ -766,15 +766,22 @@ if (mysqli_num_rows($sql) > 0) {
                       <div class="nk-ivp-card card card-bordered card-full">
                         <div class="card-inner-group">
                           <div class="card-inner">
+                          <?php
+        $sql = mysqli_query($conn, "SELECT * FROM ourplans  WHERE plan_name = 'Standard Plan'");
+        if (mysqli_num_rows($sql) > 0) {
+          ($row = mysqli_fetch_assoc($sql));
+
+
+        ?>
                             <div class="nk-ivp-title card-title">
-                              <h4 class="title">Standard Plan</h4>
+                              <h4 class="title"><?php echo $row['plan_name']?></h4>
                             </div>
                             <div class="nk-ivp-summary card-text">
                               <div class="row">
                                 <div class="col-6">
                                   <span class="lead-text"
                                     ><span class="small text-dark"
-                                      >2.5%</span
+                                      ><?php echo $row['plan_rate']?></span
                                     ></span
                                   >
                                   <span class="sub-text">Daily Interest</span>
@@ -782,7 +789,7 @@ if (mysqli_num_rows($sql) > 0) {
                                 <div class="col-6">
                                   <span class="lead-text"
                                     ><span class="small text-dark"
-                                      >7</span
+                                      ><?php echo $row['plan_days']?></span
                                     ></span
                                   >
                                   <span class="sub-text">Term Days</span>
@@ -796,7 +803,7 @@ if (mysqli_num_rows($sql) > 0) {
                                 <li>
                                   <span class="label">Min Deposit</span> -
                                   <span class="data fw-medium text-dark"
-                                    >10.00 USD</span
+                                    ><?php echo $row['plan_price']?> USD</span
                                   >
                                 </li>
                                 <li>
@@ -836,15 +843,22 @@ if (mysqli_num_rows($sql) > 0) {
                       <div class="nk-ivp-card card card-bordered card-full">
                         <div class="card-inner-group">
                           <div class="card-inner">
+                          <?php
+        $sql = mysqli_query($conn, "SELECT * FROM ourplans  WHERE plan_name = 'Premium Plan'");
+        if (mysqli_num_rows($sql) > 0) {
+          ($row = mysqli_fetch_assoc($sql));
+
+
+        ?>
                             <div class="nk-ivp-title card-title">
-                              <h4 class="title">Premium Plan</h4>
+                              <h4 class="title"><?php echo $row['plan_name']?></h4>
                             </div>
                             <div class="nk-ivp-summary card-text">
                               <div class="row">
                                 <div class="col-6">
                                   <span class="lead-text"
                                     ><span class="small text-dark"
-                                      >1.5%</span
+                                      ><?php echo $row['plan_rate']?></span
                                     ></span
                                   >
                                   <span class="sub-text">Daily Interest</span>
@@ -852,7 +866,7 @@ if (mysqli_num_rows($sql) > 0) {
                                 <div class="col-6">
                                   <span class="lead-text"
                                     ><span class="small text-dark"
-                                      >1</span
+                                      ><?php echo $row['plan_days']?></span
                                     ></span
                                   >
                                   <span class="sub-text">Term Months</span>
@@ -866,7 +880,7 @@ if (mysqli_num_rows($sql) > 0) {
                                 <li>
                                   <span class="label">Min Deposit</span> -
                                   <span class="data fw-medium text-dark"
-                                    >100.00 USD</span
+                                    ><?php echo $row['plan_price']?> USD</span
                                   >
                                 </li>
                                 <li>
@@ -885,30 +899,43 @@ if (mysqli_num_rows($sql) > 0) {
                                 </li>
                               </ul>
                               <div class="nk-ivp-action">
-                                <a
-                                  class="btn btn-primary"
-                                  href="invest.html"
-                                  ><span>Invest Now</span></a
-                                >
+                              <form action="confirm_investplans.php?ref=<?php echo $ref;?>" method="post">
+       
+       <input type="text" name="plan_name" value="<?php echo $row['plan_name'] ?>" hidden>
+       <input type="text"  name="plan_rate" value="<?php echo $row['plan_rate'] ?>" hidden>
+       <input type="text"  name="plan_days" value="<?php echo $row['plan_days'] ?>" hidden>
+       <input type="text"  name="plan_price" value="<?php echo $row['plan_price'] ?>" hidden>
+       <input type="text"  name="plan_profit" value="<?php echo $row['plan_profit'] ?>" hidden>
+                                <button name="submit"  class="btn btn-primary">Invest Now</button>
+                              
                               </div>
                             </div>
+        </form>
                           </div>
                         </div>
                       </div>
                     </div>
+                    <?php } ?>
                     <div class="col-md-6 col-lg-4">
                       <div class="nk-ivp-card card card-bordered card-full">
                         <div class="card-inner-group">
                           <div class="card-inner">
+                          <?php
+        $sql = mysqli_query($conn, "SELECT * FROM ourplans  WHERE plan_name = 'Professional Plan'");
+        if (mysqli_num_rows($sql) > 0) {
+          ($row = mysqli_fetch_assoc($sql));
+
+
+        ?>
                             <div class="nk-ivp-title card-title">
-                              <h4 class="title">Professional Plan</h4>
+                              <h4 class="title"><?php echo $row['plan_name']?></h4>
                             </div>
                             <div class="nk-ivp-summary card-text">
                               <div class="row">
                                 <div class="col-6">
                                   <span class="lead-text"
                                     ><span class="small text-dark"
-                                      >2.75%</span
+                                      ><?php echo $row['plan_rate']?></span
                                     ></span
                                   >
                                   <span class="sub-text">Daily Interest</span>
@@ -916,7 +943,7 @@ if (mysqli_num_rows($sql) > 0) {
                                 <div class="col-6">
                                   <span class="lead-text"
                                     ><span class="small text-dark"
-                                      >15</span
+                                      ><?php echo $row['plan_days']?></span
                                     ></span
                                   >
                                   <span class="sub-text">Term Days</span>
@@ -930,7 +957,7 @@ if (mysqli_num_rows($sql) > 0) {
                                 <li>
                                   <span class="label">Min Deposit</span> -
                                   <span class="data fw-medium text-dark"
-                                    >500.00 USD</span
+                                    ><?php echo $row['plan_price']?> USD</span
                                   >
                                 </li>
                                 <li>
@@ -949,18 +976,26 @@ if (mysqli_num_rows($sql) > 0) {
                                 </li>
                               </ul>
                               <div class="nk-ivp-action">
-                                <a
-                                  class="btn btn-primary"
-                                  href="invest.html"
-                                  ><span>Invest Now</span></a
-                                >
+                            
+                              <form action="confirm_investplans.php?ref=<?php echo $ref;?>" method="post">
+       
+       <input type="text" name="plan_name" value="<?php echo $row['plan_name'] ?>" hidden>
+       <input type="text"  name="plan_rate" value="<?php echo $row['plan_rate'] ?>" hidden>
+       <input type="text"  name="plan_days" value="<?php echo $row['plan_days'] ?>" hidden>
+       <input type="text"  name="plan_price" value="<?php echo $row['plan_price'] ?>" hidden>
+       <input type="text"  name="plan_profit" value="<?php echo $row['plan_profit'] ?>" hidden>
+                                <button name="submit"  class="btn btn-primary">Invest Now</button>
+                              
                               </div>
                             </div>
+        </form>
                           </div>
+     
                         </div>
                       </div>
                     </div>
-                    <div class="col-md-6 col-lg-4">
+                    <?php } ?>
+                    <!-- <div class="col-md-6 col-lg-4">
                       <div class="nk-ivp-card card card-bordered card-full">
                         <div class="card-inner-group">
                           <div class="card-inner">
@@ -1115,8 +1150,8 @@ if (mysqli_num_rows($sql) > 0) {
                                 </div>
                               </div>
                             </div>
-                          </div>
-                          <div class="card-inner">
+                          </div> -->
+                          <!-- <div class="card-inner">
                             <div class="card-text">
                               <ul class="nk-ivp-data">
                                 <li>
@@ -1147,7 +1182,7 @@ if (mysqli_num_rows($sql) > 0) {
                                   ><span>Invest Now</span></a
                                 >
                               </div>
-                            </div>
+                            </div> -->
                           </div>
                         </div>
                       </div>
