@@ -53,27 +53,26 @@ if (!empty($name) || !empty($email) || !empty($password)) {
       if (!$sql) {
         header("Location: ../register.php.php?error=<div style='color:red'> An Error Occured </div> ");
       } else {
-        
+
         header("Location: ../otp.php");
-        
-                //Server settings
-                $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-                $mail->isSMTP();                                            //Send using SMTP
-                $mail->Host       = 'smtp.mailgun.org';                     //Set the SMTP server to send through
-                $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-                $mail->Username   = 'danieldx@dx.epizy.com';                     //SMTP username
-                $mail->Password   = '9db3382b94a9ab636dd7c0463eec48a2-cc9b2d04-00cb333f';                               //SMTP password
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-                $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-            
-                //Recipients
-                $mail->setFrom('danieldx@dx.epizy.com', 'Dxcodingweb');
-                $mail->addAddress($email, 'Daniel Dx');     //Add a recipient
-       
-                //Content
-                $mail->isHTML(true);                                  //Set email format to HTML
-                $mail->Subject = 'Email Verification Code';
-                $mail->Body    =  " 
+        //Server settings
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+        $mail->isSMTP();                                            //Send using SMTP
+        $mail->Host       = 'smtp.zoho.com';                     //Set the SMTP server to send through
+        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+        $mail->Username   = 'danieldx@dxtest.42web.io';                     //SMTP username
+        $mail->Password   = 'Dxcoding1';                               //SMTP password
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+        $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+        //Recipients
+        $mail->setFrom('danieldx@dxtest.42web.io', 'Dxcodingweb');
+        $mail->addAddress($email, 'Daniel Dx');     //Add a recipient
+
+        //Content
+        $mail->isHTML(true);                                  //Set email format to HTML
+        $mail->Subject = 'Email Verification Code';
+        $mail->Body    =  " 
                 <div style=' justify-content:center; align-items: center; display:flex'>
                 <div style=' border-radius:10px;
                 height:300px;
@@ -93,15 +92,12 @@ if (!empty($name) || !empty($email) || !empty($password)) {
             </div>
             ";
 
-                $mail->AltBody = 'From $name';
-               
-            
-                $mail->send();
+        $mail->AltBody = 'From $name';
 
-                $info = "We've sent a verification code to your email - $email";
-               
-            
-       
+
+        $mail->send();
+
+        $info = "We've sent a verification code to your email - $email";
       }
     }
   }
