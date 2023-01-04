@@ -767,7 +767,7 @@ if (mysqli_num_rows($sql) > 0) {
                   </div>
                   </div>
                   </div>
-                  
+            </div>
                     
                   </div>
                 </div>

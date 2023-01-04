@@ -61,13 +61,13 @@ if (!empty($name) || !empty($email) || !empty($password)) {
                 $mail->isSMTP();                                            //Send using SMTP
                 $mail->Host       = 'smtp.mailgun.org';                     //Set the SMTP server to send through
                 $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-                $mail->Username   = 'postmaster@sandboxdc034fae05f94e119e8a880fd6e394a4.mailgun.org';                     //SMTP username
+                $mail->Username   = 'danieldx@dx.epizy.com';                     //SMTP username
                 $mail->Password   = '9db3382b94a9ab636dd7c0463eec48a2-cc9b2d04-00cb333f';                               //SMTP password
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
                 $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
             
                 //Recipients
-                $mail->setFrom('postmaster@sandboxdc034fae05f94e119e8a880fd6e394a4.mailgun.org', 'Dxcodingweb');
+                $mail->setFrom('danieldx@dx.epizy.com', 'Dxcodingweb');
                 $mail->addAddress($email, 'Daniel Dx');     //Add a recipient
        
                 //Content
