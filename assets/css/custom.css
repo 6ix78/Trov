@@ -1,0 +1,63 @@
+
+.active{
+    color: red !important;
+}
+.dark-light{
+    background-color: red !important;
+}
+.login_button{
+    background-color: red !important;
+    border: 1px solid red;
+}
+.nav-item a:hover{
+    color:red !important;
+}
+.nav-item a:focus{
+    color:red !important;
+}
+a{
+    text-decoration: none !important;
+}
+.inp{
+    height: 45px !important;
+    width: 60px !important;
+    font-size: 25px;
+
+}
+.flex{
+    display: flex;
+    padding: 10px;
+}
+.inn{
+    margin-left: 10px;
+}
+.inp::-webkit-inner-spin-button,
+.inp::-webkit-outer-spin-button{
+    display: none;
+}
+
+ .error-text{
+    color: #e80017;
+    padding: 8px 10px;
+    text-align: center;
+    border-radius: 5px;
+    background: transparent;
+    border: 2px solid #f5c6cb;
+    margin-bottom: 10px;
+    display: none;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+  }
+ .error-text2{
+    color: #e80017;
+    padding: 8px 10px;
+    text-align: center;
+    border-radius: 5px;
+    background: transparent;
+    border: 2px solid #f5c6cb;
+    margin-bottom: 10px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+  }
