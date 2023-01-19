@@ -33,6 +33,7 @@
   <!-- Main Theme Styles + Bootstrap -->
   <link rel="stylesheet" media="screen" href="assets/css/theme.min.css">
   <link rel="stylesheet" media="screen" href="assets/css/custom.css">
+  <link rel="stylesheet" media="screen" href="assets/css/custom2.css">
 
   <!-- Page loading styles -->
   <style>
@@ -267,33 +268,30 @@
           </div>
           <div class="col-lg-6 col-xl-5  text-lg-start pt-5 pl-20 mt-xl-4">
             <div>
-              <h2> Forgot Password </h2>
-              <span> Input your Email Addressed Linked to your Account </span>
+              <h2> Password Reset Code </h2>
+              <span> We sent an otp code to your email </span>
               <!-- <span> <a href="user_register.html"> Sign Up </a></span> -->
             </div><br>
             <div>
-              <form action="php/otp.php" method="POST">
-                
+              <section  class="otp form">
+              <form  action="php/forgototp.php" method="POST" enctype="multipart/form-data" autocomplete="off">
               <?php if (isset($_GET['error'])) { ?>
               <div class="error-text2"> <?php echo $_GET['error']; ?></div>
             <?php  } ?>
-                <div class="position-relative mb-4">
-                  <label for="email" class="form-label fs-base">Email</label>
-                  <input type="text" id="email"  name="email" class="form-control form-control-lg" required>
-                  <div class="invalid-feedback position-absolute start-0 top-100">Please enter a valid Email !</div>
-                </div><br>
-
-
-                <div>
-                  <button type="submit" name="check-email" class="btn btn-danger shadow-primary btn-lg w-100">Verify Email</button>
-
-                </div>
-
+                <div class="position-relative " style="flex-direction: row;">
+                  <label for="email" class="form-label fs-base">Code</label>
+                  <div class="flex">
+                    <input type="number" name="otp1" class="form-control form-control-lg inp input" required>
+                    <input type="number"  name="otp2" class="form-control form-control-lg inp inn"  required >
+                    <input type="number" name="otp3" class="form-control form-control-lg inp inn"   required>
+                    <input type="number"  name="otp4" class="form-control form-control-lg inp inn"    required>
+         </div><br>
+                  <div class="button">
+                    <button type="submit" name="check-reset-otp" value="Verify Otp" class="btn btn-danger shadow-primary btn-lg w-100"> Verify Otp </button>
+                  </div>
               </form>
-
+    </section>
             </div>
-
-
           </div>
         </div>
 
@@ -322,6 +320,8 @@
 
     <!-- Main Theme Script -->
     <script src="assets/js/theme.min.js"></script>
+    <script src="assets/js/otp.js"></script>
+    <!-- <script src="otp2.js"></script> -->
 </body>
 
 <!-- Mirrored from silicon.createx.studio/landing-saas-v1.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Jan 2023 20:34:47 GMT -->

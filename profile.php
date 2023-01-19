@@ -32,7 +32,7 @@ if (isset($_GET['ref'])) {
       name="site-token"
       content="a275cdfd359e43212d43217d5bO1Hb1231f2d447H83643210"
     />
-    <title>Profile | Evercore </title>
+    <title>Profile | E-CRYPTO </title>
     <link rel="shortcut icon" href="asset/img/favicon.png" />
     <link rel="stylesheet" href="asset/test2.css" />
     <link

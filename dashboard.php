@@ -86,15 +86,13 @@ if (mysqli_num_rows($sql) > 0) {
                       <div class="user-balance">
                     <?php echo  $row['balance'] ?> <small class="currency">USD</small>
                       </div>
-                      <div class="user-balance-alt">
-                        0 <span class="currency">ETH</span>
-                      </div>
+                     
                     </div>
                   </div>
                   <ul class="user-account-data gy-1">
                     <li>
                       <div class="user-account-label">
-                        <span class="sub-text">Profits (7d)</span>
+                        <span class="sub-text">Profits</span>
                       </div>
                       <div class="user-account-value">
                         <span class="lead-text">
@@ -107,7 +105,7 @@ if (mysqli_num_rows($sql) > 0) {
                         <span class="sub-text">Deposit in orders</span>
                       </div>
                       <div class="user-account-value">
-                        <span class="sub-text">17.02 USD</span>
+                        <span class="sub-text">0.00 USD</span>
                       </div>
                     </li>
                   </ul>
@@ -167,9 +165,7 @@ if (mysqli_num_rows($sql) > 0) {
                         <div class="user-balance">
                          <?php echo  $row['balance'] ?> <small class="currency">USD</small>
                         </div>
-                        <div class="user-balance-alt">
-                          0 <span class="currency">ETH</span>
-                        </div>
+                       
                       </div>
                     </div>
                     <ul class="user-account-data">
@@ -447,9 +443,7 @@ if (mysqli_num_rows($sql) > 0) {
                           <div class="user-balance">
                            <?php echo $row['balance']?> <small class="currency">USD</small>
                           </div>
-                          <div class="user-balance-alt">
-                            0<span class="currency">ETH</span>
-                          </div>
+                          
                           <ul class="user-account-links">
                             <li>
                               <a href="deposit.php?ref=<?php echo $row['ref_id']?>" class="link"
@@ -531,7 +525,7 @@ if (mysqli_num_rows($sql) > 0) {
                       <ul class="nk-block-tools gx-3">
                         <li>
                           <a
-                            href="invest.php?ref=<?php echo $row['ref_id']?>"
+                            href="ourplans.php?ref=<?php echo $row['ref_id']?>"
                             class="btn btn-secondary"
                             ><span>Invest &amp; Earn</span>
                             <em
@@ -621,7 +615,7 @@ if (mysqli_num_rows($sql) > 0) {
                               </li>
                               <li>
                                 <a
-                                  href="invest.php?ref=<?php echo $row['ref_id']?>"
+                                  href="ourplans.php?ref=<?php echo $row['ref_id']?>"
                                   class="btn btn-secondary"
                                   ><span>Invest &amp; Earn</span>
                                   <em
@@ -641,7 +635,7 @@ if (mysqli_num_rows($sql) > 0) {
                         <div class="card-inner">
                           <div class="card-title-group">
                             <div class="card-title">
-                              <h5 class="nk-wgacc-title">Total Deposit</h5>
+                              <h5 class="nk-wgacc-title">Referral Balance</h5>
                             </div>
                             <div class="card-tools">
                               <em

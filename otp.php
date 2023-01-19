@@ -1,34 +1,327 @@
-<?php
-session_start ();
-
-
-
-?>
-
-
 <!DOCTYPE html>
-<html lang="zxx" class="js">
-    <head> <meta charset="utf-8">
-        <meta name="author" content="Dx Coding Web">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers."><link rel="shortcut icon" href="asset/img/favicon.png"><title>Sign in| EVERCORE FINANCE</title><link id="skin-default" rel="stylesheet" href="asset/test1.css">
-        <link rel="stylesheet" href="asset/main.css">
-        <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-    </head>
-    <body class="nk-body bg-white npc-general pg-auth" >
-        <div class="nk-app-root"><div class="nk-main ">
-            <div class="nk-wrap nk-wrap-nosidebar"><div class="nk-content ">
-                <div class="nk-split nk-split-page nk-split-lg">
-            <div class="nk-split-content nk-block-area nk-block-area-column nk-auth-container bg-white w-lg-45"><div class="absolute-top-right d-lg-none p-3 p-sm-5"><a href="#" class="toggle btn btn-white btn-icon btn-light" data-target="athPromo"><em class="icon bx bx-info-circle"></em></a></div><div class="nk-block nk-block-middle nk-auth-body"><div class="brand-logo pb-5"><a href="login.html" class="logo-link"><img class="logo-light logo-img logo-img-lg" src="asset/img/logo-dark.png" ><img class="logo-dark logo-img logo-img-lg" src="asset/img/logo-dark.png" ></a></div><div class="nk-block-head"><div class="nk-block-head-content"><h5 class="nk-block-title">Code Verification </h5><div class="nk-block-des"><p></p></div></div></div>
-            <?php if (isset($_GET['error'])) { ?>
-              <p class="error"> <?php echo $_GET['error']; ?></p>
-            <?php  } ?>
-            <form action="php/otp.php" method="post">
-                <div class="form-group"><div class="form-control-wrap">
-                    <input type="number" class="form-control form-control-lg" name="otp" placeholder="Enter your Enter your Otp "></div></div>
-                    <div class="form-group"><button name="check" class="btn btn-lg btn-danger btn-block">Submit</button></div>
-            </form>
-            </div> </div> <div class="nk-split-content nk-split-stretch bg-lighter d-flex toggle-break-lg toggle-slide toggle-slide-right" data-toggle-body="true" data-content="athPromo" data-toggle-screen="lg" data-toggle-overlay="true"><div class="slider-wrap w-100 w-max-550px p-3 p-sm-5 m-auto"><div class="slider-init" data-slick='{"dots":true, "arrows":false}'><div class="slider-item"><div class="nk-feature nk-feature-center"><div class=""><img class="" src="asset/img/laptop.svg" salt=""></div><div class="nk-feature-content py-4 p-sm-5"><h4>Evercore Finance</h4><p></p></div></div></div><div class="slider-arrows"></div></div></div></div></div></div></div></div><div class="nk-demo-panel nk-demo-panel-2x toggle-slide toggle-slide-right" data-content="demoML" data-toggle-overlay="true" data-toggle-body="true" data-toggle-screen="any"><div class="nk-demo-head"></html>
+<html lang="en">
+
+
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+<head>
+  <meta charset="utf-8">
+  <title>Evercore</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Evercore Website ">
+  <meta name="keywords" content="evercore, invest, investment, website , finance, double, gain, money, website">
+  <meta name="author" content="Dx Coding Web">
+
+  <!-- Viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Favicon and Touch Icons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png  ">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+  <link rel="mask-icon" href="assets/favicon/safari-pinned-tab.svg" color="red">
+  <link rel="shortcut icon" href="assets/favicon/favicon.ico">
+  <meta name="msapplication-TileColor" content="#080032">
+
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Vendor Styles -->
+  <link rel="stylesheet" media="screen" href="assets/vendor/boxicons/css/boxicons.min.css" />
+  <link rel="stylesheet" media="screen" href="assets/vendor/swiper/swiper-bundle.min.css" />
+
+  <!-- Main Theme Styles + Bootstrap -->
+  <link rel="stylesheet" media="screen" href="assets/css/theme.min.css">
+  <link rel="stylesheet" media="screen" href="assets/css/custom.css">
+  <link rel="stylesheet" media="screen" href="assets/css/custom2.css">
+
+  <!-- Page loading styles -->
+  <style>
+    .page-loading {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      -webkit-transition: all .4s .2s ease-in-out;
+      transition: all .4s .2s ease-in-out;
+      background-color: #fff;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 9999;
+    }
+
+    .dark-mode .page-loading {
+      background-color: #0b0f19;
+    }
+
+    .page-loading.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .page-loading-inner {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      -webkit-transition: opacity .2s ease-in-out;
+      transition: opacity .2s ease-in-out;
+      opacity: 0;
+    }
+
+    .page-loading.active>.page-loading-inner {
+      opacity: 1;
+    }
+
+    .page-loading-inner>span {
+      display: block;
+      font-size: 1rem;
+      font-weight: normal;
+      color: #9397ad;
+    }
+
+    .dark-mode .page-loading-inner>span {
+      color: #fff;
+      opacity: .6;
+    }
+
+    .page-spinner {
+      display: inline-block;
+      width: 2.75rem;
+      height: 2.75rem;
+      margin-bottom: .75rem;
+      vertical-align: text-bottom;
+      border: .15em solid #b4b7c9;
+      border-right-color: transparent;
+      border-radius: 50%;
+      -webkit-animation: spinner .75s linear infinite;
+      animation: spinner .75s linear infinite;
+    }
+
+    .dark-mode .page-spinner {
+      border-color: rgba(255, 255, 255, .4);
+      border-right-color: transparent;
+    }
+
+    @-webkit-keyframes spinner {
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spinner {
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+
+  <!-- Theme mode -->
+  <script>
+    let mode = window.localStorage.getItem('mode'),
+      root = document.getElementsByTagName('html')[0];
+    if (mode !== null && mode === 'dark') {
+      root.classList.add('dark-mode');
+    } else {
+      root.classList.remove('dark-mode');
+    }
+  </script>
+
+  <!-- Page loading scripts -->
+  <script>
+    (function() {
+      window.onload = function() {
+        const preloader = document.querySelector('.page-loading');
+        preloader.classList.remove('active');
+        setTimeout(function() {
+          preloader.remove();
+        }, 1000);
+      };
+    })();
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+        '../www.googletagmanager.com/gtm5445.html?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-WKV3GT5');
+  </script>
+</head>
+
+
+<!-- Body -->
+
+<body>
+
+  <!-- Google Tag Manager (noscript)-->
+  <noscript>
+    <iframe src="http://www.googletagmanager.com/ns.html?id=GTM-WKV3GT5" height="0" width="0" style="display: none; visibility: hidden;"></iframe>
+  </noscript>
+
+  <!-- Page loading spinner -->
+  <div class="page-loading active">
+    <div class="page-loading-inner">
+      <div class="page-spinner"></div><span>Evercore Loading...</span>
+    </div>
+  </div>
+
+
+  <!-- Page wrapper for sticky footer -->
+  <!-- Wraps everything except footer to push footer to the bottom of the page if there is little content -->
+  <main class="page-wrapper">
+
+
+    <!-- Navbar -->
+    <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page -->
+    <header class="header navbar navbar-expand-lg position-absolute navbar-sticky">
+      <div class="container px-3">
+        <a href="index-2.html" class="navbar-brand pe-3">
+          <img src="assets/img/favicon.png" width="47" alt="Silicon">
+          EVERCORE
+        </a>
+        <div id="navbarNav" class="offcanvas offcanvas-end">
+          <div class="offcanvas-header border-bottom">
+            <h5 class="offcanvas-title">Menu</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link " aria-current="page">Home</a>
+
+              </li>
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link ">About Us</a>
+
+
+              </li>
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link" data-bs-toggle="dropdown">Services</a>
+
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">Investments</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">Contact</a>
+              </li>
+            </ul>
+          </div>
+          <div class="offcanvas-header border-top">
+            <a href="https://themes.getbootstrap.com/product/silicon-business-technology-template-ui-kit/" class="btn btn-primary w-100" target="_blank" rel="noopener">
+              <i class="bx bx-cart fs-4 lh-1 me-1"></i>
+              &nbsp;Buy now
+            </a>
+          </div>
+        </div>
+        <div class="form-check form-switch mode-switch pe-lg-1 ms-auto me-4" data-bs-toggle="mode">
+          <input type="checkbox" class="form-check-input dark-light" id="theme-mode">
+          <label class="form-check-label d-none d-sm-block" for="theme-mode">Light</label>
+          <label class="form-check-label d-none d-sm-block" for="theme-mode">Dark</label>
+        </div>
+        <button type="button" class="navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a href="user_login.html" class="btn btn-primary login_button btn-sm fs-sm rounded d-none d-lg-inline-flex " target="_blank" rel="noopener">
+          <i class="bx bx-log-in fs-5 lh-1 me-1"></i>
+          Sign in
+        </a>
+      </div>
+    </header>
+
+    <!-- Main -->
+
+    <!-- Login Page  -->
+
+    <section class="position-relative overflow-hidden py-4 mb-3">
+      <div class="container pt-lg-3">
+        <div class="row flex-lg-nowrap">
+          <div class="col-lg-6 col-xl-7 text-center text-lg-start pt-5 mt-xl-4">
+            <!-- Layer parallax -->
+            <div class="parallax mt-4 ms-4 me-lg-0 ms-lg-n5 ms-xl-n3 mt-lg-n4">
+              <div class="parallax-layer" data-depth="0.5">
+                <img src="assets/img/Saly-2.svg" style="width: 500px;" alt="Layer">
+              </div>
+
+            </div>
+
+
+          </div>
+          <div class="col-lg-6 col-xl-5  text-lg-start pt-5 pl-20 mt-xl-4">
+            <div>
+              <h2> Verification </h2>
+              <span> We sent an otp code to your email </span>
+              <!-- <span> <a href="user_register.html"> Sign Up </a></span> -->
+            </div><br>
+            <div>
+              <section  class="otp form">
+              <form  action="" method="POST" enctype="multipart/form-data" autocomplete="off">
+              <div class="error-text"> This is an Error </div>
+                <div class="position-relative " style="flex-direction: row;">
+                  <label for="email" class="form-label fs-base">Code</label>
+                  <div class="flex">
+                    <input type="number" name="otp1" class="form-control form-control-lg inp input" required>
+                    <input type="number"  name="otp2" class="form-control form-control-lg inp inn"  required >
+                    <input type="number" name="otp3" class="form-control form-control-lg inp inn"   required>
+                    <input type="number"  name="otp4" class="form-control form-control-lg inp inn"    required>
+         </div><br>
+                  <div class="button">
+                    <button type="submit" name="submit" value="Verify Otp" class="btn btn-danger shadow-primary btn-lg w-100"> Verify Otp </button>
+                  </div>
+              </form>
+    </section>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      </div>
+    </section>
+
+
+    <!-- Login Page  -->
+
+    <!-- Main -->
+    <!-- Back to top button -->
+    <a href="#top" class="btn-scroll-top" data-scroll>
+      <span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span>
+      <i class="btn-scroll-top-icon bx bx-chevron-up"></i>
+    </a>
+
+
+    <!-- Vendor Scripts -->
+    <script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <script src="assets/vendor/parallax-js/dist/parallax.min.js"></script>
+    <script src="assets/vendor/jarallax/dist/jarallax.min.js"></script>
+    <script src="assets/vendor/rellax/rellax.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Main Theme Script -->
+    <script src="assets/js/theme.min.js"></script>
+    <script src="assets/js/otp.js"></script>
+    <script src="otp2.js"></script>
+</body>
+
+<!-- Mirrored from silicon.createx.studio/landing-saas-v1.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 15 Jan 2023 20:34:47 GMT -->
+
+</html>
